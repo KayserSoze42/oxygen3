@@ -2,24 +2,24 @@ package lexicon.lateral;
 
 public class Token {
 
-    private String symbol;
+    private String element;
 
     private int left;
     private int right;
 
-    public Token (int left, int right, String symbol) {
+    public Token (int left, int right, String element) {
         this.left = left;
         this.right = right;
-        this.symbol = symbol;
+        this.element = this.element;
     }
 
     @Override
     public String toString() {
-        return this.symbol;
+        return this.element;
     }
 
-    public String getSymbol() {
-        return this.symbol;
+    public String getElement() {
+        return this.element;
     }
 
     public int getLeft() {

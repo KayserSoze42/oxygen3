@@ -25,7 +25,7 @@ public class Reader {
 
         if (position >= source.length) {
 
-            // Dude, you're a grown man. Why are you throwing a IOException?
+            // Dude, you're a grown man. Why are you throwing an IOException?
             throw new IOException();
 
         }
