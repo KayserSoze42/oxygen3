@@ -1,19 +1,21 @@
 package lexicon.lateral;
 
-public class Symbol {
+public class Element {
 
     private String type;
-    private String name;
+    private String body;
 
 
-    public Symbol (String type, String name) {
+    public Element(String type, String body) {
         this.type = type;
-        this.name = name;
+        this.body = body;
     }
 
     @Override
     public String toString() {
-        return this.name;
+
+        return this.body;
+
     }
 
     public String getType() {

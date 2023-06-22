@@ -15,7 +15,19 @@ public class Token {
 
     @Override
     public String toString() {
-        return this.element;
+
+        StringBuilder bob = new StringBuilder();
+        bob
+                .append(element)
+                .append("[l: ")
+                .append(left)
+                .append(", r: ")
+                .append(right)
+                .append("]");
+
+        // This gives me such "ezekiel 25:17" vibes, which further give me HolyC vibes
+        // Jesus, take the wheel
+        return bob.toString();
     }
 
     public String getElement() {
