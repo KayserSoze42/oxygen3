@@ -2,15 +2,15 @@ package lexicon.lateral;
 
 public class Token {
 
-    private String element;
+    private Element element;
 
     private int left;
     private int right;
 
-    public Token (int left, int right, String element) {
+    public Token (int left, int right, Element element) {
         this.left = left;
         this.right = right;
-        this.element = this.element;
+        this.element = element;
     }
 
     @Override
@@ -30,8 +30,8 @@ public class Token {
         return bob.toString();
     }
 
-    public String getElement() {
-        return this.element;
+    public Element getElement() {
+        return element;
     }
 
     public int getLeft() {
