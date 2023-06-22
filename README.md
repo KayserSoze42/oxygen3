@@ -32,3 +32,14 @@ _My ozone project is an answer to a bad (by my standards!) Flask + JavaScript, S
 _Hopefuly the things I learn here can apply to TOMTQ project, even though the parsing there isn't really the main attraction._
 
 _Then again, resistance might be futile._
+
+---------------------------
+
+_Some references:_ 
+
+[GitHub parser example](https://github.com/Markvis/parser) 
+
+[IUPAC rules!](https://iupac.qmul.ac.uk/)
+
+[nomen](https://www2.chemistry.msu.edu/faculty/reusch/virttxtjml/nomen1.htm)
+
