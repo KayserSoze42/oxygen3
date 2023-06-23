@@ -12,7 +12,7 @@ public class Main {
 
         try {
 
-            Lexer lexer = new Lexer("1,2,420,69-ditest"); // By now I feel the at least 69% of the code has this joke
+            Lexer lexer = new Lexer("1,2,420,69-ditest"); // By now I feel that at least 69% of my code has this joke
 
             Token token = lexer.getNextToken();
 
