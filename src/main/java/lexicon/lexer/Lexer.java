@@ -19,6 +19,12 @@ public class Lexer {
 
     // I am hoping to achieve something using only simple-bonded non-cyclic stuff, but let's see how far is that, eh?
 
+    // So the idea so far is that we tokenize and parse the above-mentioned blob, but if there's our good old friend ","
+    // after a string literal, well let's parse one more, eh?
+
+    // 1, 3, 7-Trimethylpurine-2,6-dione "," (6aR,9R)- N,N- diethyl- 7-methyl- 4,6,6a,7,8,9- hexahydroindolo- [4,3-fg] quinoline- 9-carboxamide
+    // hopefully
+
     private boolean eof;
     private char character;
 
