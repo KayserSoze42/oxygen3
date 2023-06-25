@@ -1,5 +1,6 @@
 import lexicon.lateral.Token;
 import lexicon.lexer.Lexer;
+import lexicon.parser.Parser;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,9 +11,12 @@ public class Main {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
+        System.out.println("--------------------------------");
+        System.out.println("LEXER:\n");
+
         try {
 
-            Lexer lexer = new Lexer("1,2,420,69-ditest"); // By now I feel that at least 69% of my code has this joke
+            Lexer lexer = new Lexer("1,2,420,69-tetra"); // By now I feel that at least 69% of my code has this joke
 
             Token token = lexer.getNextToken();
 
@@ -26,9 +30,6 @@ public class Main {
             System.out.println("Error, eh?");
 
         }
-
-
-
 
 
     }
