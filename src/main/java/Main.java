@@ -31,6 +31,28 @@ public class Main {
 
         }
 
+        System.out.println("--------------------------------");
+        System.out.println("PARSER? ... Well, you know:\n");
+
+        try {
+
+            Parser parser = new Parser("9,6,024,21-tetra");
+
+            for (int i = 0; i < 8; i++) {
+
+                parser.scan();
+
+            }
+
+        } catch (Exception eh) {
+
+            System.out.println("We meet again, eh?");
+        }
+
+
+
+
+
 
     }
 
