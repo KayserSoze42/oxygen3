@@ -41,11 +41,11 @@ _Some references:_
 
 [public free](https://www.youtube.com/watch?v=0ZDPvdp2uFk) [abstract idea](https://www.youtube.com/watch?v=VKM1eLoN-gI) {
 
-[gotl, lol](https://github.com/Arjentix/GOTL)
+[gotl, lol](https://github.com/Arjentix/GOTL);
 
-[IUPAC rules!](https://iupac.qmul.ac.uk/)
+[IUPAC rules!](https://iupac.qmul.ac.uk/);
 
-[nomen](https://www2.chemistry.msu.edu/faculty/reusch/virttxtjml/nomen1.htm)
+[nomen](https://www2.chemistry.msu.edu/faculty/reusch/virttxtjml/nomen1.htm);
 
 }
 
