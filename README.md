@@ -27,9 +27,9 @@ _I'm keeping it "simple", and look forward to all of the OOPsies I make along th
 _Due to limited time and a problem with re-learning things and filling some gaps, this might be a long ride, but at least this time I'll end up with some files (that make sense?)_
 
 
-_My ozone project is an answer to a bad (by my standards!) Flask + JavaScript, SaveTheOzone project. I realized what have I done again, endured some PTSD++ flashbacks, and here we are._
+_My [ozone](https://www.plaintech.ink/ozone) [project](https://www.github.com/kaysersoze42/ozone) is an answer to a bad (by my standards!) Flask + JavaScript, [SaveTheOzone project](https://www.github.com/kaysersoze42/savetheozone). I realized what have I done again, endured some PTSD++ flashbacks, and here we are._
 
-_Hopefuly the things I learn here can apply to TOMTQ project, even though the parsing there isn't really the main attraction._
+_Hopefuly the things I learn here can apply to [TOMTQ project](https://www.github.com/kaysersoze42/tomtq), even though the parsing there isn't really the main attraction._
 
 _Then again, resistance might be futile._
 
@@ -37,9 +37,15 @@ _Then again, resistance might be futile._
 
 _Some references:_ 
 
-[GitHub parser example](https://github.com/Markvis/parser) 
+[GitHub parser example](https://github.com/Markvis/parser);
+
+[public free](https://www.youtube.com/watch?v=0ZDPvdp2uFk) [abstract idea](https://www.youtube.com/watch?v=VKM1eLoN-gI) {
+
+[gotl, lol](https://github.com/Arjentix/GOTL)
 
 [IUPAC rules!](https://iupac.qmul.ac.uk/)
 
 [nomen](https://www2.chemistry.msu.edu/faculty/reusch/virttxtjml/nomen1.htm)
+
+}
 
