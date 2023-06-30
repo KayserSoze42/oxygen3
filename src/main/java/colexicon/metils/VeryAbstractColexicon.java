@@ -1,4 +1,4 @@
 package colexicon.metils;
 
-public class VeryAbstractColexicon<E> {
+public abstract class VeryAbstractColexicon<E> {
 }
