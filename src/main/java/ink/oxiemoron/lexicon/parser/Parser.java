@@ -1,5 +1,6 @@
 package ink.oxiemoron.lexicon.parser;
 
+import ink.oxiemoron.colexicon.lingua.IUPACSyntaxError;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lateral.Tokens;
 import ink.oxiemoron.lexicon.lexer.Lexer;
@@ -60,26 +61,3 @@ public class Parser {
 
 }
 
-class IUPACSyntaxError extends Exception {
-
-    private static final long serialVersionUID = 1l;
-
-    private Token tokenFound;
-    private Tokens typeExpected;
-
-
-    public IUPACSyntaxError(Token tokenFound, Tokens typeExpected) {
-
-        this.tokenFound = tokenFound;
-        this.typeExpected = typeExpected;
-
-    }
-
-    void print() {
-
-        System.out.println("Expected token type:" + typeExpected);
-        return; // go home, u drunk
-
-    }
-
-}

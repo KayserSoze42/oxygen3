@@ -35,7 +35,7 @@ public class Vector<E> extends VeryAbstractList<E> implements List<E>{
 // ye ye, look at this guy reinventing the wheel
 // but rly idk wth is going on
 
-// since we already are gettin' some "objects"  from the lexer
+// since we already are gettin' some "objects" from the lexer
 // i always though about testing different data structs here, a ref to my small step
 
 // this is just a basic sketch, to figure out stuff
