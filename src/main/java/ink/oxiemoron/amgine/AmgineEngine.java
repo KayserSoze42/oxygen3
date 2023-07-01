@@ -72,9 +72,9 @@ public class AmgineEngine { // was thinking abstract, and then, bam!
     // I hope some young prankster finds my github in a distant(i'm an optimist, sue me) future
     // And he gets the chills i got way back then, hahah lol = MsgBox...
 
-    // I'm not that good
+    // I'm not that good (to give chills i mean, haha)
 
-    // But i'm reflecting™ on what i have seen
+    // But i'm reflecting™ on what i have seen (and that has given me chills)
 
     // from typewriters and vbses, to VB5~6 and
     //
@@ -91,6 +91,12 @@ public class AmgineEngine { // was thinking abstract, and then, bam!
     // ran once in prod, worked, nice, i got an email, it's me, nice
 
     // a white hat (lol, a small one for sure) since days[0]...
+
+
+
+
+
+
 
 
 
@@ -148,6 +154,17 @@ public class AmgineEngine { // was thinking abstract, and then, bam!
 
 
     // still roping in the basics, but will start/continue with the nature (alt+3) and the /treeeees (iykwim, but u should by now)
+
+
+    // Btw we plot the basic lego block - methyl as ©.. hahaha
+    // we can ignore(?) the Hs for noe, as you can just add the bonds up to four for Cs total, basically
+
+    // and we are trying the cilly first
+
+    // and then we store just (name, N times ©) as the alkane/alkyl
+
+
+    // When we bridge the two* we have so far we will consider different compilers and ideas and alfreds and alkenes and alkynes
 
 
 
