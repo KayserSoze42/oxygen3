@@ -1,9 +1,15 @@
 package ink.oxiemoron.lexicon.lexer;
 
+import ink.oxiemoron.colexicon.lingua.IUPACSyntaxError;
+import ink.oxiemoron.lexicon.lateral.Token;
+import ink.oxiemoron.lexicon.lateral.Tokens;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.mockito.Mockito;
+
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestLexer {
 
@@ -20,39 +26,65 @@ public class TestLexer {
     };
 
     String[] invalidCompounds = {
-            "Now, this is a story all about how",
+            "♪Now, this is a story all about how",
             "My life got flipped-turned upside down",
             "And I'd like to take a minute",
             "Just sit right there",
-            "I'll tell you how I became the prince of a town called Bel-Air"
+            "I'll tell you how I became the fool of a place called Blue Planet♫"
     };
 
+
     @Test
-    public void testLexerWithValidCompounds() {
+    public void test_getNextToken_ValidCompounds_TokensType_NotError() {
 
         for (String validCompound : validCompounds) {
 
             assertAll( () -> {
 
                         try {
+
                             Lexer lexer = new Lexer(validCompound);
+
+                            Token tolkien = lexer.getNextToken(); // since im watching e01, feels fine. Fine, just fine..
+
+                            while (tolkien != null) {
+
+                                assertNotEquals(Tokens.Error, tolkien.getElement().getType());
+                                tolkien = lexer.getNextToken();
+                            }
+
                         } catch (Exception eh) {
+
                             throw eh;
+
                         }
 
-                    }
-            );
+                    });
         }
-
     }
 
     @Test
-    public void testLexerWithInvalidCompounds() {
+    public void test_getNextToken_InvalidCompounds_TokensType_Error() {
 
-        // mock of a test, that's for sure
+        for (String invalidCompoundButHotLyrics : invalidCompounds) {
 
-        // but a reminder
+            assertAll(() -> {
 
+                Lexer lexer = new Lexer(invalidCompoundButHotLyrics);
+
+                Token tolkien = lexer.getNextToken();
+
+                while (tolkien != null) {
+
+                    tolkien = lexer.getNextToken();
+
+                    assertEquals(Tokens.Error, tolkien.getElement().getType());
+
+                }
+            });
+        }
     }
+
+
 
 }

@@ -1,10 +1,25 @@
-package ink.oxiemoron;
+package ink.oxiemoron; //                    º                  º                             º                 º
+//         º              º  º                   º                 º            º       º                    º                             º
+import org.junit.jupiter.api.Test; //         º          º                                         º
+import static org.junit.jupiter.api.Assertions.assertEquals; //            º                              º                   º               º              º
+import static org.junit.jupiter.api.Assertions.assertNotEquals; //   º            º                   º         º
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
-public class TestMain {
+// so the nam con i am going with (for now) is            º            º              º            *
+//                                                                           º                 *                     º
+// test_methodName_stateUnderTest_expectedBehaviour    º      º        º                   *                                     º                    º
+//                                                                                      * *   *  *              º
+// I hereby dub thee         º      º              º                  º                *
+//                                                                                          *  *
+// the_teleScope_testIng_semaNtics()  º                       º              º            *      *                   º               º
+//                º                       º
+// for the slight resemblance to a telescope, hah  ╚■■■████▓             º     º                        º          º
+//                                                     ╬                                                                 º                         º
+// grep, i adore using ascii             º             ║     º                     º                        º
+//======================================================================================================================
+//                                                                                                                       4NNM&dog™
+//                                                                                                                       a low po(or)ly drawn tribute
+// *sema actually means token, heh
+public class TestMain { //
 
     @Test
     public void testTheTest() {
@@ -20,6 +35,9 @@ public class TestMain {
             int notExpected = 0x420; // 69 is expected :/
             
             assertNotEquals(notExpected, integer); // "negative" test :(
+
+            // still, i might be wrong (prbly(am(def(101%))))
+
         }
     }
 

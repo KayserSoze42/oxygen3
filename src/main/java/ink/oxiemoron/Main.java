@@ -20,11 +20,11 @@ public class Main {
 
             Lexer lexer = new Lexer("1,2,420,69-tetra"); // By now I feel that at least 69% of my code has this joke
 
-            Token token = lexer.getNextToken();
+            Token tolkien = lexer.getNextToken();
 
-            while (token != null) {
-                System.out.println("Token: " + token.getElement().getType() + " - " + token.toString());
-                token = lexer.getNextToken();
+            while (tolkien != null) {
+                System.out.println("Token: " + tolkien.getElement().getType() + " - " + tolkien.toString());
+                tolkien = lexer.getNextToken();
             }
 
         } catch (Exception eh) {
