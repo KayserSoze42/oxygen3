@@ -5,6 +5,8 @@ import ink.oxiemoron.lexicon.lexer.Lexer;
 import ink.oxiemoron.lexicon.parser.Parser;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
@@ -12,6 +14,15 @@ public class Main {
     public static void main(String[] args) {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+
+
+        try (FileWriter fileWriter = new FileWriter("le.file.t.mignon");) {
+            fileWriter.append("l");
+        } catch (IOException ioE) {
+            System.out.println("kek");
+        }
+
 
         System.out.println("--------------------------------");
         System.out.println("LEXER:\n");

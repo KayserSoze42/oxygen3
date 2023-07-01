@@ -1,7 +1,7 @@
 package ink.oxiemoron.lexicon.lateral;
 
 public enum Tokens {
-    Structure,Error,Location,Comma,Dash,Multiplier,Radical // LGBTQWERTY+ aka Live and let love
+    Form,Structure,Error,Location,Comma,Dash,Multiplier,Radical,Root // LGBTQWERTY+ aka Live and let love
     // Not sure if there should be a generic functional group type/kind abstraction instead of triple As,
     // Will see when we start compilin' (to what?!)
 
