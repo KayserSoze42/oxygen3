@@ -33,6 +33,12 @@ public class TestMain { //
             assertEquals(integer, integer); // "positive" test :)
 
             int notExpected = 0x420; // 69 is expected :/
+
+            if (integer == 69) {
+
+                System.out.println("Niceeee.."); // "i can't believe you've done this"
+
+            }
             
             assertNotEquals(notExpected, integer); // "negative" test :(
 
