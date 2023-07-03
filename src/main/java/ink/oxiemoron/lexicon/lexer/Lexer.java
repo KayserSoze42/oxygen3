@@ -67,6 +67,14 @@ public class Lexer {
         return new Token(left, right, Element.craft(multiplier, Tokens.Multiplier));
     }
 
+    public Token newRadicalToken(int left, int right, String radical) {
+        return new Token(left, right, Element.craft(radical, Tokens.Radical));
+    }
+
+    public Token newRootToken(int left, int right, String root) {
+        return new Token(left, right, Element.craft(root, Tokens.Root));
+    }
+
     public Token getNextToken() {
 
         // Trying to be smart, usually yields in dumb stuff
@@ -191,7 +199,7 @@ public class Lexer {
             pattern = Pattern.compile(Regex.MULTIPLIER.pattern);
             matcher = pattern.matcher(blob);
 
-            // Capture groups? lets hope not
+            // Check for Multipliers - mono/di/tri..
             if (matcher.matches()) {
 
                 startPosition = matcher.start();
@@ -200,6 +208,32 @@ public class Lexer {
                 return newMultiplierToken(startPosition, endPosition, matcher.group());
 
             }
+
+            pattern = Pattern.compile(Regex.RADICAL.pattern);
+            matcher = pattern.matcher(blob);
+
+            // Check for Radicals - methyl/propyl/butyl..
+            if (matcher.matches()) {
+
+                startPosition = matcher.start();
+                endPosition = matcher.end() - 1;
+
+                return newRadicalToken(startPosition, endPosition, matcher.group());
+
+            }
+
+            pattern = Pattern.compile(Regex.ROOT.pattern);
+            matcher = pattern.matcher(blob);
+
+            if (matcher.matches()) {
+
+                startPosition = matcher.start();
+                endPosition = matcher.end() - 1;
+
+                return newRootToken(startPosition, endPosition, matcher.group());
+
+            }
+
 
         }
 

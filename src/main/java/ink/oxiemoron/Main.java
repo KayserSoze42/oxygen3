@@ -15,21 +15,12 @@ public class Main {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-
-
-        try (FileWriter fileWriter = new FileWriter("le.file.t.mignon");) {
-            fileWriter.append("l");
-        } catch (IOException ioE) {
-            System.out.println("kek");
-        }
-
-
         System.out.println("--------------------------------");
         System.out.println("LEXER:\n");
 
         try {
 
-            Lexer lexer = new Lexer("1,2,420,69-tetra"); // By now I feel that at least 69% of my code has this joke
+            Lexer lexer = new Lexer("1,2,420,69-tetra methyl hexane"); // ignoring isomers for now, for sure
 
             Token tolkien = lexer.getNextToken();
 
@@ -49,7 +40,9 @@ public class Main {
 
         try {
 
-            Parser parser = new Parser("9,6,024,21-tetra");
+            Parser parser = new Parser("9,6,024,21-tetra ethyl heptane"); // Oh. Play it cool. Play it cool.
+            // Here come the whitespace cops
+            // Whitespaaaaace
 
             for (int i = 0; i < 8; i++) {
 

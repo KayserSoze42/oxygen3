@@ -3,6 +3,7 @@ package ink.oxiemoron.lexicon.parser;
 import ink.oxiemoron.colexicon.lingua.IUPACSyntaxError;
 import ink.oxiemoron.lexicon.ast.AST;
 import ink.oxiemoron.lexicon.ast.FormTree;
+import ink.oxiemoron.lexicon.ast.RadicalTree;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lateral.Tokens;
 import ink.oxiemoron.lexicon.lexer.Lexer;
@@ -41,9 +42,18 @@ public class Parser {
 
     public AST rForm() throws IUPACSyntaxError {
         AST tree = new FormTree();
-        //tree.addKid(); still waiting for the DNA results
+        if (isNextToken(Tokens.Radical)) { // Just a radical group
+            //tree.addKid() still matching atcgs
+        }
+        if (isNextToken(Tokens.Location)) { // A substituent you say!
+
+        }
         return tree;
     }
+
+//    public AST rRadical() throws IUPACSyntaxError {
+//        AST tree = new RadicalTree();
+//    }
 
 
 
