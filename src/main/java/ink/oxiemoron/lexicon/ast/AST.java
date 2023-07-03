@@ -1,5 +1,7 @@
 package ink.oxiemoron.lexicon.ast;
 
+import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
+
 import java.util.ArrayList;
 
 public abstract class AST {
@@ -42,6 +44,28 @@ public abstract class AST {
         return kids.size();
     }
 
+
     // We accept no visitors at this point. Thank you, come again later.
+
+    // Les Visiteurs
+
+    public abstract Object accept(ASTVisiteur visiteur);
+
+    public ArrayList<AST> getKids() {
+        return kids;
+    }
+
+    public AST addKid(AST kid) { // I kid u knot
+        kids.add(kid);
+        return this;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
+    }
 
 }
