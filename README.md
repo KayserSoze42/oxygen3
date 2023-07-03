@@ -41,6 +41,8 @@ _Some references:_
 
 [public free](https://www.youtube.com/watch?v=0ZDPvdp2uFk) [abstract idea](https://www.youtube.com/watch?v=VKM1eLoN-gI) {
 
+[Dobry wieczór!](https://www.youtube.com/watch?v=eF9qWbuQLuw);
+
 [gotl, lol](https://github.com/Arjentix/GOTL);
 
 [IUPAC rules!](https://iupac.qmul.ac.uk/);
