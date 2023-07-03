@@ -1,9 +1,12 @@
 package ink.oxiemoron.lexicon.parser;
 
 import ink.oxiemoron.colexicon.lingua.IUPACSyntaxError;
+import ink.oxiemoron.lexicon.ast.AST;
+import ink.oxiemoron.lexicon.ast.FormTree;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lateral.Tokens;
 import ink.oxiemoron.lexicon.lexer.Lexer;
+import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 
 public class Parser {
 
@@ -21,9 +24,28 @@ public class Parser {
         }
     }
 
-    public Lexer getLexd() {
+    public Lexer getLex() {
         return lexer;
     }
+
+    public AST execute() throws Exception {
+
+        try {
+            return rForm();
+        } catch (IUPACSyntaxError ise) { // win+x, a, left, enter, "ise", enter, lol
+            ise.printStackTrace();
+            throw ise;
+        }
+
+    }
+
+    public AST rForm() throws IUPACSyntaxError {
+        AST tree = new FormTree();
+        //tree.addKid(); still waiting for the DNA results
+        return tree;
+    }
+
+
 
     private boolean isNextToken(Tokens type) {
 

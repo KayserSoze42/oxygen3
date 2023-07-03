@@ -12,7 +12,15 @@ public abstract class ASTVisiteur {
     }
 
     public abstract Object visitFormTree(AST tree);
-    public abstract Object visitStructureTree(AST tree);
+    public abstract Object visitSubstructureTree(AST tree);
+
+    public abstract Object visitSubstituentTree(AST tree);
+
+    public abstract Object visitLocationTree(AST tree);
+
+    public abstract Object visitRadicalTree(AST tree); // Even if i'm wrong.. funny name..
+
+    public abstract Object visitRootTree(AST tree);
 
     // Ok, now we have the "basics", let's turn them "visible"
 
