@@ -6,6 +6,7 @@ import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lateral.Tokens;
 import ink.oxiemoron.lexicon.lateral.regex.Regex;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,8 +35,11 @@ public class Lexer {
     private Reader source;
     private StringBuilder bob;
 
-    private Pattern pattern;
-    private Matcher matcher;
+    private boolean isMultiplied = false; // idk rly, i'm just trying it out
+
+    private static final Pattern multiplierPattern = Pattern.compile(Regex.MULTIPLIER.pattern);
+    private static final Pattern radicalPattern = Pattern.compile(Regex.RADICAL.pattern);
+    private static final Pattern rootPattern  = Pattern.compile(Regex.ROOT.pattern);
 
 
     public Lexer (String string) throws Exception{
@@ -174,9 +178,14 @@ public class Lexer {
 
                 do {
 
-                    endPosition++;
                     bob.append(character);
                     character = source.read();
+
+                    // I almost made a Molotov here, hahha
+                    // Thank grep i do not commit every 5mins..
+
+                    // Now let's stack 'em up, hahaha
+                    // Or shall we?
 
                 } while (Character.isAlphabetic(character));
 
@@ -186,53 +195,6 @@ public class Lexer {
                 // It should be fine when we eof with alphabetic? Right? ... Right??
             }
 
-            // By now, bob should have built a blob
-            String blob = bob.toString();
-            // Multiplier(s) x Group(s) x Base
-
-            // I should keep in mind that numeric literals also provide locations for the funny bonds as I remember
-            // funny place to remember that, but it would split the string
-
-            // I feel like I'm missing some design. The grand one excluded, I'll keep it for the sake of going on
-            // In case of a Multiplier pattern match, panik!
-
-            pattern = Pattern.compile(Regex.MULTIPLIER.pattern);
-            matcher = pattern.matcher(blob);
-
-            // Check for Multipliers - mono/di/tri..
-            if (matcher.matches()) {
-
-                startPosition = matcher.start();
-                endPosition = matcher.end() - 1;
-
-                return newMultiplierToken(startPosition, endPosition, matcher.group());
-
-            }
-
-            pattern = Pattern.compile(Regex.RADICAL.pattern);
-            matcher = pattern.matcher(blob);
-
-            // Check for Radicals - methyl/propyl/butyl..
-            if (matcher.matches()) {
-
-                startPosition = matcher.start();
-                endPosition = matcher.end() - 1;
-
-                return newRadicalToken(startPosition, endPosition, matcher.group());
-
-            }
-
-            pattern = Pattern.compile(Regex.ROOT.pattern);
-            matcher = pattern.matcher(blob);
-
-            if (matcher.matches()) {
-
-                startPosition = matcher.start();
-                endPosition = matcher.end() - 1;
-
-                return newRootToken(startPosition, endPosition, matcher.group());
-
-            }
 
 
         }

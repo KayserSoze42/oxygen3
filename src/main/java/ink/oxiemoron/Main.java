@@ -1,6 +1,7 @@
 package ink.oxiemoron;
 
 import ink.oxiemoron.lexicon.lateral.Token;
+import ink.oxiemoron.lexicon.lateral.regex.Regex;
 import ink.oxiemoron.lexicon.lexer.Lexer;
 import ink.oxiemoron.lexicon.parser.Parser;
 
@@ -8,19 +9,20 @@ import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("--------------------------------");
         System.out.println("LEXER:\n");
 
         try {
 
-            Lexer lexer = new Lexer("1,2,420,69-tetra methyl hexane"); // ignoring isomers for now, for sure
+            Lexer lexer = new Lexer("1,2,420,69-tetramethylhexane"); // ignoring isomers for now, for sure
 
             Token tolkien = lexer.getNextToken();
 
@@ -40,11 +42,11 @@ public class Main {
 
         try {
 
-            Parser parser = new Parser("9,6,024,21-tetra ethyl heptane"); // Oh. Play it cool. Play it cool.
+            Parser parser = new Parser("9,6,024,21-tetraethylheptane"); // Oh. Play it cool. Play it cool.
             // Here come the whitespace cops
             // Whitespaaaaace
 
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < 11; i++) {
 
                 parser.scan();
 
@@ -54,11 +56,6 @@ public class Main {
 
             System.out.println("We meet again, eh?");
         }
-
-
-
-
-
 
     }
 
