@@ -1,8 +1,8 @@
 package ink.oxiemoron.colexicon.metils;
 
-public class Stack<E> extends Vector<E> { // ++ != ++
+public class Pile<E> extends Carrier<E> { // ++ != ++
 
-   public Stack() {}
+   public Pile() {}
 
    // push
 

@@ -1,12 +1,16 @@
 package ink.oxiemoron.colexicon.metils;
 
-public interface List<E> extends Colexicon<E> {
+public interface Catalogue<E> extends Colexicon<E> {
 
     int size();
 
     boolean isEmpty();
 
     Gonexter<E> gonexter();
+
+    Object[] toArray();
+
+    <T> T[] toArray(T[] a);
 
     boolean add(E e); // Яush e then b
 
