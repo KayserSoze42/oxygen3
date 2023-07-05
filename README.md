@@ -51,7 +51,8 @@ _Some references:_
 
 }
 
-_Test grammar:_
+![demotest](https://github.com/KayserSoze42/ink/blob/main/src/main/java/ink/oxiemoron/lol/oxygen3/aquickonebythewho.png?raw=true)
 
-![demo](https://github.com/KayserSoze42/oxygen3/blob/master/GrammarDemo.png?raw=true)
+_To quote the man: **make do, and then make do while in version 0.2.5**_
 
+_will return in Basic Stacks-things.._
