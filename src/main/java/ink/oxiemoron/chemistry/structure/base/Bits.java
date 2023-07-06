@@ -1,4 +1,4 @@
 package ink.oxiemoron.chemistry.structure.base;
 
-public interface Molecule {
+public abstract class Bits {
 }
