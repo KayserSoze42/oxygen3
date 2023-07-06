@@ -6,4 +6,8 @@ public class Carbon extends Bit {
     public Carbon() {
         super("Carbon"); // yet another superhero name, haha
     }
+    @Override
+    public void bond() {
+        // Carbon Bond..
+    }
 }

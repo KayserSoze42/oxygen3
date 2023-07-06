@@ -7,4 +7,9 @@ public class Hydrogen extends Bit {
     public Hydrogen() {
         super("Hydrogen");
     }
+
+    @Override
+    public void bond() {
+        // ..
+    }
 }
