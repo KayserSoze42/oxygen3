@@ -75,7 +75,10 @@ public class TestLexer {
 
         try {
 
-            Lexer lexer = new Lexer(",");
+            Lexer lexer = new Lexer("1,2");
+
+            lexer.getNextToken(); // numero--
+
             actualTokensType = lexer.getNextToken().getElement().getType(); // --", "", "--
 
             assertEquals(expectedTokensType, actualTokensType);
