@@ -16,7 +16,7 @@ public class TestRegex {
     private static final Pattern rootPattern  = Pattern.compile(Regex.ROOT.pattern);
 
     @Test
-    public void test_MULTIPLIER_matchesValid_True() {
+    public void test_MULTIPLIER_matchesValid_isTrue() {
         final String[] validMultipliers = new String[]{
                 "mono", "di", "tri", "tetra", "penta", "hexa", "hepta", "octa", "nona", "deca"
         };
@@ -27,7 +27,7 @@ public class TestRegex {
     }
 
     @Test
-    public void test_MULTIPLIER_matchesInvalid_False() {
+    public void test_MULTIPLIER_matchesInvalid_isFalse() {
         final String[] validMultipliers = new String[]{
                 "mano", "da", "tree", "tetrapack", "pentakill", "hexx", "7even", "octarina", "NaN", "childs"
         };
@@ -38,7 +38,7 @@ public class TestRegex {
     }
 
     @Test
-    public void test_RADICAL_matchesValid_True() {
+    public void test_RADICAL_matchesValid_isTrue() {
         final String[] validMultipliers = new String[]{
                 "methyl", "ethyl", "propyl", "butyl", "pentyl", "hexyl", "heptyl", "octyl", "nonyl", "decyl"
         };
@@ -49,13 +49,35 @@ public class TestRegex {
     }
 
     @Test
-    public void test_RADICAL_matchesInvalid_False() {
+    public void test_RADICAL_matchesInvalid_isFalse() {
         final String[] validMultipliers = new String[]{
                 "mano", "da", "tree", "tetrapack", "pentakill", "hexx", "7even", "octarina", "NaN", "childs"
         };
 
         for (String validMultiplier: validMultipliers) {
             assertFalse(radicalPattern.matcher(validMultiplier).matches());
+        }
+    }
+
+    @Test
+    public void test_ROOT_matchesValid_isTrue() {
+        final String[] validMultipliers = new String[]{
+                "methane", "ethane", "propane", "butane", "pentane", "hexane", "heptane", "octane", "nonane", "decane"
+        };
+
+        for (String validMultiplier: validMultipliers) {
+            assertTrue(rootPattern.matcher(validMultiplier).matches());
+        }
+    }
+
+    @Test
+    public void test_ROOT_matchesInvalid_isFalse() {
+        final String[] validMultipliers = new String[]{
+                "mano", "da", "tree", "tetrapack", "pentakill", "hexx", "7even", "octarina", "NaN", "childs"
+        };
+
+        for (String validMultiplier: validMultipliers) {
+            assertFalse(rootPattern.matcher(validMultiplier).matches());
         }
     }
 

@@ -25,8 +25,6 @@ public class Token {
                 .append(right)
                 .append("]");
 
-        // This gives me such "ezekiel 25:17" vibes, which further give me HolyC vibes
-        // Jesus, take the wheel
         return bob.toString();
     }
 
