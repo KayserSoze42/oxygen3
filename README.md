@@ -28,6 +28,14 @@ _Some references:_
 
 [nomen](https://www2.chemistry.msu.edu/faculty/reusch/virttxtjml/nomen1.htm);
 
+[t:](https://www.javatpoint.com/compiler-tutorial)
+
+[:earlier](https://web.archive.org/web/20160305041504/http://dragonbook.stanford.edu/lecture-notes/Stanford-CS143/08-Bottom-Up-Parsing.pdf)
+
+[qiki](https://en.wikipedia.org/wiki/Shift-reduce_parser), [[1]](https://github.com/noahmpauls/parser-generator), [[2]](https://github.com/MidCube/java_lexer_and_parser)
+
+[lodeez](https://www.youtube.com/watch?v=NjKJ9-ejR6o)
+
 }
 
 ![demotest](https://github.com/KayserSoze42/ink/blob/main/src/main/java/ink/oxiemoron/lol/oxygen3/aquickonebythewho.png?raw=true)
