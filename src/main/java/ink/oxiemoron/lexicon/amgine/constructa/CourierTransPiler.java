@@ -1,6 +1,6 @@
-package ink.oxiemoron.amgine.constructa;
+package ink.oxiemoron.lexicon.amgine.constructa;
 
-import ink.oxiemoron.amgine.abstracta.AmgineEngine;
+import ink.oxiemoron.lexicon.amgine.abstracta.AmgineEngine;
 
 public class CourierTransPiler extends AmgineEngine {
     // The reason why the name doesn't match the pngture is because i couldnt put a tm symbol on a java class

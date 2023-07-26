@@ -29,7 +29,7 @@ public class TestLexer {
     };
 
     @Test
-    public void test_newErrorToken_isOfErrorType_isTrue() {
+    public void test_newErrorToken_ifOfErrorType_isTrue() {
 
         Tokens expectedTokensType = Tokens.Error;
         Tokens actualTokensType;
@@ -46,7 +46,7 @@ public class TestLexer {
     }
 
     @Test
-    public void test_newLocationToken_isOfLocationType_isTrue() {
+    public void test_newLocationToken_ifOfLocationType_isTrue() {
 
         Tokens expectedTokensType = Tokens.Location;
         Tokens actualTokensType;
@@ -68,7 +68,7 @@ public class TestLexer {
     }
 
     @Test
-    public void test_newCommaToken_isOfCommaType_isTrue() {
+    public void test_newCommaToken_ifOfCommaType_isTrue() {
 
         Tokens expectedTokensType = Tokens.Comma;
         Tokens actualTokensType;
@@ -90,7 +90,7 @@ public class TestLexer {
 
 
     @Test
-    public void test_newDashToken_isOfDashType_isTrue() {
+    public void test_newDashToken_ifOfDashType_isTrue() {
 
         Tokens expectedTokensType = Tokens.Dash;
         Tokens actualTokensType;
@@ -107,7 +107,7 @@ public class TestLexer {
     }
     
     @Test
-    public void test_newMultiplierToken_isOfMultiplierType_isTrue() {
+    public void test_newMultiplierToken_ifOfMultiplierType_isTrue() {
 
         Tokens expectedTokensType = Tokens.Multiplier;
         Tokens actualTokensType;
@@ -137,7 +137,7 @@ public class TestLexer {
     
 
     @Test
-    public void test_getNextToken_isOfTypeError_isFalse() {
+    public void test_getNextToken_ifOfTypeError_isFalse() {
 
         for (String validCompound : validCompounds) {
 
@@ -161,7 +161,7 @@ public class TestLexer {
     }
 
     @Test
-    public void test_getNextToken_isOfTypeError_isTrue() {
+    public void test_getNextToken_ifOfTypeError_isTrue() {
 
         for (String invalidCompoundButHotLyrics : invalidCompounds) {
 

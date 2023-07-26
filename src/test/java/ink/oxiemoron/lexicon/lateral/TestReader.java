@@ -10,7 +10,7 @@ public class TestReader {
     private static final String TEST_STRING = "Per aspera ad astra";
 
     @Test
-    public void test_getPosition_isValidPosition_isTrue() {
+    public void test_getPosition_ifValidPosition_isTrue() {
 
         Reader reader = new Reader(TEST_STRING);
 
@@ -36,7 +36,7 @@ public class TestReader {
     }
 
     @Test
-    public void test_getPosition_isInvalidPosition_isFalse() {
+    public void test_getPosition_ifInvalidPosition_isFalse() {
 
         Reader reader = new Reader(TEST_STRING);
 
@@ -61,7 +61,7 @@ public class TestReader {
     }
 
     @Test
-    public void test_read_isValidCharacter_isTrue() {
+    public void test_read_ifValidCharacter_isTrue() {
 
         Reader reader = new Reader(TEST_STRING);
 
@@ -85,7 +85,7 @@ public class TestReader {
     }
 
     @Test
-    public void test_read_isInvalidCharacter_isFalse() { // invalid != unexpected, but w/e
+    public void test_read_ifInvalidCharacter_isFalse() { // invalid != unexpected, but w/e
 
         Reader reader = new Reader(TEST_STRING);
 

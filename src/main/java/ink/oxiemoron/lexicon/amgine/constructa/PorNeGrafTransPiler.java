@@ -1,6 +1,6 @@
-package ink.oxiemoron.amgine.constructa;
+package ink.oxiemoron.lexicon.amgine.constructa;
 
-import ink.oxiemoron.amgine.abstracta.AmgineEngine;
+import ink.oxiemoron.lexicon.amgine.abstracta.AmgineEngine;
 
 public class PorNeGrafTransPiler extends AmgineEngine { // i was not joking, even though i was kidding.. hah
 

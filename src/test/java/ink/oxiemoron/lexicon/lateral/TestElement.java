@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestElement {
 
     @Test
-    public void test_toString_isValidReturn_isTrue() {
+    public void test_toString_ifValidReturn_isTrue() {
 
         String[] testStrings = new String[]{
                 "a", "b", "c", "d", "q", "w", "e", "r", "r", "e", "q", "45⌡♠▒68{1⌡♠▒ß5⌡♠▒68{k╙W⌡♠▒"
@@ -21,7 +21,7 @@ public class TestElement {
     }
 
     @Test
-    public void test_getType_isValidType_isTrue() {
+    public void test_getType_ifValidType_isTrue() {
 
         for (Tokens token : Tokens.values()) {
 

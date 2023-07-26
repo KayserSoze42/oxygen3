@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestToken {
 
     @Test
-    public void test_getElement_returnsValid_isTrue() {
+    public void test_getElement_ifValid_isTrue() {
 
         for (Tokens tokenType : Tokens.values()) {
             Element element = Element.craft(tokenType.toString(), tokenType);
@@ -19,7 +19,7 @@ public class TestToken {
     }
 
     @Test
-    public void test_getLeft_returnsValid_isTrue() {
+    public void test_getLeft_ifValid_isTrue() {
 
         Element element = Element.craft("dummy", Tokens.Root);
 
@@ -32,7 +32,7 @@ public class TestToken {
     }
 
     @Test
-    public void test_getLeft_returnsInvalid_isFalse() {
+    public void test_getLeft_ifInvalid_isFalse() {
 
         Element element = Element.craft("dummy", Tokens.Root);
 
@@ -45,7 +45,7 @@ public class TestToken {
     }
 
     @Test
-    public void test_getRight_returnsValid_isTrue() {
+    public void test_getRight_ifValid_isTrue() {
 
         Element element = Element.craft("dummy", Tokens.Root);
 
@@ -58,7 +58,7 @@ public class TestToken {
     }
 
     @Test
-    public void test_getRight_returnsInvalid_isFalse() {
+    public void test_getRight_ifInvalid_isFalse() {
 
         Element element = Element.craft("dummy", Tokens.Root);
 

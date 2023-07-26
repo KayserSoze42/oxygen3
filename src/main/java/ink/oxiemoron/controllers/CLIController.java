@@ -1,7 +1,7 @@
 package ink.oxiemoron.controllers;
 
-import ink.oxiemoron.amgine.constructa.CourierTransPiler;
-import ink.oxiemoron.amgine.constructa.PorNeGrafTransPiler;
+import ink.oxiemoron.lexicon.amgine.constructa.CourierTransPiler;
+import ink.oxiemoron.lexicon.amgine.constructa.PorNeGrafTransPiler;
 
 public class CLIController {
 

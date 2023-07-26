@@ -16,7 +16,7 @@ public class TestRegex {
     private static final Pattern rootPattern  = Pattern.compile(Regex.ROOT.pattern);
 
     @Test
-    public void test_MULTIPLIER_matchesValid_isTrue() {
+    public void test_MULTIPLIER_withValid_match() {
         final String[] validMultipliers = new String[]{
                 "mono", "di", "tri", "tetra", "penta", "hexa", "hepta", "octa", "nona", "deca"
         };
@@ -27,7 +27,7 @@ public class TestRegex {
     }
 
     @Test
-    public void test_MULTIPLIER_matchesInvalid_isFalse() {
+    public void test_MULTIPLIER_withInvalid_noMatch() {
         final String[] validMultipliers = new String[]{
                 "mano", "da", "tree", "tetrapack", "pentakill", "hexx", "7even", "octarina", "NaN", "childs"
         };
@@ -38,7 +38,7 @@ public class TestRegex {
     }
 
     @Test
-    public void test_RADICAL_matchesValid_isTrue() {
+    public void test_RADICAL_withValid_match() {
         final String[] validMultipliers = new String[]{
                 "methyl", "ethyl", "propyl", "butyl", "pentyl", "hexyl", "heptyl", "octyl", "nonyl", "decyl"
         };
@@ -49,7 +49,7 @@ public class TestRegex {
     }
 
     @Test
-    public void test_RADICAL_matchesInvalid_isFalse() {
+    public void test_RADICAL_withInvalid_noMatch() {
         final String[] validMultipliers = new String[]{
                 "mano", "da", "tree", "tetrapack", "pentakill", "hexx", "7even", "octarina", "NaN", "childs"
         };
@@ -60,7 +60,7 @@ public class TestRegex {
     }
 
     @Test
-    public void test_ROOT_matchesValid_isTrue() {
+    public void test_ROOT_withValid_match() {
         final String[] validMultipliers = new String[]{
                 "methane", "ethane", "propane", "butane", "pentane", "hexane", "heptane", "octane", "nonane", "decane"
         };
@@ -71,7 +71,7 @@ public class TestRegex {
     }
 
     @Test
-    public void test_ROOT_matchesInvalid_isFalse() {
+    public void test_ROOT_withInvalid_noMatch() {
         final String[] validMultipliers = new String[]{
                 "mano", "da", "tree", "tetrapack", "pentakill", "hexx", "7even", "octarina", "NaN", "childs"
         };

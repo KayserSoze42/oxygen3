@@ -1,4 +1,4 @@
-package ink.oxiemoron.amgine.abstracta;
+package ink.oxiemoron.lexicon.amgine.abstracta;
 
 import ink.oxiemoron.lexicon.parser.Parser;
 
