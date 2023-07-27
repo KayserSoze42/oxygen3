@@ -112,6 +112,60 @@ public class TestReader {
 
     }
 
+    @Test
+    public void test_peek_ifValidCharacter_isTrue() {
+
+        Reader reader = new Reader(TEST_STRING);
+
+        for (int i = 0; i< TEST_STRING.length(); i++) {
+
+            try {
+
+                reader.read();
+                char expectedChar = TEST_STRING.charAt(i+1);
+                char actualChar = reader.peek();
+
+                assertEquals(expectedChar, actualChar);
+
+
+            } catch (Exception ignored) {
+
+
+            }
+
+        }
+
+    }
+
+    @Test
+    public void test_peek_ifInvalidCharacter_isFalse() { // invalid != unexpected, but w/e
+
+        Reader reader = new Reader(TEST_STRING);
+
+        for (int i = 0; i< TEST_STRING.length(); i++) {
+
+            try {
+
+                reader.read();
+                char unexpectedChar;
+                char actualChar = reader.peek();
+
+                do {
+
+                    unexpectedChar = (char) getRandomBetweenKekw();
+
+                } while (unexpectedChar == actualChar);
+
+                assertNotEquals(unexpectedChar, actualChar);
+
+            } catch (Exception ignored) {
+
+            }
+
+        }
+
+    }
+
     public int getRandomBetweenKekw() {
         return (int) ((Math.random() * (420 - 69)) + 69); // the ctrl+rewrite helper()
     }

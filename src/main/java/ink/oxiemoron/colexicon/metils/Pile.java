@@ -1,8 +1,9 @@
 package ink.oxiemoron.colexicon.metils;
 
+import java.io.Serializable;
 import java.util.EmptyStackException;
 
-public class Pile<E> extends Carrier<E>{ // pile jemo pole
+public class Pile<E> extends Carrier<E> { // pile jemo pole
 
     public Pile() {
     }

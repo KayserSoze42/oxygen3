@@ -33,21 +33,18 @@ public class Lexer {
     private int endPosition;
 
     private Reader source;
-    private StringBuilder bob;
+    private StringBuffer bob;
 
-    private boolean isMultiplied = false; // idk rly, i'm just trying it out
+    private final static Pattern BASE_PATTERN = Pattern.compile(Regex.BASE.pattern);
 
-    private static final Pattern multiplierPattern = Pattern.compile(Regex.MULTIPLIER.pattern);
-    private static final Pattern radicalPattern = Pattern.compile(Regex.RADICAL.pattern);
-    private static final Pattern rootPattern  = Pattern.compile(Regex.ROOT.pattern);
 
 
     public Lexer (String string) throws Exception{
 
-        source = new Reader(string);
+        source = new Reader(string.toLowerCase());
         character = source.read(); // As that person on github says, ch is the next character to process
 
-        bob = new StringBuilder();
+        bob = new StringBuffer();
 
     }
 
@@ -84,7 +81,7 @@ public class Lexer {
         // Trying to be smart, usually yields in dumb stuff
         // So here we are
         if (bob == null) {
-            bob = new StringBuilder();
+            bob = new StringBuffer();
         } else {
             bob.setLength(0);
         }
@@ -172,7 +169,9 @@ public class Lexer {
 
         }
 
-        if (Character.isAlphabetic(character)) { // Bare bones and joy
+        if (Character.isAlphabetic(character)) {
+
+            Matcher matcher;
 
             try {
 
@@ -181,11 +180,18 @@ public class Lexer {
                     bob.append(character);
                     character = source.read();
 
-                    // I almost made a Molotov here, hahha
-                    // Thank grep i do not commit every 5mins..
+                    matcher = BASE_PATTERN.matcher(bob.toString());
 
-                    // Now let's stack 'em up, hahaha
-                    // Or shall we?
+                    // Test for the base name and check proceeding
+                    if (matcher.matches()) {
+
+
+                        // Gonna do it with first ten, so I can actually finish it
+                        if (source.peek() == 'y') {
+
+                        }
+
+                    }
 
                 } while (Character.isAlphabetic(character));
 
