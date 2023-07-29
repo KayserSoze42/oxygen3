@@ -1,5 +1,6 @@
 package ink.oxiemoron.lexicon.lexer;
 
+import ink.oxiemoron.colexicon.metils.Pile;
 import ink.oxiemoron.lexicon.lateral.Element;
 import ink.oxiemoron.lexicon.lateral.Reader;
 import ink.oxiemoron.lexicon.lateral.Token;
@@ -34,8 +35,15 @@ public class Lexer {
 
     private Reader source;
     private StringBuffer bob;
+    private Pile<Token> compoundPile = new Pile<>();
 
-    private final static Pattern BASE_PATTERN = Pattern.compile(Regex.BASE.pattern);
+    private final static Pattern MULTI_PATTERN = Pattern.compile(
+            String.format(
+                    "(?<multiplier>%s)?+(?<radical>%s)?+(?<root>%s)?+",
+                    Regex.MULTIPLIER.pattern,
+                    Regex.RADICAL.pattern,
+                    Regex.ROOT.pattern
+            ));
 
 
 
@@ -78,15 +86,17 @@ public class Lexer {
 
     public Token getNextToken() {
 
-        // Trying to be smart, usually yields in dumb stuff
-        // So here we are
+        if (!compoundPile.empty()) {
+            return compoundPile.pop();
+        }
+
+
         if (bob == null) {
             bob = new StringBuffer();
         } else {
             bob.setLength(0);
         }
 
-        // A billion-dollar mistake, thank grep I don't have that money..
         if (eof) {
             return null;
         }
@@ -97,12 +107,12 @@ public class Lexer {
             }
 
         } catch (Exception eh) {
-            eof = true; // And yet I feel eof is unambiguous
+            eof = true;
             return getNextToken();
         }
 
-        startPosition = source.getPosition(); // The beginning
-        endPosition = startPosition - 1; // The one before the beginning
+        startPosition = source.getPosition();
+        endPosition = startPosition - 1;
 
 
         // In case we get a number, which as I can tell acts only as a location in the structure
@@ -171,34 +181,63 @@ public class Lexer {
 
         if (Character.isAlphabetic(character)) {
 
-            Matcher matcher;
+
+            Matcher multiMatcher;
 
             try {
 
                 do {
-
+                    endPosition++;
                     bob.append(character);
                     character = source.read();
 
-                    matcher = BASE_PATTERN.matcher(bob.toString());
-
-                    // Test for the base name and check proceeding
-                    if (matcher.matches()) {
-
-
-                        // Gonna do it with first ten, so I can actually finish it
-                        if (source.peek() == 'y') {
-
-                        }
-
-                    }
-
                 } while (Character.isAlphabetic(character));
+
+
 
             } catch (Exception eh) {
 
                 eof = true;
                 // It should be fine when we eof with alphabetic? Right? ... Right??
+            }
+
+            multiMatcher = MULTI_PATTERN.matcher(bob.toString());
+            System.out.println(bob.toString());
+
+            if (multiMatcher.matches()) {
+
+                System.out.println(multiMatcher.group("multiplier"));
+                System.out.println(multiMatcher.group("radical"));
+                System.out.println(multiMatcher.group("root"));
+
+                if (multiMatcher.group("root") != null) {
+                    compoundPile.push(newRootToken(
+                            multiMatcher.start("root"),
+                            multiMatcher.end("root"),
+                            multiMatcher.group("root")
+                    ));
+                }
+
+                if (multiMatcher.group("radical") != null) {
+                    compoundPile.push(newRadicalToken(
+                            multiMatcher.start("radical"),
+                            multiMatcher.end("radical"),
+                            multiMatcher.group("radical")
+                    ));
+                }
+
+                if (multiMatcher.group("multiplier") != null) {
+                    compoundPile.push(newMultiplierToken(
+                            multiMatcher.start("multiplier"),
+                            multiMatcher.end("multiplier"),
+                            multiMatcher.group("multiplier")
+                    ));
+                }
+
+                return getNextToken();
+
+            } else {
+                System.out.println("False");
             }
 
 
