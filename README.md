@@ -16,6 +16,8 @@ _2ba_
 
 _Some references:_ 
 
+[op!](https://github.com/dan2097/opsin/tree/master) && [op!!](https://opsin.ch.cam.ac.uk/)
+
 [GitHub parser example](https://github.com/Markvis/parser);
 
 [public free](https://www.youtube.com/watch?v=0ZDPvdp2uFk) [abstract idea](https://www.youtube.com/watch?v=VKM1eLoN-gI) {
