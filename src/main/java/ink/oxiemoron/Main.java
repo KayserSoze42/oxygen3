@@ -1,5 +1,6 @@
 package ink.oxiemoron;
 
+import ink.oxiemoron.colexicon.metils.Pile;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lateral.regex.Regex;
 import ink.oxiemoron.lexicon.lexer.Lexer;
@@ -24,7 +25,7 @@ public class Main {
 
         try {
 
-            Lexer lexer = new Lexer("1,2,420,69-tetramethyldecane"); // ignoring isomers for now, for sure
+            Lexer lexer = new Lexer("1,2,420,69-tetramethyldecane;"); // ignoring isomers for now, for sure
 
             Token tolkien = lexer.getNextToken();
 
@@ -44,7 +45,7 @@ public class Main {
 
         try {
 
-            Parser parser = new Parser("9,6,024,21-tetraethylheptane"); // Oh. Play it cool. Play it cool.
+            Parser parser = new Parser("9,6,024,21-tetraethylheptane;"); // Oh. Play it cool. Play it cool.
             // Here come the whitespace cops
             // Whitespaaaaace
 

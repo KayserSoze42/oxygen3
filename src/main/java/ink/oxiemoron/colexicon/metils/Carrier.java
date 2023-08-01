@@ -2,6 +2,7 @@ package ink.oxiemoron.colexicon.metils;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Stack;
 import java.util.Vector;
 
 public class Carrier<E> implements Serializable { // and his brother, the Courier..
@@ -31,12 +32,11 @@ public class Carrier<E> implements Serializable { // and his brother, the Courie
             objects = Arrays.copyOf(objects, quantity + 8); // right?
         }
         objects[quantity] = object;
-        quantity++;
+        quantity = quantity + 1;
     }
 
     void add(E object) { // reserved psychology
         addObject(object, quantity);
-        quantity = quantity + 1;
     }
 
     public void removeObjectsAt(int index) { // setting up the tempo

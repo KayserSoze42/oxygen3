@@ -13,6 +13,10 @@ public class Reader {
 
     }
 
+    public int getLength() {
+        return source.length;
+    }
+
     public int getPosition() {
         return position;
     }

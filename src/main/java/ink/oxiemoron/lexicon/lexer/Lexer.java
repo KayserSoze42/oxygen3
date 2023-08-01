@@ -84,12 +84,15 @@ public class Lexer {
         return new Token(left, right, Element.craft(root, Tokens.Root));
     }
 
+    public Token newSemicolonToken(int left, int right, String semicolon) {
+        return new Token(left, right, Element.craft(semicolon, Tokens.Semicolon));
+    }
+
     public Token getNextToken() {
 
         if (!compoundPile.empty()) {
             return compoundPile.pop();
         }
-
 
         if (bob == null) {
             bob = new StringBuffer();
@@ -113,7 +116,6 @@ public class Lexer {
 
         startPosition = source.getPosition();
         endPosition = startPosition - 1;
-
 
         // In case we get a number, which as I can tell acts only as a location in the structure
         if (Character.isDigit(character)) {
@@ -156,6 +158,28 @@ public class Lexer {
             }
 
             return newCommaToken(startPosition, endPosition, bob.toString());
+        }
+
+        if (character == ';') {
+
+            try {
+                endPosition++;
+                bob.append(character);
+                character = source.read();
+
+            } catch (Exception eh) {
+
+                eof = true;
+
+                if (source.getPosition() >= source.getLength()) {
+                    return newSemicolonToken(startPosition, endPosition, ";");
+                }
+
+                return newErrorToken(startPosition, endPosition, bob.toString()); // INSERT INTO
+
+            }
+
+            return newSemicolonToken(startPosition, endPosition, bob.toString());
         }
 
         // Check for the dash, another single char token?
@@ -202,39 +226,32 @@ public class Lexer {
             }
 
             multiMatcher = MULTI_PATTERN.matcher(bob.toString());
-            System.out.println(bob.toString());
 
             if (multiMatcher.matches()) {
 
-                System.out.println(multiMatcher.group("multiplier"));
-                System.out.println(multiMatcher.group("radical"));
-                System.out.println(multiMatcher.group("root"));
-
                 if (multiMatcher.group("root") != null) {
                     compoundPile.push(newRootToken(
-                            multiMatcher.start("root"),
-                            multiMatcher.end("root"),
+                            multiMatcher.start("root") + startPosition,
+                            multiMatcher.end("root") + startPosition - 1,
                             multiMatcher.group("root")
                     ));
                 }
 
                 if (multiMatcher.group("radical") != null) {
                     compoundPile.push(newRadicalToken(
-                            multiMatcher.start("radical"),
-                            multiMatcher.end("radical"),
+                            multiMatcher.start("radical") + startPosition,
+                            multiMatcher.end("radical") + startPosition - 1,
                             multiMatcher.group("radical")
                     ));
                 }
 
                 if (multiMatcher.group("multiplier") != null) {
                     compoundPile.push(newMultiplierToken(
-                            multiMatcher.start("multiplier"),
-                            multiMatcher.end("multiplier"),
+                            multiMatcher.start("multiplier") + startPosition,
+                            multiMatcher.end("multiplier") + startPosition - 1,
                             multiMatcher.group("multiplier")
                     ));
                 }
-
-                return getNextToken();
 
             } else {
                 System.out.println("False");
@@ -244,7 +261,11 @@ public class Lexer {
 
         }
 
-        return null;
+        if (compoundPile.empty()) {
+            return null;
+        } else {
+            return getNextToken();
+        }
 
     }
 
