@@ -4,6 +4,7 @@ import ink.oxiemoron.colexicon.lingua.IUPACSyntaxError;
 import ink.oxiemoron.lexicon.ast.AST;
 import ink.oxiemoron.lexicon.ast.FormTree;
 import ink.oxiemoron.lexicon.ast.RadicalTree;
+import ink.oxiemoron.lexicon.ast.RootTree;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lateral.Tokens;
 import ink.oxiemoron.lexicon.lexer.Lexer;
@@ -14,14 +15,14 @@ public class Parser {
     private Token currentToken;
     private Lexer lexer;
 
-    public Parser(String source) throws Exception {
+    public Parser(String source) throws IUPACSyntaxError {
 
         try {
             lexer = new Lexer(source);
             scan(); // ch is the next character to process
 
         } catch (Exception eh) {
-            throw eh;
+            throw new IUPACSyntaxError(currentToken, Tokens.Error);
         }
     }
 
@@ -42,18 +43,31 @@ public class Parser {
 
     public AST rForm() throws IUPACSyntaxError {
         AST tree = new FormTree();
-        if (isNextToken(Tokens.Radical)) { // Just a radical group
-            //tree.addKid() still matching atcgs
+        if (isNextToken(Tokens.Root)) {
+            tree.addKid(rRoot());
+
+            return tree;
         }
-        if (isNextToken(Tokens.Location)) { // A substituent you say!
+
+        if (isNextToken(Tokens.Location)) {
+
 
         }
         return tree;
     }
 
-//    public AST rRadical() throws IUPACSyntaxError {
-//        AST tree = new RadicalTree();
-//    }
+    public AST rRoot() throws IUPACSyntaxError {
+        System.out.println(currentToken);
+        return new RootTree(currentToken);
+    }
+
+    public AST rRadical() throws IUPACSyntaxError {
+
+        System.out.println(currentToken);
+        AST tree = new RadicalTree(currentToken);
+        scan();
+        return tree;
+    }
 
 
 
