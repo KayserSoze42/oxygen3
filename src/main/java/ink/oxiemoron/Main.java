@@ -25,7 +25,7 @@ public class Main {
 
         try {
 
-            Lexer lexer = new Lexer("1,2,420,69-tetramethyldecane;"); // ignoring isomers for now, for sure
+            Lexer lexer = new Lexer("1,2,420,69-tetramethyl 8,8,8,8,8,8,8,8-octaoctyloctane;"); // ignoring isomers for now, for sure
 
             Token tolkien = lexer.getNextToken();
 

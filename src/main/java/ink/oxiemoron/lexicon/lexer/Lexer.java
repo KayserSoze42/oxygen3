@@ -262,7 +262,12 @@ public class Lexer {
         }
 
         if (compoundPile.empty()) {
-            return null;
+            // if semi finished
+            if (source.getPosition() >= source.getLength()) {
+                return null;
+            } else {
+                return newErrorToken(startPosition, endPosition, "Nulld when nulling was not allowerd..");
+            }
         } else {
             return getNextToken();
         }
