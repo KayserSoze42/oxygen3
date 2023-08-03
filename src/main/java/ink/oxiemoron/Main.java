@@ -1,6 +1,7 @@
 package ink.oxiemoron;
 
 import ink.oxiemoron.colexicon.metils.Pile;
+import ink.oxiemoron.controllers.CLIController;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lateral.regex.Regex;
 import ink.oxiemoron.lexicon.lexer.Lexer;
@@ -19,6 +20,12 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static void main(String[] args) {
+
+        CLIController cliController = new CLIController();
+
+        System.out.println(cliController.plex("1,2,420,69-tetramethyl 8,8,8,8,8,8,8,8-octaoctyloctane;"));
+
+        long start = System.currentTimeMillis();
 
         System.out.println("--------------------------------");
         System.out.println("LEXER:\n");
@@ -45,9 +52,7 @@ public class Main {
 
         try {
 
-            Parser parser = new Parser("9,6,024,21-tetraethylheptane;"); // Oh. Play it cool. Play it cool.
-            // Here come the whitespace cops
-            // Whitespaaaaace
+            Parser parser = new Parser("9,6,024,21-tetraethylheptane;");
 
             for (int i = 0; i < 11; i++) {
 
@@ -59,6 +64,10 @@ public class Main {
 
             System.out.println("We meet again, eh?");
         }
+
+        long end = System.currentTimeMillis();
+
+        System.out.println("\n***\nRun Time: " + (end - start) + " ms");
     }
 
 }
