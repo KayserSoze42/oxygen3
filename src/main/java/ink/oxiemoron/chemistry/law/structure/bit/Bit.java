@@ -1,4 +1,4 @@
-package ink.oxiemoron.chemistry.structure.bit;
+package ink.oxiemoron.chemistry.law.structure.bit;
 
 public enum Bit {
 

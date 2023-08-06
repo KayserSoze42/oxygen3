@@ -1,6 +1,6 @@
-package ink.oxiemoron.chemistry.structure.base;
+package ink.oxiemoron.chemistry.law.structure.base;
 
-import ink.oxiemoron.chemistry.roles.Bondable;
+import ink.oxiemoron.chemistry.law.roles.Bondable;
 
 public abstract class Bit implements Bondable {
 

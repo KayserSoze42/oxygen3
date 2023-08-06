@@ -1,6 +1,6 @@
-package ink.oxiemoron.chemistry.structure.bits.alkanes;
+package ink.oxiemoron.chemistry.law.structure.bits.alkanes;
 
-import ink.oxiemoron.chemistry.structure.base.Bits;
+import ink.oxiemoron.chemistry.law.structure.base.Bits;
 
 public class Methane extends Bits {
 

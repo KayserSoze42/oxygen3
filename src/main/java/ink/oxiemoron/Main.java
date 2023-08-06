@@ -1,29 +1,17 @@
 package ink.oxiemoron;
 
-import ink.oxiemoron.colexicon.metils.Pile;
-import ink.oxiemoron.controllers.CLIController;
+import ink.oxiemoron.controllers.RCLIController;
 import ink.oxiemoron.lexicon.lateral.Token;
-import ink.oxiemoron.lexicon.lateral.regex.Regex;
 import ink.oxiemoron.lexicon.lexer.Lexer;
 import ink.oxiemoron.lexicon.parser.Parser;
-
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        CLIController cliController = new CLIController();
+        RCLIController RCLIController = new RCLIController();
 
-        System.out.println(cliController.plex("1,2,420,69-tetramethyl 8,8,8,8,8,8,8,8-octaoctyloctane;"));
+        System.out.println(RCLIController.plex("1,2,420,69-tetramethyl 8,8,8,8,8,8,8,8-octaoctyloctane;"));
 
         long start = System.currentTimeMillis();
 

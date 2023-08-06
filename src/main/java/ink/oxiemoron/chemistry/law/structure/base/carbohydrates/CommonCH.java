@@ -1,6 +1,6 @@
-package ink.oxiemoron.chemistry.structure.base.carbohydrates;
+package ink.oxiemoron.chemistry.law.structure.base.carbohydrates;
 
-import ink.oxiemoron.chemistry.structure.base.Bits;
+import ink.oxiemoron.chemistry.law.structure.base.Bits;
 
 public abstract class CommonCH extends Bits {
 

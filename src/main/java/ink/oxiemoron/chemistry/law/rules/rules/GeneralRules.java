@@ -1,4 +1,4 @@
-package ink.oxiemoron.chemistry.rules;
+package ink.oxiemoron.chemistry.law.rules.rules;
 
 public class GeneralRules { // *salutes* General Rules
 
