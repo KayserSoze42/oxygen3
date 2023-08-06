@@ -10,7 +10,8 @@ _Java test for a Reader-Lexer-Parser-"Compiler" that translates IUPAC names for 
 
 _**Overview:**_
 
-_2ba_
+![demolll](https://github.com/KayserSoze42/ink/blob/main/src/main/java/ink/oxiemoron/lol/oxygen3/LLL.png?raw=true)
+![demotest](https://github.com/KayserSoze42/ink/blob/main/src/main/java/ink/oxiemoron/lol/oxygen3/aquickonebythewho.png?raw=true)
 
 ---------------------------
 
@@ -40,7 +41,7 @@ _Some references:_
 
 }
 
-![demotest](https://github.com/KayserSoze42/ink/blob/main/src/main/java/ink/oxiemoron/lol/oxygen3/aquickonebythewho.png?raw=true)
+
 
 _To quote The Man: **make do, and then make do while in version 0.2.5**_
 
