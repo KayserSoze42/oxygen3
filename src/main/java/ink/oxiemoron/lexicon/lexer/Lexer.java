@@ -117,32 +117,27 @@ public class Lexer {
         startPosition = source.getPosition();
         endPosition = startPosition - 1;
 
-        // In case we get a number, which as I can tell acts only as a location in the structure
         if (Character.isDigit(character)) {
 
             try {
 
-                do { // do-while, not even... well, actually at least once
+                do {
 
-                    endPosition++; // The end is near
-                    bob.append(character); // Start building using current char
-                    character = source.read(); // ch is the next character to process, lol
+                    endPosition++;
+                    bob.append(character);
+                    character = source.read();
 
-                } while (Character.isDigit(character)); // A "borrow" from [PpGg]als at gh and java
-                // I'm keeping the do while, hoping that we start parsin' some big units in the future, lol
+                } while (Character.isDigit(character));
 
             } catch (Exception eh) {
 
                 eof = true;
-                return newErrorToken(startPosition, endPosition, bob.toString());
-                // The name can't end with a number?
             }
 
             return newLocationToken(startPosition, endPosition, bob.toString());
 
         }
 
-        // A case of comma for multiple locations, alpha is omega and return a single char token?
         if (character == ',') {
 
             try {
@@ -153,8 +148,6 @@ public class Lexer {
             } catch (Exception eh) {
 
                 eof = true;
-                return newErrorToken(startPosition, endPosition, bob.toString());
-                // Again, can't end with a ",". Is this pre-parsing? sudo rm -rf?
             }
 
             return newCommaToken(startPosition, endPosition, bob.toString());
@@ -175,14 +168,13 @@ public class Lexer {
                     return newSemicolonToken(startPosition, endPosition, ";");
                 }
 
-                return newErrorToken(startPosition, endPosition, bob.toString()); // INSERT INTO
+                return newErrorToken(startPosition, endPosition, bob.toString());
 
             }
 
             return newSemicolonToken(startPosition, endPosition, bob.toString());
         }
 
-        // Check for the dash, another single char token?
         if (character == '-') {
 
             try {
@@ -194,8 +186,6 @@ public class Lexer {
             } catch (Exception eh) {
 
                 eof = true;
-                return newErrorToken(startPosition, endPosition, bob.toString());
-                // :120y p
 
             }
 
@@ -222,7 +212,6 @@ public class Lexer {
             } catch (Exception eh) {
 
                 eof = true;
-                // It should be fine when we eof with alphabetic? Right? ... Right??
             }
 
             multiMatcher = MULTI_PATTERN.matcher(bob.toString());
