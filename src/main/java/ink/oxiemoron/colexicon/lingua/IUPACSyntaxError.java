@@ -5,10 +5,6 @@ import ink.oxiemoron.lexicon.lateral.Tokens;
 
 public class IUPACSyntaxError extends Exception{
 
-    public IUPACSyntaxError(Token token, Tokens type) {
-
-        // it's enough u exist, hah
-
-    }
+    public IUPACSyntaxError(Token token, Tokens type) {}
 
 }

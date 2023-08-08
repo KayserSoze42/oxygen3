@@ -1,5 +1,7 @@
 package ink.oxiemoron.lexicon.lateral;
 
+import ink.oxiemoron.colexicon.lingua.OxyReaderException;
+
 import java.io.IOException;
 
 public class Reader {
@@ -21,14 +23,14 @@ public class Reader {
         return position;
     }
 
-    public char read() throws IOException {
+    public char read() throws OxyReaderException {
 
         position++;
 
         if (position >= source.length) {
 
             // Dude, you're a grown man. Why are you throwing an IOException?
-            throw new IOException("Lateral Reader Error: invalid position");
+            throw new OxyReaderException("Lateral Reader Error: invalid position");
 
         }
 

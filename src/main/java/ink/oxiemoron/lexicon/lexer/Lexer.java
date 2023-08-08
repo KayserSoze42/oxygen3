@@ -50,14 +50,14 @@ public class Lexer {
     public Lexer (String string) throws Exception{
 
         source = new Reader(string.toLowerCase());
-        character = source.read(); // As that person on github says, ch is the next character to process
+        character = source.read();
 
         bob = new StringBuffer();
 
     }
 
     public Token newErrorToken(int left, int right, String badBody) {
-        return new Token(left, right, Element.craft(badBody, Tokens.Error)); // OOPsie Xzibit A
+        return new Token(left, right, Element.craft(badBody, Tokens.Error));
     }
 
     public Token newLocationToken(int left, int right, String number) {
@@ -243,7 +243,7 @@ public class Lexer {
                 }
 
             } else {
-                System.out.println("False");
+                System.out.println("*wrong*");
             }
 
 
@@ -252,11 +252,7 @@ public class Lexer {
 
         if (compoundPile.empty()) {
             // if semi finished
-            if (source.getPosition() >= source.getLength()) {
-                return null;
-            } else {
-                return newErrorToken(startPosition, endPosition, "Nulld when nulling was not allowerd..");
-            }
+            return null;
         } else {
             return getNextToken();
         }
