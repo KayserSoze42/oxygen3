@@ -9,7 +9,11 @@ public class RootTree extends AST{
     private Element element;
 
     public RootTree(Token tolkien) {
-        this.element = tolkien.getElement();
+
+        element = tolkien.getElement();
+
+        System.out.println(">>>ROOT tree const\n" +
+                           ">>>>{" + element + "}");
     }
 
     public Object accept(ASTVisiteur visiteur) {

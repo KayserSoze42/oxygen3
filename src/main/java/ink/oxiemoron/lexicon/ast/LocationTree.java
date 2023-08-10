@@ -11,7 +11,10 @@ public class LocationTree extends AST{
     private Element element;
 
     public LocationTree(Token tolkien) {
-        this.element = tolkien.getElement();
+
+        element = tolkien.getElement();
+        System.out.println(">>>LOCATION tree const\n" +
+                           ">>>>{" + element + "}");
     }
 
     public Object accept(ASTVisiteur visiteur) {

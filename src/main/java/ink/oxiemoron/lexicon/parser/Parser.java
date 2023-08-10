@@ -45,16 +45,18 @@ public class Parser {
     public AST rForm() throws IUPACSyntaxError {
         AST tree = new FormTree();
 
+        Tokens currentType;
+
         do {
 
             tree.addKid(rStructureTree());
+            currentType = currentToken.getElement().getType();
 
-        } while (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken( Tokens.Radical));
+        } while (currentType == Tokens.Location || currentType == Tokens.Multiplier || currentType == Tokens.Radical);
 
-        expect(Tokens.Root);
         tree.addKid(rRoot());
-        expect(Tokens.Semicolon);
         scan();
+        expect(Tokens.Semicolon);
 
         return tree;
     }
@@ -78,11 +80,18 @@ public class Parser {
 
             do {
 
-                tree.addKid(rLocationTree());
+                if (!isNextToken(Tokens.Comma)) {
 
-                expect(Tokens.Comma);
+                    tree.addKid(rLocationTree());
 
-            } while (isNextToken(Tokens.Location));
+                } else {
+
+                    scan();
+
+                }
+
+
+            } while ((isNextToken(Tokens.Location) || isNextToken(Tokens.Comma)) && !isNextToken(Tokens.Dash));
 
             expect(Tokens.Dash);
             expect(Tokens.Multiplier);
@@ -115,7 +124,6 @@ public class Parser {
 
     public AST rRoot() throws IUPACSyntaxError {
         AST tree = new RootTree(currentToken);
-        scan();
         return tree;
     }
 
@@ -146,7 +154,7 @@ public class Parser {
 
         if (currentToken != null) {
 
-            System.out.println(currentToken);
+//            System.out.println(currentToken);
 
         }
 

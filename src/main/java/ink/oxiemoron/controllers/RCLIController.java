@@ -1,6 +1,7 @@
 package ink.oxiemoron.controllers;
 
 import ink.oxiemoron.lexicon.amgine.abstracta.AmgineEngine;
+import ink.oxiemoron.lexicon.ast.AST;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lexer.Lexer;
 import ink.oxiemoron.lexicon.parser.Parser;
@@ -67,23 +68,27 @@ public class RCLIController {
 
                 if (cmd.equals("end")) {break;}
 
-                // parser test repl
-//
-//                parser = new Parser(cmd);
-//                parser.execute();
+// ---------------- << parser test repl only >> ----------------
+
+                parser = new Parser(cmd);
+                AST tree = parser.execute();
 
 // ---------------- << lexer test repl only >> ----------------
+//
+//                lexer = new Lexer(cmd);
+//                Token token = lexer.getNextToken();
+//
+//                while (token != null) {
+//
+//                    System.out.println("Token: " + token.getElement().getType() + " - " + token.toString());
+//                    token = lexer.getNextToken();
+//
+//                }
+//
+// ---------------- << parser plex repl only >> ----------------
+// 2ba
 
-                lexer = new Lexer(cmd);
-                Token token = lexer.getNextToken();
-
-                while (token != null) {
-
-                    System.out.println("Token: " + token.getElement().getType() + " - " + token.toString());
-                    token = lexer.getNextToken();
-
-                }
-
+                System.out.println();
             } catch (Exception ioe) {
 
                 System.out.println("A broad one..");

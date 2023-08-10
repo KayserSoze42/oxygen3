@@ -4,7 +4,11 @@ import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 
 public class SubstituentTree extends AST{
 
-    public SubstituentTree() {}
+    public SubstituentTree() {
+
+        System.out.println(">>>SUBSTITUENT tree const");
+
+    }
 
     public Object accept(ASTVisiteur visiteur) {
         return visiteur.visitSubstituentTree(this);

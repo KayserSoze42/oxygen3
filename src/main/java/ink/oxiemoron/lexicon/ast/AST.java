@@ -14,9 +14,12 @@ public abstract class AST {
 
     public AST() {
 
+//        System.out.println(">AST const");
+
         kids = new ArrayList<AST>();
         nodeCounter++;
         nodeNumber = nodeCounter;
+
 
     }
 

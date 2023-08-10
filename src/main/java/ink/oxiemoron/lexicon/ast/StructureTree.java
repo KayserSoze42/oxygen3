@@ -4,7 +4,10 @@ import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 
 public class StructureTree extends AST { // ?: has left the structure..
 
-    public StructureTree() {}
+    public StructureTree() {
+
+        System.out.println(">>STRUCTURE tree const");
+    }
 
     public Object accept(ASTVisiteur visiteur) {
         return visiteur.visitSubstructureTree(this);
