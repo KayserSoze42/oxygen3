@@ -1,5 +1,8 @@
 package ink.oxiemoron.lexicon.lexer;
 
+import ink.oxiemoron.colexicon.lingua.OxyLexerException;
+import ink.oxiemoron.colexicon.lingua.OxyParserException;
+import ink.oxiemoron.colexicon.lingua.OxyReaderException;
 import ink.oxiemoron.colexicon.metils.Pile;
 import ink.oxiemoron.lexicon.lateral.Element;
 import ink.oxiemoron.lexicon.lateral.Reader;
@@ -47,10 +50,20 @@ public class Lexer {
 
 
 
-    public Lexer (String string) throws Exception{
+    public Lexer (String string) throws OxyLexerException {
 
         source = new Reader(string.toLowerCase());
-        character = source.read();
+
+        try {
+
+            character = source.read();
+
+        } catch(OxyReaderException ore) {
+
+            ore.printStackTrace();
+            throw new OxyLexerException("Reader error");
+
+        }
 
         bob = new StringBuffer();
 
@@ -124,7 +137,7 @@ public class Lexer {
                 do {
 
                     endPosition++;
-                    bob.append(character);
+                    bob.append(Character.toLowerCase(character));
                     character = source.read();
 
                 } while (Character.isDigit(character));

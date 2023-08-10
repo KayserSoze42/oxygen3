@@ -2,9 +2,9 @@ package ink.oxiemoron.lexicon.ast;
 
 import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 
-public class SubstructureTree extends AST { // ?: has left the structure..
+public class StructureTree extends AST { // ?: has left the structure..
 
-    public SubstructureTree() {}
+    public StructureTree() {}
 
     public Object accept(ASTVisiteur visiteur) {
         return visiteur.visitSubstructureTree(this);

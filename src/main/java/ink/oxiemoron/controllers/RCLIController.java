@@ -3,6 +3,7 @@ package ink.oxiemoron.controllers;
 import ink.oxiemoron.lexicon.amgine.abstracta.AmgineEngine;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lexer.Lexer;
+import ink.oxiemoron.lexicon.parser.Parser;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,6 +17,7 @@ public class RCLIController {
     private StringBuffer outsource;
 
     private static Lexer lexer;
+    private static Parser parser;
 
 
     public RCLIController() {
@@ -52,7 +54,6 @@ public class RCLIController {
     public static void main (String[] args) {
 
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-        StringBuffer bob = new StringBuffer();
 
         System.out.println("----------------OXY----------------");
 
@@ -65,6 +66,13 @@ public class RCLIController {
                 String cmd = buffer.readLine();
 
                 if (cmd.equals("end")) {break;}
+
+                // parser test repl
+//
+//                parser = new Parser(cmd);
+//                parser.execute();
+
+// ---------------- << lexer test repl only >> ----------------
 
                 lexer = new Lexer(cmd);
                 Token token = lexer.getNextToken();

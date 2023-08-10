@@ -6,7 +6,6 @@ import ink.oxiemoron.lexicon.ast.*;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lateral.Tokens;
 import ink.oxiemoron.lexicon.lexer.Lexer;
-import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 
 public class Parser {
 
@@ -20,7 +19,7 @@ public class Parser {
             scan(); // ch is the next character to process
 
         } catch (Exception eh) {
-            throw new OxyParserException();
+            throw new OxyParserException("Lexer error");
         }
     }
 
@@ -28,7 +27,7 @@ public class Parser {
         return lexer;
     }
 
-    public AST execute() throws Exception {
+    public AST execute() throws OxyParserException {
 
         try {
 
@@ -37,7 +36,7 @@ public class Parser {
         } catch (IUPACSyntaxError ise) {
 
             ise.printStackTrace();
-            throw ise;
+            throw new OxyParserException("IUPAC Syntax Error: " + currentToken);
 
         }
 
@@ -46,33 +45,27 @@ public class Parser {
     public AST rForm() throws IUPACSyntaxError {
         AST tree = new FormTree();
 
-        if (isNextToken(Tokens.Root)) {
-
-            tree.addKid(rRoot());
-            return tree;
-        }
-
         do {
 
-            tree.addKid(rSubstructureTree());
+            tree.addKid(rStructureTree());
 
-        } while (isNextToken(Tokens.Location) || isNextToken(Tokens.Radical));
+        } while (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken( Tokens.Radical));
 
         expect(Tokens.Root);
         tree.addKid(rRoot());
+        expect(Tokens.Semicolon);
+        scan();
 
         return tree;
     }
 
-    public AST rSubstructureTree() throws IUPACSyntaxError {
+    public AST rStructureTree() throws IUPACSyntaxError {
 
-        AST tree = new SubstructureTree();
+        AST tree = new StructureTree();
 
-        if (isNextToken(Tokens.Location)) {
+        // Nothing for noe, we shall se shell
 
-            tree.addKid(rSubstituentTree());
-
-        }
+        tree.addKid(rSubstituentTree());
 
         return tree;
     }
@@ -98,7 +91,7 @@ public class Parser {
 
         if (isNextToken(Tokens.Radical)) {
 
-
+            tree.addKid(rRadical());
 
         }
 
@@ -121,7 +114,9 @@ public class Parser {
     }
 
     public AST rRoot() throws IUPACSyntaxError {
-        return new RootTree(currentToken);
+        AST tree = new RootTree(currentToken);
+        scan();
+        return tree;
     }
 
     private boolean isNextToken(Tokens type) {

@@ -38,16 +38,16 @@ public class Reader {
 
     }
 
-    public char peek() throws IOException {
+    public char peek() throws OxyReaderException {
 
         // Peekaboo, will not need this prob
         // Mos def will not need any of this
 
         int peekPosition = position + 1;
 
-        if (peekPosition >= source.length) {
+        if (peekPosition >= source.length) { // peek should not complain.. but w/e 4 noe
 
-            throw new IOException();
+            throw new OxyReaderException("Lateral Reader Error: peeked beyond the limits, bruh..");
 
         }
 
