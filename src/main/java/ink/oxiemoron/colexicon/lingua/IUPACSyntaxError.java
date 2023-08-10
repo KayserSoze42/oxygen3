@@ -7,7 +7,7 @@ public class IUPACSyntaxError extends Exception{
 
     public IUPACSyntaxError(Token token, Tokens type) {
 
-        super(String.format("%s expected but received %s whatsup?", type, token));
+        super(String.format("%s expected but received %s, whatsup?", type, token));
 
     }
 

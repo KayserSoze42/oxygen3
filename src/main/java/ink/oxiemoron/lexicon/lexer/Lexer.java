@@ -101,7 +101,11 @@ public class Lexer {
         return new Token(left, right, Element.craft(semicolon, Tokens.Semicolon));
     }
 
-    public Token getNextToken() {
+    public Token newStringToken(int left, int right, String literal) {
+        return new Token(left, right, Element.craft(literal, Tokens.String));
+    }
+
+    public Token getNextToken(){
 
         if (!compoundPile.empty()) {
             return compoundPile.pop();
@@ -256,7 +260,9 @@ public class Lexer {
                 }
 
             } else {
-                System.out.println("*wrong*");
+                // System.out.println("*wrong*");
+                return newStringToken(startPosition, endPosition, bob.toString());
+                // making room for some things but idk..
             }
 
 

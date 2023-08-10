@@ -1,6 +1,7 @@
 package ink.oxiemoron.lexicon.parser;
 
 import ink.oxiemoron.colexicon.lingua.IUPACSyntaxError;
+import ink.oxiemoron.colexicon.lingua.OxyLexerException;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.lexicon.ast.*;
 import ink.oxiemoron.lexicon.lateral.Token;
@@ -54,9 +55,23 @@ public class Parser {
 
         } while (currentType == Tokens.Location || currentType == Tokens.Multiplier || currentType == Tokens.Radical);
 
-        tree.addKid(rRoot());
+        if (isNextToken(Tokens.Root)) {
+
+            tree.addKid(rRoot());
+
+        } else {
+
+            throw new IUPACSyntaxError(currentToken, Tokens.Root);
+
+        }
+
         scan();
-        expect(Tokens.Semicolon);
+
+        if (isNextToken(Tokens.Semicolon)) {
+
+            expect(Tokens.Semicolon);
+
+        }
 
         return tree;
     }
@@ -94,7 +109,12 @@ public class Parser {
             } while ((isNextToken(Tokens.Location) || isNextToken(Tokens.Comma)) && !isNextToken(Tokens.Dash));
 
             expect(Tokens.Dash);
-            expect(Tokens.Multiplier);
+
+            if (isNextToken(Tokens.Multiplier)) {
+
+                expect(Tokens.Multiplier);
+
+            }
 
         }
 

@@ -12,8 +12,8 @@ public class RootTree extends AST{
 
         element = tolkien.getElement();
 
-        System.out.println(">>>ROOT tree const\n" +
-                           ">>>>{" + element + "}");
+        System.out.println(">>ROOT tree const\n" +
+                           ">>>{" + element + "}");
     }
 
     public Object accept(ASTVisiteur visiteur) {
