@@ -6,7 +6,7 @@ public class FormTree extends AST {
 
     public FormTree() {
 
-        System.out.println(">FORM tree const");
+        System.out.println(">FORM tree");
 
     }
 

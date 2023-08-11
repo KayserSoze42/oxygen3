@@ -5,6 +5,7 @@ import ink.oxiemoron.lexicon.ast.AST;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lexer.Lexer;
 import ink.oxiemoron.lexicon.parser.Parser;
+import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
