@@ -1,9 +1,13 @@
 package ink.oxiemoron.lexicon.cacher;
 
+import ink.oxiemoron.lexicon.lateral.Token;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Cacher {
@@ -49,6 +53,16 @@ public class Cacher {
         return cacheFile.toString();
     }
 
-    // re-collect adn advance i guess..
+    // re-collect adnd advance i guess..
+
+    public List<Token> getRePoNo() throws IOException {
+
+        List<Token> rePoNo = new ArrayList<>();
+
+        boolean rePoNoEOF = false;
+
+        return rePoNo;
+
+    }
 
 }

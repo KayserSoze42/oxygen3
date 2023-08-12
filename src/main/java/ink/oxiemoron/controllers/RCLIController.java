@@ -74,9 +74,11 @@ public class RCLIController {
 
                 parser = new Parser(cmd);
                 AST tree = parser.execute();
-                PrintFVisiteur printFVisiteur = new PrintFVisiteur();
-                tree.accept(printFVisiteur);
 
+
+//                PrintFVisiteur printFVisiteur = new PrintFVisiteur();
+//                tree.accept(printFVisiteur);
+//
 // ---------------- << lexer test repl only >> ----------------
 //
 //                lexer = new Lexer(cmd);
