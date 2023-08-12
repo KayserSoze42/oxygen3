@@ -6,11 +6,12 @@ public class StructureTree extends AST { // ?: has left the structure..
 
     public StructureTree() {
 
-        System.out.println(">>STRUCTURE tree");
+//        System.out.println(">>STRUCTURE tree");
+
     }
 
     public Object accept(ASTVisiteur visiteur) {
-        return visiteur.visitSubstructureTree(this);
+        return visiteur.visitStructureTree(this);
     }
 
 

@@ -6,6 +6,7 @@ import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lexer.Lexer;
 import ink.oxiemoron.lexicon.parser.Parser;
 import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
+import ink.oxiemoron.lexicon.visiteurs.PrintFVisiteur;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -73,6 +74,8 @@ public class RCLIController {
 
                 parser = new Parser(cmd);
                 AST tree = parser.execute();
+                PrintFVisiteur printFVisiteur = new PrintFVisiteur();
+                tree.accept(printFVisiteur);
 
 // ---------------- << lexer test repl only >> ----------------
 //
@@ -92,7 +95,7 @@ public class RCLIController {
                 System.out.println();
             } catch (Exception ioe) {
 
-                System.out.println("A broad one..");
+                //
 
             }
 

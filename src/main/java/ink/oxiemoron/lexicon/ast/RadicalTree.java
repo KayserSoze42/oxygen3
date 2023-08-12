@@ -9,8 +9,10 @@ public class RadicalTree extends AST{
     private Element element;
 
     public RadicalTree(Token tolkien) {
+
         element = tolkien.getElement();
-        System.out.println(">>>>RADICAL tree {" + element + "}");
+//        System.out.println(">>>>RADICAL tree {" + element + "}");
+
     }
 
     public Object accept(ASTVisiteur visiteur) {

@@ -11,12 +11,16 @@ public class RootTree extends AST{
     public RootTree(Token tolkien) {
 
         element = tolkien.getElement();
+//        System.out.println(">ROOT tree {" + element + "}");
 
-        System.out.println(">ROOT tree {" + element + "}");
     }
 
     public Object accept(ASTVisiteur visiteur) {
         return visiteur.visitRootTree(this);
+    }
+
+    public Element getElement() {
+        return element;
     }
 
 }

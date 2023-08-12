@@ -12,7 +12,7 @@ public abstract class ASTVisiteur {
     }
 
     public abstract Object visitFormTree(AST tree);
-    public abstract Object visitSubstructureTree(AST tree);
+    public abstract Object visitStructureTree(AST tree);
 
     public abstract Object visitSubstituentTree(AST tree);
 

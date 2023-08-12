@@ -270,7 +270,6 @@ public class Lexer {
         }
 
         if (compoundPile.empty()) {
-            // if semi finished
             return null;
         } else {
             return getNextToken();
