@@ -42,7 +42,7 @@ public class Lexer {
 
     private final static Pattern MULTI_PATTERN = Pattern.compile(
             String.format(
-                    "(?<multiplier>%s)?+(?<radical>%s)?+(?<root>%s)?+",
+                    "(?<multiplier>%s)?(?<radical>%s)?(?<root>%s)?",
                     Regex.MULTIPLIER.pattern,
                     Regex.RADICAL.pattern,
                     Regex.ROOT.pattern

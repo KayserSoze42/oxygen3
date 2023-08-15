@@ -1,5 +1,6 @@
 package ink.oxiemoron.controllers;
 
+import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.lexicon.amgine.abstracta.AmgineEngine;
 import ink.oxiemoron.lexicon.ast.AST;
 import ink.oxiemoron.lexicon.lateral.Token;
@@ -7,6 +8,7 @@ import ink.oxiemoron.lexicon.lexer.Lexer;
 import ink.oxiemoron.lexicon.parser.lr.Parser;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class RCLIController {
@@ -58,9 +60,10 @@ public class RCLIController {
 
         while (true) {
 
-            System.out.print("REPL>");
 
             try {
+
+                System.out.print("REPL>");
 
                 String cmd = buffer.readLine();
 
@@ -90,10 +93,13 @@ public class RCLIController {
 // ---------------- << parser plex repl only >> ----------------
 // 2ba
 
-                System.out.println();
-            } catch (Exception ioe) {
+            } catch (IOException ioe) {
 
-                //
+                ioe.printStackTrace();
+
+            } catch (OxyParserException ope) {
+
+                // System.out.println(ope.getMessage());
 
             }
 

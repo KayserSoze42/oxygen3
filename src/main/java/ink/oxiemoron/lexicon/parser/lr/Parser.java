@@ -79,7 +79,7 @@ public class Parser {
 
         AST tree = new StructureTree();
 
-        // Nothing for noe, we shall se shell
+        // Nothing for noe, we shall see shell
 
         tree.addKid(rSubstituentTree());
 
