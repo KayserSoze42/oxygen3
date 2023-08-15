@@ -4,23 +4,20 @@ import ink.oxiemoron.lexicon.lateral.Element;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 
-public class RootTree extends AST{
+public class MultiplierTree extends AST{
 
     private Element element;
 
-    public RootTree(Token tolkien) {
+    public MultiplierTree(Token tolkien) {
 
         element = tolkien.getElement();
-        System.out.println(">>ROOT {" + element + "}");
+        System.out.println(">>>>MULTIPLIER {" + element + "}");
 
     }
-
+    @Override
     public Object accept(ASTVisiteur visiteur) {
-        return visiteur.visitRootTree(this);
+        return null;
     }
 
-    public Element getElement() {
-        return element;
-    }
-
+    public Element getElement() {return element;}
 }

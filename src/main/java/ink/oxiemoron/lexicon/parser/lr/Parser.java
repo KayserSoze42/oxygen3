@@ -48,12 +48,11 @@ public class Parser {
     public AST rForm() throws IUPACSyntaxError {
         AST tree = new FormTree();
 
-
-        do {
+        while (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical)) {
 
             tree.addKid(rStructureTree());
 
-        } while (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical));
+        }
 
         if (isNextToken(Tokens.Root)) {
 
@@ -114,7 +113,9 @@ public class Parser {
 
         if (isNextToken(Tokens.Multiplier)) {
 
-            expect(Tokens.Multiplier);
+
+            tree.addKid(rMultiplierTree());
+            //expect(Tokens.Multiplier);
 
         }
 
@@ -131,6 +132,13 @@ public class Parser {
     public AST rLocationTree() throws IUPACSyntaxError {
 
         AST tree = new LocationTree(currentToken);
+        scan();
+        return tree;
+    }
+
+    public AST rMultiplierTree() throws IUPACSyntaxError{
+
+        AST tree = new MultiplierTree(currentToken);
         scan();
         return tree;
     }

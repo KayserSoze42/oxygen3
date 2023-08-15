@@ -6,7 +6,7 @@ public class SubstituentTree extends AST{
 
     public SubstituentTree() {
 
-        System.out.println(">>>SUBSTITUENT tree");
+        System.out.println(">>>SUBSTITUENT");
 
     }
 
