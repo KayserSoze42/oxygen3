@@ -1,5 +1,6 @@
 package ink.oxiemoron.lexicon.amgine.constructa.interpiler;
 
+import ink.oxiemoron.colexicon.lingua.OxyExecutionException;
 import ink.oxiemoron.colexicon.metils.Pile;
 import ink.oxiemoron.lexicon.lateral.Token;
 
@@ -23,7 +24,17 @@ public class Piler {
         public Pile<Token> pile;
         public boolean newLine;
 
-        //..
+        // ..
+
+    }
+
+    public void execute() throws OxyExecutionException {
+        execute(climate.rePoNo.size()); // totoro to-to-ro ♫ ♪
+    }
+
+    public void execute(int numero) throws OxyExecutionException {
+
+        // .. ...
 
     }
 }

@@ -3,7 +3,7 @@ package ink.oxiemoron;
 import ink.oxiemoron.controllers.RCLIController;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lexer.Lexer;
-import ink.oxiemoron.lexicon.parser.Parser;
+import ink.oxiemoron.lexicon.parser.lr.Parser;
 
 public class Main {
 

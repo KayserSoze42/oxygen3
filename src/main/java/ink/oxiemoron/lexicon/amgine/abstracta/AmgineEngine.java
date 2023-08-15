@@ -1,7 +1,5 @@
 package ink.oxiemoron.lexicon.amgine.abstracta;
 
-import ink.oxiemoron.lexicon.parser.Parser;
-
 public abstract class AmgineEngine {
 
     private String source;

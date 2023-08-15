@@ -1,4 +1,4 @@
-package ink.oxiemoron.lexicon.parser;
+package ink.oxiemoron.lexicon.parser.lr;
 
 import ink.oxiemoron.colexicon.lingua.IUPACSyntaxError;
 import ink.oxiemoron.colexicon.lingua.OxyLexerException;
@@ -19,8 +19,10 @@ public class Parser {
             lexer = new Lexer(source);
             scan(); // ch is the next character to process
 
-        } catch (Exception eh) {
-            throw new OxyParserException("Lexer error");
+        } catch (OxyLexerException olé) {
+
+            System.out.println(olé.getMessage());
+            throw new OxyParserException("rip too");
         }
     }
 

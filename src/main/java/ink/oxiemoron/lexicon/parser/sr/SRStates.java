@@ -1,4 +1,4 @@
-package ink.oxiemoron.lexicon.parser;
+package ink.oxiemoron.lexicon.parser.sr;
 
 public enum SRStates {
     Shift, Reduce, Accept

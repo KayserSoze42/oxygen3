@@ -37,7 +37,7 @@ public class Lexer {
     private int endPosition;
 
     private Reader source;
-    private StringBuffer bob;
+    private StringBuilder bob;
     private Pile<Token> compoundPile = new Pile<>();
 
     private final static Pattern MULTI_PATTERN = Pattern.compile(
@@ -65,7 +65,7 @@ public class Lexer {
 
         }
 
-        bob = new StringBuffer();
+        bob = new StringBuilder();
 
     }
 
@@ -112,7 +112,7 @@ public class Lexer {
         }
 
         if (bob == null) {
-            bob = new StringBuffer();
+            bob = new StringBuilder(); // for my best friend Lewd Block
         } else {
             bob.setLength(0);
         }

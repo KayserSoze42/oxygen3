@@ -4,9 +4,7 @@ import ink.oxiemoron.lexicon.amgine.abstracta.AmgineEngine;
 import ink.oxiemoron.lexicon.ast.AST;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lexer.Lexer;
-import ink.oxiemoron.lexicon.parser.Parser;
-import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
-import ink.oxiemoron.lexicon.visiteurs.PrintFVisiteur;
+import ink.oxiemoron.lexicon.parser.lr.Parser;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,16 +14,14 @@ public class RCLIController {
     private AmgineEngine courierTransPiler; // just to watch
     private AmgineEngine porNeGrafTransPiler;//            maybe they'll do something on their own, for once...   smh..
 
-    private StringBuffer source; // we shall see shell..
-    private StringBuffer outsource;
+    private StringBuilder outsource;
 
     private static Lexer lexer;
     private static Parser parser;
 
 
     public RCLIController() {
-        source = new StringBuffer();
-        outsource = new StringBuffer();
+        outsource = new StringBuilder();
     }
 
 
