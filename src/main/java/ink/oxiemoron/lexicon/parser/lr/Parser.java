@@ -88,9 +88,15 @@ public class Parser {
 
     public AST rSubstituentTree() throws IUPACSyntaxError {
 
+        boolean radicalNeed = false;
+        boolean multiNeed = false;
+
         AST tree = new SubstituentTree();
 
         if (isNextToken(Tokens.Location)) {
+
+            if (!radicalNeed) {radicalNeed = true;}
+            if (!multiNeed) {multiNeed = true;}
 
             do {
 
@@ -113,9 +119,16 @@ public class Parser {
 
         if (isNextToken(Tokens.Multiplier)) {
 
+            if (!radicalNeed) {radicalNeed = true;}
+
 
             tree.addKid(rMultiplierTree());
-            //expect(Tokens.Multiplier);
+
+            if (multiNeed) {multiNeed = false;}
+
+        } else {
+
+            if (multiNeed) {throw new IUPACSyntaxError(currentToken, Tokens.Multiplier);}
 
         }
 
@@ -123,6 +136,10 @@ public class Parser {
 
             tree.addKid(rRadical());
 
+            if (radicalNeed) {radicalNeed = false;}
+
+        } else {
+            if (radicalNeed) {throw new IUPACSyntaxError(currentToken, Tokens.Radical);}
         }
 
         return tree;
