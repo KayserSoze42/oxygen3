@@ -2,10 +2,12 @@ package ink.oxiemoron.colexicon.metils;
 
 import java.io.Serializable;
 import java.util.EmptyStackException;
+import java.util.Stack;
 
 public class Pile<E> extends Carrier<E> { // pile jemo pole
 
     public Pile() {
+
     }
 
     public boolean empty() {

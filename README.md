@@ -1,6 +1,8 @@
 # oxygen3
 
-_A Bourne Again incentive to fight against inertia_
+~~_A Bourne Again incentive to fight against inertia_~~
+
+_Inertia won_
 
 aka
 

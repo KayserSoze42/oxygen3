@@ -3,10 +3,8 @@ package ink.oxiemoron.colexicon.metils;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Stack;
-import java.util.Vector;
 
 public class Carrier<E> implements Serializable { // and his brother, the Courier..
-
 
     @java.io.Serial
     public static final long serialVersionUID = 4206969696969L;
