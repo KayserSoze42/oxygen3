@@ -1,12 +1,8 @@
 # oxygen3
 
-~~_A Bourne Again incentive to fight against inertia_~~
-
-_Inertia won_
-
-aka
-
 _Java test for a Reader-Lexer-Parser-"Compiler" that translates IUPAC names for organic compounds into **a** Chemical structure._
+
+_or idk_
 
 ---------------------------
 
