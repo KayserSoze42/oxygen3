@@ -9,6 +9,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Cacher {
 
@@ -62,6 +64,18 @@ public class Cacher {
         boolean rePoNoEOF = false;
 
         return rePoNo;
+
+    }
+
+    public void arrangeFunBar() throws IOException{
+        String pureData = Files.readString(cacheFile);
+    }
+
+    public String xtractFunName(String funData) {
+
+        Matcher funNameMatcher = Pattern.compile("oh boii").matcher(funData);
+        funNameMatcher.find();
+        return funNameMatcher.group();
 
     }
 

@@ -1,7 +1,10 @@
 package ink.oxiemoron.lexicon.parser.gotl;
 
+import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.colexicon.metils.Catalogue;
 import ink.oxiemoron.lexicon.lateral.Token;
+
+import java.util.function.Function;
 
 public class GOTLParser {
 
@@ -35,6 +38,16 @@ public class GOTLParser {
 
     public GOTLParser(Catalogue<Token> tokens) {
         this.tokens = tokens;
+    }
+
+    public void lingua() throws OxyParserException {
+
+        Catalogue<Function<Object, ParseReverb>> empressions = new Catalogue<>();
+        // empressions.add(); -- lambda when?
+        //
+        //
+        // str8 profits yall
+
     }
 
 }
