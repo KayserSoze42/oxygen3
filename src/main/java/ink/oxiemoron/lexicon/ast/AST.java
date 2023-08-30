@@ -35,6 +35,8 @@ public abstract class AST {
         return nodeNumber;
     }
 
+    public void resetTreeCounter() {nodeCounter = 0;}
+
     public AST getKid(int index) {
 
         if ((index <= 0) || (index > kidCount())){

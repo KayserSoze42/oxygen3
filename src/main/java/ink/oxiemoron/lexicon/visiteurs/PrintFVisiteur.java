@@ -1,9 +1,6 @@
 package ink.oxiemoron.lexicon.visiteurs;
 
-import ink.oxiemoron.lexicon.ast.AST;
-import ink.oxiemoron.lexicon.ast.LocationTree;
-import ink.oxiemoron.lexicon.ast.RadicalTree;
-import ink.oxiemoron.lexicon.ast.RootTree;
+import ink.oxiemoron.lexicon.ast.*;
 
 public class PrintFVisiteur extends ASTVisiteur{
 
@@ -54,10 +51,6 @@ public class PrintFVisiteur extends ASTVisiteur{
         visitKids(tree);
         indepth -= 2;
 
-        if (indepth != 0) {
-            indepth = 0; // magikk, right...
-        }
-
     }
 
 
@@ -82,6 +75,12 @@ public class PrintFVisiteur extends ASTVisiteur{
     @Override
     public Object visitLocationTree(AST tree) {
         print("Locaction {" + ((LocationTree)tree).getElement() + "}", tree);
+        return null;
+    }
+
+    @Override
+    public Object visitMultiplierTree(AST tree) {
+        print("Multiplier {" + ((MultiplierTree)tree).getElement() + "}", tree);
         return null;
     }
 

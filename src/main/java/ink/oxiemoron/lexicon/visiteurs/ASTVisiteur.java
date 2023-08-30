@@ -18,6 +18,8 @@ public abstract class ASTVisiteur {
 
     public abstract Object visitLocationTree(AST tree);
 
+    public abstract Object visitMultiplierTree(AST tree);
+
     public abstract Object visitRadicalTree(AST tree); // Even if i'm wrong.. funny name..
 
     public abstract Object visitRootTree(AST tree);

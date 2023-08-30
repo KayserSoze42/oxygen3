@@ -79,6 +79,8 @@ public class RCLIController {
                 PrintFVisiteur printFVisiteur = new PrintFVisiteur();
                 tree.accept(printFVisiteur);
 
+                tree.resetTreeCounter();
+
 
 //
 // ---------------- << lexer test repl only >> ----------------

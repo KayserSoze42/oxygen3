@@ -16,7 +16,7 @@ public class MultiplierTree extends AST{
     }
     @Override
     public Object accept(ASTVisiteur visiteur) {
-        return null;
+        return visiteur.visitMultiplierTree(this);
     }
 
     public Element getElement() {return element;}
