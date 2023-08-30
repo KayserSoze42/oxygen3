@@ -6,6 +6,7 @@ import ink.oxiemoron.lexicon.ast.AST;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lexer.Lexer;
 import ink.oxiemoron.lexicon.parser.lr.Parser;
+import ink.oxiemoron.lexicon.visiteurs.PrintFVisiteur;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -75,8 +76,10 @@ public class RCLIController {
                 AST tree = parser.execute();
 
 
-//                PrintFVisiteur printFVisiteur = new PrintFVisiteur();
-//                tree.accept(printFVisiteur);
+                PrintFVisiteur printFVisiteur = new PrintFVisiteur();
+                tree.accept(printFVisiteur);
+
+
 //
 // ---------------- << lexer test repl only >> ----------------
 //

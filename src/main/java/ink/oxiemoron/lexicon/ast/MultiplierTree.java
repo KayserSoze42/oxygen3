@@ -11,7 +11,7 @@ public class MultiplierTree extends AST{
     public MultiplierTree(Token tolkien) {
 
         element = tolkien.getElement();
-        System.out.println(">>>>MULTIPLIER {" + element + "}");
+//        System.out.println(">>>>MULTIPLIER {" + element + "}");
 
     }
     @Override

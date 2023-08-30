@@ -6,7 +6,7 @@ public class StructureTree extends AST { // ?: has left the structure..
 
     public StructureTree() {
 
-        System.out.println(">>STRUCTURE");
+//        System.out.println(">>STRUCTURE");
 
     }
 

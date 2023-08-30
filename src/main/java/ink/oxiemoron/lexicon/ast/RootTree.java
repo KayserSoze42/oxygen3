@@ -11,7 +11,7 @@ public class RootTree extends AST{
     public RootTree(Token tolkien) {
 
         element = tolkien.getElement();
-        System.out.println(">>ROOT {" + element + "}");
+//        System.out.println(">>ROOT {" + element + "}");
 
     }
 

@@ -44,7 +44,7 @@ public class PrintFVisiteur extends ASTVisiteur{
 
         String labella = tree.getLabel();
 
-        if (labella.length() > 0) {
+        if (labella != null) {
             string += "  Label: " + labella;
         }
 
@@ -53,6 +53,10 @@ public class PrintFVisiteur extends ASTVisiteur{
         indepth += 2;
         visitKids(tree);
         indepth -= 2;
+
+        if (indepth != 0) {
+            indepth = 0; // magikk, right...
+        }
 
     }
 

@@ -6,7 +6,7 @@ import ink.oxiemoron.lexicon.lateral.Token;
 
 import java.util.function.Function;
 
-public class GOTLParser {
+public class GOTParser {
 
     private class ParseReverb {
 
@@ -36,7 +36,7 @@ public class GOTLParser {
     private int pos = -1; // started at the -1, where thou art noe?
     private ParseReverb deepestOfTheErrors;
 
-    public GOTLParser(Catalogue<Token> tokens) {
+    public GOTParser(Catalogue<Token> tokens) {
         this.tokens = tokens;
     }
 
