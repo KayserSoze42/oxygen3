@@ -74,7 +74,7 @@ public class PrintFVisiteur extends ASTVisiteur{
 
     @Override
     public Object visitLocationTree(AST tree) {
-        print("Locaction {" + ((LocationTree)tree).getElement() + "}", tree);
+        print("Location {" + ((LocationTree)tree).getElement() + "}", tree);
         return null;
     }
 

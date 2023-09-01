@@ -56,13 +56,17 @@ public class RCLIController {
     public static void main (String[] args) {
 
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-
+        AST tree = null;
         System.out.println("----------------OXY----------------");
 
         while (true) {
 
 
             try {
+
+                if (tree != null) {
+                    tree.resetTreeCounter();
+                }
 
                 System.out.print("REPL>");
 
@@ -73,13 +77,13 @@ public class RCLIController {
 // ---------------- << parser test repl only >> ----------------
 
                 parser = new Parser(cmd);
-                AST tree = parser.execute();
+                tree = parser.execute();
 
 
                 PrintFVisiteur printFVisiteur = new PrintFVisiteur();
                 tree.accept(printFVisiteur);
 
-                tree.resetTreeCounter();
+
 
 
 //
