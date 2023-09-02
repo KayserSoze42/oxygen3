@@ -1,36 +1,14 @@
-package ink.oxiemoron.lexicon.parser.gotl;
+package ink.oxiemoron.lexicon.parser.appliance.gotl;
 
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.colexicon.metils.Catalogue;
 import ink.oxiemoron.lexicon.lateral.Token;
+import ink.oxiemoron.lexicon.parser.approach.ParserApproach;
+import ink.oxiemoron.lexicon.reverbs.got.ParseReverb;
 
 import java.util.function.Function;
 
-public class GOTParser {
-
-    private class ParseReverb {
-
-        public boolean success;
-        public int depth;
-        public String errorMessage;
-
-        public ParseReverb() {
-
-            success = true;
-            depth = 0;
-            errorMessage = "cmon guy";
-
-        }
-
-        public ParseReverb(boolean success, int depth, String errorMessage) {
-
-            this.success = success;
-            this.depth = depth;
-            this.errorMessage = errorMessage;
-
-        }
-
-    }
+public class GOTParser implements ParserApproach<ParseReverb> {
 
     private final Catalogue<Token> tokens;
     private int pos = -1; // started at the -1, where thou art noe?
@@ -40,13 +18,17 @@ public class GOTParser {
         this.tokens = tokens;
     }
 
-    public void lingua() throws OxyParserException {
+    public ParseReverb execute() throws OxyParserException {
 
         Catalogue<Function<Object, ParseReverb>> empressions = new Catalogue<>();
         // empressions.add(); -- lambda when?
         //
         //
         // str8 profits yall
+
+        ParseReverb result = null;
+
+        return result;
 
     }
 

@@ -1,4 +1,4 @@
-package ink.oxiemoron.lexicon.ast;
+package ink.oxiemoron.lexicon.reverbs.ast;
 
 import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 

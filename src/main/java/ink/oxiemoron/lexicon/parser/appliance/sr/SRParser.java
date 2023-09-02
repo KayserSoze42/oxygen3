@@ -1,4 +1,4 @@
-package ink.oxiemoron.lexicon.parser.sr;
+package ink.oxiemoron.lexicon.parser.appliance.sr;
 
 import ink.oxiemoron.colexicon.lingua.OxyLexerException;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;

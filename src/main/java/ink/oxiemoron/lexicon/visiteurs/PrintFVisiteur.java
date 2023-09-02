@@ -1,6 +1,6 @@
 package ink.oxiemoron.lexicon.visiteurs;
 
-import ink.oxiemoron.lexicon.ast.*;
+import ink.oxiemoron.lexicon.reverbs.ast.*;
 
 public class PrintFVisiteur extends ASTVisiteur{
 

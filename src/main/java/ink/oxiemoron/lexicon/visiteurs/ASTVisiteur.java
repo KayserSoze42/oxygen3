@@ -1,6 +1,6 @@
 package ink.oxiemoron.lexicon.visiteurs;
 
-import ink.oxiemoron.lexicon.ast.AST;
+import ink.oxiemoron.lexicon.reverbs.ast.AST;
 
 public abstract class ASTVisiteur {
 

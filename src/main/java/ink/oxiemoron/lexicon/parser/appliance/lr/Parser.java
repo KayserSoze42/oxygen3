@@ -1,14 +1,15 @@
-package ink.oxiemoron.lexicon.parser.lr;
+package ink.oxiemoron.lexicon.parser.appliance.lr;
 
 import ink.oxiemoron.colexicon.lingua.IUPACSyntaxError;
 import ink.oxiemoron.colexicon.lingua.OxyLexerException;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
-import ink.oxiemoron.lexicon.ast.*;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lateral.Tokens;
 import ink.oxiemoron.lexicon.lexer.Lexer;
+import ink.oxiemoron.lexicon.parser.approach.ParserApproach;
+import ink.oxiemoron.lexicon.reverbs.ast.*;
 
-public class Parser {
+public class Parser implements ParserApproach<AST> {
 
     private Token currentToken;
     private Lexer lexer;
@@ -30,6 +31,7 @@ public class Parser {
         return lexer;
     }
 
+    @Override
     public AST execute() throws OxyParserException {
 
         try {
