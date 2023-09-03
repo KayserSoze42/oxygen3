@@ -4,29 +4,29 @@ import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.colexicon.metils.Catalogue;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.parser.approach.ParserApproach;
-import ink.oxiemoron.lexicon.reverbs.got.ParseReverb;
+import ink.oxiemoron.lexicon.reverbs.got.GOTParseReverb;
 
 import java.util.function.Function;
 
-public class GOTParser implements ParserApproach<ParseReverb> {
+public class GOTParser implements ParserApproach<GOTParseReverb> {
 
     private final Catalogue<Token> tokens;
     private int pos = -1; // started at the -1, where thou art noe?
-    private ParseReverb deepestOfTheErrors;
+    private GOTParseReverb deepestOfTheErrors;
 
     public GOTParser(Catalogue<Token> tokens) {
         this.tokens = tokens;
     }
 
-    public ParseReverb execute() throws OxyParserException {
+    public GOTParseReverb execute() throws OxyParserException {
 
-        Catalogue<Function<Object, ParseReverb>> empressions = new Catalogue<>();
+        Catalogue<Function<Object, GOTParseReverb>> empressions = new Catalogue<>();
         // empressions.add(); -- lambda when?
         //
         //
         // str8 profits yall
 
-        ParseReverb result = null;
+        GOTParseReverb result = null;
 
         return result;
 

@@ -37,6 +37,8 @@ _Some references:_
 
 [lodeez](https://www.youtube.com/watch?v=NjKJ9-ejR6o)
 
+[<tgr3](https://www.cs.princeton.edu/~appel/modern/java/https://www.cs.princeton.edu/~appel/modern/java/)
+
 }
 
 

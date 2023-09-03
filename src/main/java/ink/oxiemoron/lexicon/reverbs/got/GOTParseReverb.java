@@ -1,12 +1,12 @@
 package ink.oxiemoron.lexicon.reverbs.got;
 
-public class ParseReverb {
+public class GOTParseReverb {
 
     public boolean success;
     public int depth;
     public String errorMessage;
 
-    public ParseReverb() {
+    public GOTParseReverb() {
 
         success = true;
         depth = 0;
@@ -14,7 +14,7 @@ public class ParseReverb {
 
     }
 
-    public ParseReverb(boolean success, int depth, String errorMessage) {
+    public GOTParseReverb(boolean success, int depth, String errorMessage) {
 
         this.success = success;
         this.depth = depth;

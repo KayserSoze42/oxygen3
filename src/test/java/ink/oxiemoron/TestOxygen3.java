@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals; //   º         
 //                                                                                                                       4NNM&dog™
 //                                                                                                                       a low po(or)ly drawn tribute
 // *sema actually means token, heh
-public class TestMain { //
+public class TestOxygen3 { //
 
     @Test
     public void testTheTest() {

@@ -1,13 +1,35 @@
 package ink.oxiemoron;
 
+import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.controllers.RCLIController;
-import ink.oxiemoron.lexicon.lateral.Token;
-import ink.oxiemoron.lexicon.lexer.Lexer;
 import ink.oxiemoron.lexicon.parser.appliance.lr.Parser;
 
-public class Main {
+public class oxygen3 {
 
     public static void main(String[] args) {
+
+        RCLIController rcliController = new RCLIController();
+
+        for (int i=0; i < args.length; i++) {
+
+            try {
+
+                switch (args[i]) {
+
+                    case "-r": case "--reg":
+                        rcliController.plex(new Parser(args[args.length-1]));
+
+                }
+
+            } catch (OxyParserException oxe) {
+
+            }
+
+
+
+        }
+
+        /*
 
         RCLIController RCLIController = new RCLIController();
 
@@ -56,6 +78,7 @@ public class Main {
         long end = System.currentTimeMillis();
 
         System.out.println("\n***\nRun Time: " + (end - start) + " ms");
-    }
 
+         */
+    }
 }

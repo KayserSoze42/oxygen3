@@ -2,6 +2,7 @@ package ink.oxiemoron.controllers;
 
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.lexicon.amgine.abstracta.AmgineEngine;
+import ink.oxiemoron.lexicon.parser.approach.ParserApproach;
 import ink.oxiemoron.lexicon.reverbs.ast.AST;
 import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lexer.Lexer;
@@ -29,18 +30,15 @@ public class RCLIController {
 
 
 
-    public String plex(String source) {
+    public String plex(ParserApproach parserApproach) {
 
         try {
 
-            lexer = new Lexer(source);
+            AST result = (AST) parserApproach.execute(); // ... don't judge me ...
 
-            Token token = lexer.getNextToken();
+            PrintFVisiteur printFVisiteur = new PrintFVisiteur();
 
-            while (token != null) {
-                outsource.append(token.toString()).append("\n");
-                token = lexer.getNextToken();
-            }
+            result.accept(printFVisiteur);
 
 
         } catch (Exception eh) {
@@ -53,7 +51,7 @@ public class RCLIController {
 
     }
 
-    public static void main (String[] args) {
+    public static void rclicc(ParserApproach parserApproach) {
 
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
         AST tree = null;
