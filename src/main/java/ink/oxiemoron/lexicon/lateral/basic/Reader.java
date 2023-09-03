@@ -1,4 +1,4 @@
-package ink.oxiemoron.lexicon.lateral;
+package ink.oxiemoron.lexicon.lateral.basic;
 
 import ink.oxiemoron.colexicon.lingua.OxyReaderException;
 

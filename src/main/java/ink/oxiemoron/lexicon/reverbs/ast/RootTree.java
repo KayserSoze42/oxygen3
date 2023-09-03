@@ -1,7 +1,7 @@
 package ink.oxiemoron.lexicon.reverbs.ast;
 
-import ink.oxiemoron.lexicon.lateral.Element;
-import ink.oxiemoron.lexicon.lateral.Token;
+import ink.oxiemoron.lexicon.lateral.basic.Element;
+import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 
 public class RootTree extends AST{

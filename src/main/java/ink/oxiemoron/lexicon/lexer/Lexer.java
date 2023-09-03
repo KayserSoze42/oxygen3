@@ -1,16 +1,14 @@
 package ink.oxiemoron.lexicon.lexer;
 
 import ink.oxiemoron.colexicon.lingua.OxyLexerException;
-import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.colexicon.lingua.OxyReaderException;
 import ink.oxiemoron.colexicon.metils.Pile;
-import ink.oxiemoron.lexicon.lateral.Element;
-import ink.oxiemoron.lexicon.lateral.Reader;
-import ink.oxiemoron.lexicon.lateral.Token;
-import ink.oxiemoron.lexicon.lateral.Tokens;
-import ink.oxiemoron.lexicon.lateral.regex.Regex;
+import ink.oxiemoron.lexicon.lateral.basic.Element;
+import ink.oxiemoron.lexicon.lateral.basic.Reader;
+import ink.oxiemoron.lexicon.lateral.basic.Token;
+import ink.oxiemoron.lexicon.lateral.basic.Tokens;
+import ink.oxiemoron.lexicon.lateral.basic.regex.Regex;
 
-import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

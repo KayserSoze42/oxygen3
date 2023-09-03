@@ -1,4 +1,4 @@
-package ink.oxiemoron.lexicon.lateral.regex;
+package ink.oxiemoron.lexicon.lateral.basic.regex;
 
 public enum Regex {
 

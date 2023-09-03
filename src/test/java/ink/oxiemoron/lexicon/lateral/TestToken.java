@@ -1,5 +1,8 @@
 package ink.oxiemoron.lexicon.lateral;
 
+import ink.oxiemoron.lexicon.lateral.basic.Element;
+import ink.oxiemoron.lexicon.lateral.basic.Token;
+import ink.oxiemoron.lexicon.lateral.basic.Tokens;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

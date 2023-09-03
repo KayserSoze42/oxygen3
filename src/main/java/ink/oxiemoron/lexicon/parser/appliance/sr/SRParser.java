@@ -2,7 +2,7 @@ package ink.oxiemoron.lexicon.parser.appliance.sr;
 
 import ink.oxiemoron.colexicon.lingua.OxyLexerException;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
-import ink.oxiemoron.lexicon.lateral.Token;
+import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.lexer.Lexer;
 
 public class SRParser {

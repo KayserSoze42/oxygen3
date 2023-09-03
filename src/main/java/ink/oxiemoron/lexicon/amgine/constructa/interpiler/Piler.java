@@ -2,7 +2,7 @@ package ink.oxiemoron.lexicon.amgine.constructa.interpiler;
 
 import ink.oxiemoron.colexicon.lingua.OxyExecutionException;
 import ink.oxiemoron.colexicon.metils.Pile;
-import ink.oxiemoron.lexicon.lateral.Token;
+import ink.oxiemoron.lexicon.lateral.basic.Token;
 
 import java.util.List;
 

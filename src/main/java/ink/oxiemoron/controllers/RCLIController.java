@@ -4,7 +4,6 @@ import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.lexicon.amgine.abstracta.AmgineEngine;
 import ink.oxiemoron.lexicon.parser.approach.ParserApproach;
 import ink.oxiemoron.lexicon.reverbs.ast.AST;
-import ink.oxiemoron.lexicon.lateral.Token;
 import ink.oxiemoron.lexicon.lexer.Lexer;
 import ink.oxiemoron.lexicon.parser.appliance.lr.Parser;
 import ink.oxiemoron.lexicon.visiteurs.PrintFVisiteur;

@@ -3,6 +3,7 @@ package ink.oxiemoron.lexicon.lateral;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import ink.oxiemoron.lexicon.lateral.basic.Reader;
 import org.junit.jupiter.api.Test;
 
 public class TestReader {

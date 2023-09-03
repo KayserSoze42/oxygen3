@@ -1,6 +1,6 @@
 package ink.oxiemoron.lexicon.cacher;
 
-import ink.oxiemoron.lexicon.lateral.Token;
+import ink.oxiemoron.lexicon.lateral.basic.Token;
 
 import java.io.IOException;
 import java.nio.file.Files;
