@@ -1,5 +1,6 @@
 package ink.oxiemoron.lexicon.lateral.got;
 
+import ink.oxiemoron.colexicon.metils.Catalogue;
 import ink.oxiemoron.lexicon.lateral.basic.Token;
 
 public class GOToken {
@@ -60,5 +61,15 @@ public class GOToken {
 
     public String toString() {
         return type + "(" + value + ")"; // and this way too, idk we sha.. oh you know already ...
+    }
+    
+    public static GOToken craftAToken(String recipe) {
+
+        String[] typeAndThenSome = recipe.split("\\s+:\\s+"); // my recipe? just followed the instructions idk ... don't follow that tho!                                                                .... follow the monet kek
+
+        GOTokens type = GOTokens.valueOf(typeAndThenSome[0]);
+        String value = typeAndThenSome[1];
+
+        return new GOToken(type, value);
     }
 }

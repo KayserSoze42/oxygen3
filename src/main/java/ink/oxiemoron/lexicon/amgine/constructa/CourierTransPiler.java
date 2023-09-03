@@ -1,7 +1,6 @@
 package ink.oxiemoron.lexicon.amgine.constructa;
 
 import ink.oxiemoron.lexicon.amgine.abstracta.AmgineApproach;
-import ink.oxiemoron.lexicon.amgine.abstracta.AmgineEngine;
 
 public class CourierTransPiler implements AmgineApproach {
     // The reason why the name doesn't match the pngture is because i couldnt put a tm symbol on a java class
