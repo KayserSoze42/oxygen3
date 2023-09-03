@@ -51,7 +51,7 @@ public class RCLIController {
 
     }
 
-    public static void rclicc(ParserApproach parserApproach) {
+    public void rclicc() {
 
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
         AST tree = null;

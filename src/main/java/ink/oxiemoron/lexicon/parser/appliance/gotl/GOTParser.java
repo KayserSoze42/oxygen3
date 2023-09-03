@@ -14,6 +14,12 @@ public class GOTParser implements ParserApproach<GOTParseReverb> {
     private int pos = -1; // started at the -1, where thou art noe?
     private GOTParseReverb deepestOfTheErrors;
 
+    public GOTParser() {
+
+        this.tokens = new Catalogue<>();
+
+    }
+
     public GOTParser(Catalogue<Token> tokens) {
         this.tokens = tokens;
     }

@@ -2,9 +2,21 @@ package ink.oxiemoron;
 
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.controllers.RCLIController;
+import ink.oxiemoron.lexicon.parser.appliance.gotl.GOTParser;
 import ink.oxiemoron.lexicon.parser.appliance.lr.Parser;
 
 public class oxygen3 {
+
+    // cmds for noe:
+
+    // ##### -b / --basic
+    // ##### first draft parser
+
+    // ##### -g / --got
+    // ##### GOT like parser
+
+    // ##### -r / --repl
+    // ##### REPLoop
 
     public static void main(String[] args) {
 
@@ -15,17 +27,17 @@ public class oxygen3 {
             try {
 
                 switch (args[i]) {
-
-                    case "-r": case "--reg":
-                        rcliController.plex(new Parser(args[args.length-1]));
-
+                    case "-b", "--basic" -> rcliController.plex(new Parser(args[args.length - 1]));
+                    case "-g", "--got" -> rcliController.plex(new GOTParser());
+                    case "-r", "--repl" -> rcliController.rclicc(); // could be static tho, right?
                 }
 
             } catch (OxyParserException oxe) {
 
+                oxe.printStackTrace();
+                System.out.println(oxe.getMessage()); // glog glog glog .. ah .. printf
+
             }
-
-
 
         }
 
