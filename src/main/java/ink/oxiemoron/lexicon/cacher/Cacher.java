@@ -1,7 +1,11 @@
 package ink.oxiemoron.lexicon.cacher;
 
+import ink.oxiemoron.colexicon.lingua.OxyCacherException;
+import ink.oxiemoron.colexicon.metils.Catalogue;
 import ink.oxiemoron.lexicon.lateral.basic.Token;
+import ink.oxiemoron.lexicon.lateral.got.GOToken;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -76,6 +80,19 @@ public class Cacher {
         Matcher funNameMatcher = Pattern.compile("oh boii").matcher(funData);
         funNameMatcher.find();
         return funNameMatcher.group();
+
+    }
+
+    public void writeCache(int hache, Catalogue<GOToken> repono) throws OxyCacherException {
+
+        File file = new File(cacheFile.toString());
+        File parentFile = file.getParentFile();
+
+        if (!parentFile.exists() && !parentFile.mkdirs()) {
+            throw new OxyCacherException("Cacher exception: unable to create dir - " + parentFile);
+        }
+
+        // and so on .. and so off ...
 
     }
 

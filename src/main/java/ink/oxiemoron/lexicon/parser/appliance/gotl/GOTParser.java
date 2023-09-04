@@ -12,7 +12,7 @@ import java.util.function.Function;
 
 public class GOTParser implements ParserApproach<GOTParseReverb> {
 
-    private final Catalogue<Token> tokens;
+    private final Catalogue<GOToken> tokens;
     private int pos = -1; // started at the -1, where thou art noe?
     private GOTParseReverb deepestOfTheErrors;
 
@@ -22,7 +22,7 @@ public class GOTParser implements ParserApproach<GOTParseReverb> {
 
     }
 
-    public GOTParser(Catalogue<Token> tokens) {
+    public GOTParser(Catalogue<GOToken> tokens) {
         this.tokens = tokens;
     }
 
@@ -34,6 +34,10 @@ public class GOTParser implements ParserApproach<GOTParseReverb> {
 
         return result;
 
+    }
+
+    private GOToken matchd() {
+        return tokens.get(++pos);
     }
 
     private GOTParseReverb matchToken(GOToken token, GOTokens type) {
