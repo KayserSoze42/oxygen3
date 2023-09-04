@@ -2,6 +2,7 @@ package ink.oxiemoron.lexicon.lexer;
 
 import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.lateral.basic.Tokens;
+import ink.oxiemoron.lexicon.lexer.appliance.basic.Lexer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

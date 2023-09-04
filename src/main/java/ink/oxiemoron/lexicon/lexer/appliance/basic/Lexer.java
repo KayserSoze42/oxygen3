@@ -1,4 +1,4 @@
-package ink.oxiemoron.lexicon.lexer;
+package ink.oxiemoron.lexicon.lexer.appliance.basic;
 
 import ink.oxiemoron.colexicon.lingua.OxyLexerException;
 import ink.oxiemoron.colexicon.lingua.OxyReaderException;
@@ -8,12 +8,13 @@ import ink.oxiemoron.lexicon.lateral.basic.Reader;
 import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.lateral.basic.Tokens;
 import ink.oxiemoron.lexicon.lateral.basic.regex.Regex;
+import ink.oxiemoron.lexicon.lexer.approach.LexerApproach;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Lexer {
+public class Lexer implements LexerApproach<Token> {
 
     // Ok, so the syntax is
     // 1, 3, 7-Trimethylpurine-2,6-dione

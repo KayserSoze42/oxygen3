@@ -5,7 +5,7 @@ import ink.oxiemoron.colexicon.lingua.OxyLexerException;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.lateral.basic.Tokens;
-import ink.oxiemoron.lexicon.lexer.Lexer;
+import ink.oxiemoron.lexicon.lexer.appliance.basic.Lexer;
 import ink.oxiemoron.lexicon.parser.approach.ParserApproach;
 import ink.oxiemoron.lexicon.reverbs.ast.*;
 
