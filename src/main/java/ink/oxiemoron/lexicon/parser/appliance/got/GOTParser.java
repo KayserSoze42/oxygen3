@@ -1,10 +1,11 @@
-package ink.oxiemoron.lexicon.parser.appliance.gotl;
+package ink.oxiemoron.lexicon.parser.appliance.got;
 
+import ink.oxiemoron.colexicon.lingua.OxyLexerException;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.colexicon.metils.Catalogue;
-import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.lateral.got.GOToken;
 import ink.oxiemoron.lexicon.lateral.got.GOTokens;
+import ink.oxiemoron.lexicon.lexer.appliance.got.GOLexer;
 import ink.oxiemoron.lexicon.parser.approach.ParserApproach;
 import ink.oxiemoron.lexicon.reverbs.got.GOTParseReverb;
 
@@ -43,6 +44,27 @@ public class GOTParser implements ParserApproach<GOTParseReverb> {
     private GOTParseReverb matchToken(GOToken token, GOTokens type) {
 
         return new GOTParseReverb(); // got rekt 4 noe, gotteeem
+
+    }
+
+    private Catalogue<GOToken> getGOTokened() throws OxyParserException, OxyLexerException {
+
+        Catalogue<GOToken> gotokens = new Catalogue<GOToken>();
+
+        GOLexer goLexer = new GOLexer("");
+
+        while (true) {
+            break; // hammer time, y'all
+            // celebrate good felings,
+
+
+
+
+
+            // one more time
+        }
+
+        return gotokens;
 
     }
 

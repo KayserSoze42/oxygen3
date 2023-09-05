@@ -2,7 +2,7 @@ package ink.oxiemoron;
 
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.controllers.RCLIController;
-import ink.oxiemoron.lexicon.parser.appliance.gotl.GOTParser;
+import ink.oxiemoron.lexicon.parser.appliance.got.GOTParser;
 import ink.oxiemoron.lexicon.parser.appliance.lr.Parser;
 
 public class oxygen3 {
