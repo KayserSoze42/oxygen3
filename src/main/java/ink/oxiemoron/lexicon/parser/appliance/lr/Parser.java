@@ -52,68 +52,38 @@ public class Parser implements ParserApproach<AST> {
     public AST rForm() throws IUPACSyntaxError {
         AST tree = new FormTree();
         AST binTree = null;
-        AST keepToken = null;
+        AST keepTree = null;
 
         while (!eos) {
 
             if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
-                keepToken = rCompoundTree();
+                keepTree = rCompoundTree();
             }
 
             if (isNextToken(Tokens.String)) {
-                keepToken = rId();
+                keepTree = rId();
             }
 
             if (isNextToken(Tokens.Allotr)) {
 
                 AST sinTree = new SinTree();
-                sinTree.addKid(keepToken);
+                sinTree.addKid(keepTree);
                 binTree = rAllocrTree().addKid(sinTree);
-                tree.addKid(binTree);
-
-                if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
-                    keepToken = rCompoundTree();
-                }
-
-                if (isNextToken(Tokens.String)) {
-                    keepToken = rString();
-                }
-
-                AST desTree = new DesTree();
-                desTree.addKid(keepToken);
-                binTree.addKid(desTree);
 
             }
 
             if (isNextToken(Tokens.Greatr) || isNextToken(Tokens.Lessr)) {
 
                 AST sinTree = new SinTree();
-                sinTree.addKid(keepToken);
-                binTree = rComparrTree().addKid(sinTree);
-                tree.addKid(binTree);
-
-                if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
-                    keepToken = rCompoundTree();
-                }
-
-                if (isNextToken(Tokens.String)) {
-                    keepToken = rString();
-                }
-
-                AST desTree = new DesTree();
-                desTree.addKid(keepToken);
-                binTree.addKid(desTree);
+                sinTree.addKid(keepTree);
+                binTree = rComparrTree().addKid(sinTree).addKid(rSteerr());
 
             }
 
             if (binTree != null) {
                 tree.addKid(binTree);
-            }
-
-            if (isNextToken(Tokens.Askr)) {
-
-                tree.addKid(rAskrTree().addKid(keepToken));
-
+            } else if (keepTree != null) {
+                tree.addKid(keepTree); // will recast somehoe to string, i guess, idk..
             }
 
         }
@@ -126,8 +96,12 @@ public class Parser implements ParserApproach<AST> {
 
         expect(Tokens.Allotr);
 
-        if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical)) {
-            tree.addKid(rCompoundTree());
+        if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
+            tree.addKid(rDesTree().addKid(rCompoundTree()));
+        }
+
+        if (isNextToken(Tokens.String)) {
+            tree.addKid(rDesTree().addKid(rString()));
         }
 
         return tree;
@@ -136,14 +110,13 @@ public class Parser implements ParserApproach<AST> {
     public AST rComparrTree() throws IUPACSyntaxError {
         AST tree = new ComparrTree();
 
-        if (isNextToken(Tokens.Greatr)) {
-            expect(Tokens.Greatr);
+        if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
+            tree.addKid(rDesTree().addKid(rCompoundTree()));
         }
 
-        if (isNextToken(Tokens.Lessr)) {
-            expect(Tokens.Lessr);
+        if (isNextToken(Tokens.String)) {
+            tree.addKid(rDesTree().addKid(rId()));
         }
-
 
         return tree;
     }
@@ -151,7 +124,7 @@ public class Parser implements ParserApproach<AST> {
     public AST rAskrTree() throws IUPACSyntaxError {
         AST tree = new AskrTree();
 
-
+        expect(Tokens.Askr);
 
         return tree;
     }
@@ -166,6 +139,14 @@ public class Parser implements ParserApproach<AST> {
         AST tree = new SinTree();
 
         return tree;
+    }
+
+    public AST rSteerr() throws IUPACSyntaxError {
+
+        AST tree = new SteerrTree(currentToken);
+        scan();
+        return tree;
+
     }
 
     public AST rCompoundTree() throws IUPACSyntaxError {

@@ -22,6 +22,8 @@ public abstract class ASTVisiteur {
 
     public abstract Object visitAskrTree(AST tree);
 
+    public abstract Object visitSteerrTree(AST tree);
+
     public abstract Object visitDesTree(AST tree);
 
     public abstract Object visitSinTree(AST tree);

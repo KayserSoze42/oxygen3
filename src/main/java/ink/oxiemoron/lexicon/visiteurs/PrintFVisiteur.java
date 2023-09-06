@@ -91,6 +91,12 @@ public class PrintFVisiteur extends ASTVisiteur{
     }
 
     @Override
+    public Object visitSteerrTree(AST tree) {
+        print("Steerr", tree);
+        return null;
+    }
+
+    @Override
     public Object visitFormTree(AST tree) {
         print("FormTree", tree);
         return null;

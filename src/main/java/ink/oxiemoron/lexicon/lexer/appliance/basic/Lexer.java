@@ -315,12 +315,17 @@ public class Lexer implements LexerApproach<Token> {
 
             try {
 
-                do {
-                    endPosition++;
-                    bob.append(character);
-                    character = source.read();
+                if (Character.isAlphabetic(character)) {
 
-                } while (Character.isAlphabetic(character));
+                    do {
+                        endPosition++;
+                        bob.append(character);
+                        character = source.read();
+
+                    } while (Character.isLetterOrDigit(character));
+
+                }
+
 
 
 
