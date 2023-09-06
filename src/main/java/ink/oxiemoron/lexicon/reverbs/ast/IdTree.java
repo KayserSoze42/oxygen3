@@ -4,16 +4,20 @@ import ink.oxiemoron.lexicon.lateral.basic.Element;
 import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 
-public class AllocTree extends AST{
+public class IdTree extends AST{
 
     private Element element;
 
-    public AllocTree(Token tolkien) {
+    public IdTree(Token tolkien) {
         element = tolkien.getElement();
     }
 
     @Override
     public Object accept(ASTVisiteur visiteur) {
-        return visiteur.visitAllocTree(this);
+        return visiteur.visitIdTree(this);
+    }
+
+    public Element getElement() {
+        return element;
     }
 }

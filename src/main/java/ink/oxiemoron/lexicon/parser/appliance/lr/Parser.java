@@ -51,23 +51,125 @@ public class Parser implements ParserApproach<AST> {
 
     public AST rForm() throws IUPACSyntaxError {
         AST tree = new FormTree();
+        AST binTree = null;
+        AST keepToken = null;
 
         while (!eos) {
 
             if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
-                tree.addKid(rCompTree());
+                keepToken = rCompoundTree();
             }
 
             if (isNextToken(Tokens.String)) {
-                tree.addKid(rString());
+                keepToken = rId();
             }
+
+            if (isNextToken(Tokens.Allotr)) {
+
+                AST sinTree = new SinTree();
+                sinTree.addKid(keepToken);
+                binTree = rAllocrTree().addKid(sinTree);
+                tree.addKid(binTree);
+
+                if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
+                    keepToken = rCompoundTree();
+                }
+
+                if (isNextToken(Tokens.String)) {
+                    keepToken = rString();
+                }
+
+                AST desTree = new DesTree();
+                desTree.addKid(keepToken);
+                binTree.addKid(desTree);
+
+            }
+
+            if (isNextToken(Tokens.Greatr) || isNextToken(Tokens.Lessr)) {
+
+                AST sinTree = new SinTree();
+                sinTree.addKid(keepToken);
+                binTree = rComparrTree().addKid(sinTree);
+                tree.addKid(binTree);
+
+                if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
+                    keepToken = rCompoundTree();
+                }
+
+                if (isNextToken(Tokens.String)) {
+                    keepToken = rString();
+                }
+
+                AST desTree = new DesTree();
+                desTree.addKid(keepToken);
+                binTree.addKid(desTree);
+
+            }
+
+            if (binTree != null) {
+                tree.addKid(binTree);
+            }
+
+            if (isNextToken(Tokens.Askr)) {
+
+                tree.addKid(rAskrTree().addKid(keepToken));
+
+            }
+
         }
 
         return tree;
     }
 
-    public AST rCompTree() throws IUPACSyntaxError {
-        AST tree = new CompTree();
+    public AST rAllocrTree() throws IUPACSyntaxError {
+        AST tree = new AllocrTree();
+
+        expect(Tokens.Allotr);
+
+        if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical)) {
+            tree.addKid(rCompoundTree());
+        }
+
+        return tree;
+    }
+
+    public AST rComparrTree() throws IUPACSyntaxError {
+        AST tree = new ComparrTree();
+
+        if (isNextToken(Tokens.Greatr)) {
+            expect(Tokens.Greatr);
+        }
+
+        if (isNextToken(Tokens.Lessr)) {
+            expect(Tokens.Lessr);
+        }
+
+
+        return tree;
+    }
+
+    public AST rAskrTree() throws IUPACSyntaxError {
+        AST tree = new AskrTree();
+
+
+
+        return tree;
+    }
+
+    public AST rDesTree() throws IUPACSyntaxError {
+        AST tree = new DesTree();
+
+        return tree;
+    }
+
+    public AST rSinTree() throws IUPACSyntaxError {
+        AST tree = new SinTree();
+
+        return tree;
+    }
+
+    public AST rCompoundTree() throws IUPACSyntaxError {
+        AST tree = new CompoundTree();
 
         while (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical)) {
 
@@ -201,6 +303,12 @@ public class Parser implements ParserApproach<AST> {
 
     public AST rString() throws IUPACSyntaxError {
         AST tree = new StringTree(currentToken);
+        scan();
+        return tree;
+    }
+
+    public AST rId() throws IUPACSyntaxError {
+        AST tree = new IdTree(currentToken);
         scan();
         return tree;
     }

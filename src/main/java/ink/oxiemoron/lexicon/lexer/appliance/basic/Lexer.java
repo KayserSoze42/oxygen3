@@ -253,6 +253,21 @@ public class Lexer implements LexerApproach<Token> {
 
         }
 
+        if (character == '?') {
+
+            try {
+
+                endPosition++;
+                bob.append(character);
+                character = source.read();
+
+            } catch (Exception eh) {
+                eof = true;
+            }
+
+            return newAskrToken(startPosition, endPosition, bob.toString());
+        }
+
         if (character == ';') {
 
             try {

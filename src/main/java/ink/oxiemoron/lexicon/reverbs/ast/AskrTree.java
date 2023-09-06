@@ -2,14 +2,14 @@ package ink.oxiemoron.lexicon.reverbs.ast;
 
 import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 
-public class CompTree extends AST{
+public class AskrTree extends AST{
 
-    public CompTree() {
+    public AskrTree() {
 
     }
 
     @Override
     public Object accept(ASTVisiteur visiteur) {
-        return visiteur.visitCompTree(this);
+        return visiteur.visitAskrTree(this);
     }
 }
