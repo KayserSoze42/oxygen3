@@ -68,9 +68,37 @@ public class Lexer implements LexerApproach<Token> {
 
     }
 
+    // ---------
+
     public Token newErrorToken(int left, int right, String badBody) {
         return new Token(left, right, Element.craft(badBody, Tokens.Error));
     }
+
+    // ---------
+
+    public Token newStringToken(int left, int right, String literal) {
+        return new Token(left, right, Element.craft(literal, Tokens.String));
+    }
+
+    // ---------
+
+    public Token newAllotToken(int left, int right, String allotr) {
+        return new Token(left, right, Element.craft(allotr, Tokens.Allotr));
+    }
+
+    public Token newGreatrToken(int left, int right, String greatr) {
+        return new Token(left, right, Element.craft(greatr, Tokens.Greatr));
+    }
+
+    public Token newLessrToken(int left, int right, String lessr) {
+        return new Token(left, right, Element.craft(lessr, Tokens.Lessr));
+    }
+
+    public Token newAskrToken(int left, int right, String askr) {
+        return new Token(left, right, Element.craft(askr, Tokens.Askr));
+    }
+
+    // ---------
 
     public Token newLocationToken(int left, int right, String number) {
         return new Token(left, right, Element.craft(number, Tokens.Location));
@@ -96,13 +124,13 @@ public class Lexer implements LexerApproach<Token> {
         return new Token(left, right, Element.craft(root, Tokens.Root));
     }
 
+    // ---------
+
     public Token newSemicolonToken(int left, int right, String semicolon) {
         return new Token(left, right, Element.craft(semicolon, Tokens.Semicolon));
     }
 
-    public Token newStringToken(int left, int right, String literal) {
-        return new Token(left, right, Element.craft(literal, Tokens.String));
-    }
+    // ---------
 
     public Token getNextToken(){
 
@@ -167,6 +195,62 @@ public class Lexer implements LexerApproach<Token> {
             }
 
             return newCommaToken(startPosition, endPosition, bob.toString());
+        }
+
+        if (character == '=') {
+
+            try {
+
+                endPosition++;
+                bob.append(character);
+                character = source.read();
+
+            } catch (Exception eh) {
+                eof = true;
+            }
+
+            return newAllotToken(startPosition, endPosition, bob.toString());
+        }
+
+        if (character == '<') {
+
+            try {
+
+                endPosition++;
+                bob.append(character);
+                character = source.read();
+
+                if (character == '-') {
+                    endPosition++;
+                    bob.append(character);
+                    character = source.read();
+
+                    return newAllotToken(startPosition,endPosition, bob.toString());
+                }
+
+
+            } catch (Exception eh) {
+                eof = true;
+            }
+
+            return newLessrToken(startPosition, endPosition, bob.toString());
+
+        }
+
+        if (character == '>') {
+
+            try {
+
+                endPosition++;
+                bob.append(character);
+                character = source.read();
+
+            } catch (Exception eh) {
+                eof = true;
+            }
+
+            return newGreatrToken(startPosition, endPosition, bob.toString());
+
         }
 
         if (character == ';') {

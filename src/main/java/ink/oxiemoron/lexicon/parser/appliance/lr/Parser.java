@@ -14,6 +14,8 @@ public class Parser implements ParserApproach<AST> {
     private Token currentToken;
     private Lexer lexer;
 
+    private boolean eos = false;
+
     public Parser(String source) throws OxyParserException {
 
         try {
@@ -50,6 +52,23 @@ public class Parser implements ParserApproach<AST> {
     public AST rForm() throws IUPACSyntaxError {
         AST tree = new FormTree();
 
+        while (!eos) {
+
+            if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
+                tree.addKid(rCompTree());
+            }
+
+            if (isNextToken(Tokens.String)) {
+                tree.addKid(rString());
+            }
+        }
+
+        return tree;
+    }
+
+    public AST rCompTree() throws IUPACSyntaxError {
+        AST tree = new CompTree();
+
         while (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical)) {
 
             tree.addKid(rStructureTree());
@@ -60,14 +79,11 @@ public class Parser implements ParserApproach<AST> {
 
             tree.addKid(rRoot());
 
-        } else if (isNextToken(Tokens.String)) {
-
-            tree.addKid(rString());
-
         } else {
 
-            throw new IUPACSyntaxError(currentToken, Tokens.Root);
-
+            if (eos) {
+                throw new IUPACSyntaxError(currentToken, Tokens.Root);
+            }
         }
 
         scan();
@@ -81,6 +97,8 @@ public class Parser implements ParserApproach<AST> {
         }
 
         return tree;
+
+
     }
 
     public AST rStructureTree() throws IUPACSyntaxError {
@@ -212,9 +230,9 @@ public class Parser implements ParserApproach<AST> {
 
         currentToken = lexer.getNextToken();
 
-        if (currentToken != null) {
+        if (currentToken == null) {
 
-//            System.out.println(currentToken);
+            eos = true;
 
         }
 

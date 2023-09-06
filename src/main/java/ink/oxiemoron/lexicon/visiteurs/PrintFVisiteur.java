@@ -55,8 +55,26 @@ public class PrintFVisiteur extends ASTVisiteur{
 
 
     @Override
+    public Object visitStringTree(AST tree) {
+        print("String {" + ((StringTree)tree).getElement() + "}", tree);
+        return null;
+    }
+
+    @Override
+    public Object visitAllocTree(AST tree) {
+        print("AllocTree", tree);
+        return null;
+    }
+
+    @Override
     public Object visitFormTree(AST tree) {
         print("FormTree", tree);
+        return null;
+    }
+
+    @Override
+    public Object visitCompTree(AST tree) {
+        print("CompTree", tree);
         return null;
     }
 
@@ -93,12 +111,6 @@ public class PrintFVisiteur extends ASTVisiteur{
     @Override
     public Object visitRootTree(AST tree) {
         print("Root {" + ((RootTree)tree).getElement() + "}", tree);
-        return null;
-    }
-
-    @Override
-    public Object visitStringTree(AST tree) {
-        print("String {" + ((StringTree)tree).getElement() + "}", tree);
         return null;
     }
 

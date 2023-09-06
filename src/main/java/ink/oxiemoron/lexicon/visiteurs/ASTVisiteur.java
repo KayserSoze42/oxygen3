@@ -12,6 +12,8 @@ public abstract class ASTVisiteur {
     }
 
     public abstract Object visitFormTree(AST tree);
+
+    public abstract Object visitCompTree(AST tree);
     public abstract Object visitStructureTree(AST tree);
 
     public abstract Object visitSubstituentTree(AST tree);
@@ -25,6 +27,8 @@ public abstract class ASTVisiteur {
     public abstract Object visitRootTree(AST tree);
 
     public abstract Object visitStringTree(AST tree);
+
+    public abstract Object visitAllocTree(AST tree);
 
     // Ok, now we have the "basics", let's turn them "visible"
 
