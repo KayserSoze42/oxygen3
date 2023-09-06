@@ -24,6 +24,8 @@ public abstract class ASTVisiteur {
 
     public abstract Object visitRootTree(AST tree);
 
+    public abstract Object visitStringTree(AST tree);
+
     // Ok, now we have the "basics", let's turn them "visible"
 
     // Abracadabra!

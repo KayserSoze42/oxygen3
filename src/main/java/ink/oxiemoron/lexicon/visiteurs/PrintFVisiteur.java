@@ -95,4 +95,11 @@ public class PrintFVisiteur extends ASTVisiteur{
         print("Root {" + ((RootTree)tree).getElement() + "}", tree);
         return null;
     }
+
+    @Override
+    public Object visitStringTree(AST tree) {
+        print("String {" + ((StringTree)tree).getElement() + "}", tree);
+        return null;
+    }
+
 }

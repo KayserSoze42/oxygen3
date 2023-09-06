@@ -15,6 +15,8 @@ public class GOLexer implements LexerApproach<GOToken> {
     @Override
     public GOToken getNextToken() throws OxyLexerException {
 
+
+
         return null; // blu printf
 
     }

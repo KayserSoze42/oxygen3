@@ -60,6 +60,10 @@ public class Parser implements ParserApproach<AST> {
 
             tree.addKid(rRoot());
 
+        } else if (isNextToken(Tokens.String)) {
+
+            tree.addKid(rString());
+
         } else {
 
             throw new IUPACSyntaxError(currentToken, Tokens.Root);
@@ -67,6 +71,8 @@ public class Parser implements ParserApproach<AST> {
         }
 
         scan();
+
+
 
         if (isNextToken(Tokens.Semicolon)) {
 
@@ -171,6 +177,12 @@ public class Parser implements ParserApproach<AST> {
 
     public AST rRoot() throws IUPACSyntaxError {
         AST tree = new RootTree(currentToken);
+        scan();
+        return tree;
+    }
+
+    public AST rString() throws IUPACSyntaxError {
+        AST tree = new StringTree(currentToken);
         scan();
         return tree;
     }
