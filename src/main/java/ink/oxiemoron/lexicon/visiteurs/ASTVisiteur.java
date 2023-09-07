@@ -15,17 +15,23 @@ public abstract class ASTVisiteur {
 
     public abstract Object visitFormTree(AST tree);
 
-    // -------
-
     public abstract Object visitDesDeclTree(AST tree);
+
+    public abstract Object visitSinDeclTree(AST tree);
+
+    public abstract Object visitPredicaTree(AST tree);
+
+    // ------
+    public abstract Object visitSteerrTree(AST tree);
+
+    public abstract Object visitMarkrrTree(AST tree);
 
     // -------
     public abstract Object visitAllocrTree(AST tree);
+
     public abstract Object visitComparrTree(AST tree);
 
     public abstract Object visitAskrTree(AST tree);
-
-    public abstract Object visitSteerrTree(AST tree);
 
     public abstract Object visitDesSideTree(AST tree);
 

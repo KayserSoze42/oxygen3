@@ -11,6 +11,7 @@ import ink.oxiemoron.lexicon.reverbs.ast.abstracta.AST;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.bitree.AllocrTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.bitree.AskrTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.bitree.ComparrTree;
+import ink.oxiemoron.lexicon.reverbs.ast.constructa.form.DesDeclTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.form.DesSideTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.form.FormTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.form.SinSideTree;
@@ -18,14 +19,11 @@ import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.IdTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.SteerrTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.StringTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.oxy.*;
-import ink.oxiemoron.lexicon.reverbs.ast.oxy.*;
 
 public class Parser implements ParserApproach<AST> {
 
     private Token currentToken;
     private Lexer lexer;
-
-    private AST keepTree = null;
 
     private boolean eos = false;
 
@@ -64,16 +62,16 @@ public class Parser implements ParserApproach<AST> {
 
     public AST rForm() throws IUPACSyntaxError {
         AST tree = new FormTree();
-        keepTree = null;
+        tree.addKid(rDesDeclTree());
 
         while (!eos) {
 
             if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
-                keepTree = rCompoundTree();
+                //
             }
 
             if (isNextToken(Tokens.String)) {
-                keepTree = rId();
+                //
             }
 
             if (isNextToken(Tokens.Allotr)) {
@@ -93,11 +91,14 @@ public class Parser implements ParserApproach<AST> {
                 tree.addKid(rAskrTree());
             }
 
-            if (keepTree != null) {
-                tree.addKid(keepTree); // will recast somehoe to string, i guess, idk..
-            }
 
         }
+
+        return tree;
+    }
+
+    public AST rDesDeclTree() throws IUPACSyntaxError {
+        AST tree = new DesDeclTree();
 
         return tree;
     }
@@ -105,10 +106,6 @@ public class Parser implements ParserApproach<AST> {
     public AST rAllocrTree() throws IUPACSyntaxError {
         AST tree = new AllocrTree();
 
-        AST sinTree = rSinTree();
-        sinTree.addKid(keepTree);
-        tree.addKid(sinTree);
-        keepTree = null;
 
         expect(Tokens.Allotr);
 
@@ -124,8 +121,6 @@ public class Parser implements ParserApproach<AST> {
     public AST rComparrTree() throws IUPACSyntaxError {
         AST tree = new ComparrTree();
 
-        tree.addKid(rSinTree().addKid(keepTree));
-        keepTree = null;
 
         tree.addKid(rSteerr());
 
@@ -143,8 +138,6 @@ public class Parser implements ParserApproach<AST> {
     public AST rAskrTree() throws IUPACSyntaxError {
         AST tree = new AskrTree();
 
-        tree.addKid(keepTree);
-        keepTree = null;
 
         expect(Tokens.Askr);
 

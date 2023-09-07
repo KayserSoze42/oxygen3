@@ -43,7 +43,7 @@ public class GOTParser implements ParserApproach<GOTParseReverb> {
 
     private GOTParseReverb matchToken(GOToken token, GOTokens type) {
 
-        return new GOTParseReverb(); // got rekt 4 noe, gotteeem
+        return new GOTParseReverb();
 
     }
 
@@ -54,14 +54,7 @@ public class GOTParser implements ParserApproach<GOTParseReverb> {
         GOLexer goLexer = new GOLexer("");
 
         while (true) {
-            break; // hammer time, y'all
-            // celebrate good felings,
-
-
-
-
-
-            // one more time
+            break;
         }
 
         return gotokens;
