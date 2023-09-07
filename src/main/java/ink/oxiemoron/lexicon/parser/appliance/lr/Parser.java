@@ -66,17 +66,19 @@ public class Parser implements ParserApproach<AST> {
 
             if (isNextToken(Tokens.Allotr)) {
 
-                AST sinTree = new SinTree();
+                AST sinTree = rSinTree();
                 sinTree.addKid(keepTree);
-                binTree = rAllocrTree().addKid(sinTree);
+                binTree = rAllocrTree();
+                binTree.addKid(sinTree);
 
             }
 
             if (isNextToken(Tokens.Greatr) || isNextToken(Tokens.Lessr)) {
 
-                AST sinTree = new SinTree();
+                AST sinTree = rSinTree();
                 sinTree.addKid(keepTree);
-                binTree = rComparrTree().addKid(sinTree).addKid(rSteerr());
+                binTree = rComparrTree();
+                binTree.addKid(sinTree);
 
             }
 
@@ -109,6 +111,8 @@ public class Parser implements ParserApproach<AST> {
 
     public AST rComparrTree() throws IUPACSyntaxError {
         AST tree = new ComparrTree();
+
+        tree.addKid(rSteerr());
 
         if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
             tree.addKid(rDesTree().addKid(rCompoundTree()));
