@@ -1,6 +1,6 @@
 package ink.oxiemoron.lexicon.visiteurs;
 
-import ink.oxiemoron.lexicon.reverbs.ast.AST;
+import ink.oxiemoron.lexicon.reverbs.ast.abstracta.AST;
 
 public abstract class ASTVisiteur {
 
@@ -15,6 +15,9 @@ public abstract class ASTVisiteur {
 
     public abstract Object visitFormTree(AST tree);
 
+    // -------
+
+    public abstract Object visitDesDeclTree(AST tree);
 
     // -------
     public abstract Object visitAllocrTree(AST tree);
@@ -24,9 +27,9 @@ public abstract class ASTVisiteur {
 
     public abstract Object visitSteerrTree(AST tree);
 
-    public abstract Object visitDesTree(AST tree);
+    public abstract Object visitDesSideTree(AST tree);
 
-    public abstract Object visitSinTree(AST tree);
+    public abstract Object visitSinSideTree(AST tree);
 
     // -------
 

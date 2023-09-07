@@ -1,10 +1,9 @@
-package ink.oxiemoron.lexicon.reverbs.ast;
+package ink.oxiemoron.lexicon.reverbs.ast.constructa.bitree;
 
-import ink.oxiemoron.lexicon.lateral.basic.Element;
-import ink.oxiemoron.lexicon.lateral.basic.Token;
+import ink.oxiemoron.lexicon.reverbs.ast.abstracta.AST;
 import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 
-public class AllocrTree extends AST{
+public class AllocrTree extends AST {
 
 
     public AllocrTree() {

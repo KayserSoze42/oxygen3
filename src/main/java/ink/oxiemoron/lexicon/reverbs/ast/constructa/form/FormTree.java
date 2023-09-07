@@ -1,5 +1,6 @@
-package ink.oxiemoron.lexicon.reverbs.ast;
+package ink.oxiemoron.lexicon.reverbs.ast.constructa.form;
 
+import ink.oxiemoron.lexicon.reverbs.ast.abstracta.AST;
 import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 
 public class FormTree extends AST {

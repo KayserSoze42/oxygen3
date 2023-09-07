@@ -1,10 +1,11 @@
-package ink.oxiemoron.lexicon.reverbs.ast;
+package ink.oxiemoron.lexicon.reverbs.ast.constructa.oxy;
 
 import ink.oxiemoron.lexicon.lateral.basic.Element;
 import ink.oxiemoron.lexicon.lateral.basic.Token;
+import ink.oxiemoron.lexicon.reverbs.ast.abstracta.AST;
 import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;
 
-public class RootTree extends AST{
+public class RootTree extends AST {
 
     private Element element;
 

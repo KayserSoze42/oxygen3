@@ -1,6 +1,13 @@
 package ink.oxiemoron.lexicon.visiteurs;
 
-import ink.oxiemoron.lexicon.reverbs.ast.*;
+import ink.oxiemoron.lexicon.reverbs.ast.abstracta.AST;
+import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.IdTree;
+import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.SteerrTree;
+import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.StringTree;
+import ink.oxiemoron.lexicon.reverbs.ast.constructa.oxy.LocationTree;
+import ink.oxiemoron.lexicon.reverbs.ast.constructa.oxy.MultiplierTree;
+import ink.oxiemoron.lexicon.reverbs.ast.constructa.oxy.RadicalTree;
+import ink.oxiemoron.lexicon.reverbs.ast.constructa.oxy.RootTree;
 
 public class PrintFVisiteur extends ASTVisiteur{
 
@@ -55,6 +62,18 @@ public class PrintFVisiteur extends ASTVisiteur{
 
 
     @Override
+    public Object visitFormTree(AST tree) {
+        print("FormTree", tree);
+        return null;
+    }
+
+    @Override
+    public Object visitDesDeclTree(AST tree){
+        print("DesDeclTree", tree);
+        return null;
+    }
+
+    @Override
     public Object visitStringTree(AST tree) {
         print("String {" + ((StringTree)tree).getElement() + "}", tree);
         return null;
@@ -79,26 +98,20 @@ public class PrintFVisiteur extends ASTVisiteur{
     }
 
     @Override
-    public Object visitDesTree(AST tree) {
+    public Object visitDesSideTree(AST tree) {
         print("DesTree", tree);
         return null;
     }
 
     @Override
-    public Object visitSinTree(AST tree) {
+    public Object visitSinSideTree(AST tree) {
         print("SinTree", tree);
         return null;
     }
 
     @Override
     public Object visitSteerrTree(AST tree) {
-        print("Steerr", tree);
-        return null;
-    }
-
-    @Override
-    public Object visitFormTree(AST tree) {
-        print("FormTree", tree);
+        print("Steerr {" + ((SteerrTree)tree).getElement() + "}", tree);
         return null;
     }
 

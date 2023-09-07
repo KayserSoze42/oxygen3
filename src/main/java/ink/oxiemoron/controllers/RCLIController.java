@@ -3,7 +3,7 @@ package ink.oxiemoron.controllers;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.lexicon.amgine.propellers.AmgineEngine;
 import ink.oxiemoron.lexicon.parser.approach.ParserApproach;
-import ink.oxiemoron.lexicon.reverbs.ast.AST;
+import ink.oxiemoron.lexicon.reverbs.ast.abstracta.AST;
 import ink.oxiemoron.lexicon.lexer.appliance.basic.Lexer;
 import ink.oxiemoron.lexicon.parser.appliance.lr.Parser;
 import ink.oxiemoron.lexicon.visiteurs.PrintFVisiteur;
