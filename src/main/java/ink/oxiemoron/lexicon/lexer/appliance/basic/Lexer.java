@@ -86,6 +86,10 @@ public class Lexer implements LexerApproach<Token> {
         return new Token(left, right, Element.craft(allotr, Tokens.Allotr));
     }
 
+    public Token newEqualrToken(int left, int right, String equalr) {
+        return new Token(left, right, Element.craft(equalr, Tokens.Equalr));
+    }
+
     public Token newGreatrToken(int left, int right, String greatr) {
         return new Token(left, right, Element.craft(greatr, Tokens.Greatr));
     }
@@ -204,6 +208,14 @@ public class Lexer implements LexerApproach<Token> {
                 endPosition++;
                 bob.append(character);
                 character = source.read();
+
+                if (character == '=') {
+                    endPosition++;
+                    bob.append(character);
+                    character = source.read();
+
+                    return newEqualrToken(startPosition, endPosition, bob.toString());
+                }
 
             } catch (Exception eh) {
                 eof = true;

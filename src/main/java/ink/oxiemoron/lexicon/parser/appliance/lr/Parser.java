@@ -3,6 +3,7 @@ package ink.oxiemoron.lexicon.parser.appliance.lr;
 import ink.oxiemoron.colexicon.lingua.IUPACSyntaxError;
 import ink.oxiemoron.colexicon.lingua.OxyLexerException;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
+import ink.oxiemoron.colexicon.metils.Pile;
 import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.lateral.basic.Tokens;
 import ink.oxiemoron.lexicon.lexer.appliance.basic.Lexer;
@@ -11,10 +12,7 @@ import ink.oxiemoron.lexicon.reverbs.ast.abstracta.AST;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.bitree.AllocrTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.bitree.AskrTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.bitree.ComparrTree;
-import ink.oxiemoron.lexicon.reverbs.ast.constructa.form.DesDeclTree;
-import ink.oxiemoron.lexicon.reverbs.ast.constructa.form.DesSideTree;
-import ink.oxiemoron.lexicon.reverbs.ast.constructa.form.FormTree;
-import ink.oxiemoron.lexicon.reverbs.ast.constructa.form.SinSideTree;
+import ink.oxiemoron.lexicon.reverbs.ast.constructa.form.*;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.IdTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.SteerrTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.StringTree;
@@ -26,6 +24,8 @@ public class Parser implements ParserApproach<AST> {
     private Lexer lexer;
 
     private boolean eos = false;
+    private Pile<Token> keepdPile;
+    private Token keepTolkien;
 
     public Parser(String source) throws OxyParserException {
 
@@ -48,9 +48,7 @@ public class Parser implements ParserApproach<AST> {
     public AST execute() throws OxyParserException {
 
         try {
-
             return rForm();
-
         } catch (IUPACSyntaxError ise) {
 
             ise.printStackTrace();
@@ -62,27 +60,30 @@ public class Parser implements ParserApproach<AST> {
 
     public AST rForm() throws IUPACSyntaxError {
         AST tree = new FormTree();
-        tree.addKid(rDesDeclTree());
+        AST desDeclTree = rDesDeclTree();
+
+        keepdPile = new Pile<>();
+
+        if (lookAheadForCompound() || isNextToken(Tokens.String)) {
+
+            do {
+                keepdPile.push(currentToken);
+                scan();
+            } while (lookAheadForCompound() || isNextToken(Tokens.String));
+
+        }
 
         while (!eos) {
 
-            if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
-                //
-            }
-
-            if (isNextToken(Tokens.String)) {
-                //
-            }
-
             if (isNextToken(Tokens.Allotr)) {
 
-                tree.addKid(rAllocrTree());
+                rDesDeclTree().addKid(rAllocrTree());
 
             }
 
             if (isNextToken(Tokens.Greatr) || isNextToken(Tokens.Lessr)) {
 
-                tree.addKid(rComparrTree());
+                rDesDeclTree().addKid(rComparrTree());
 
             }
 
@@ -90,7 +91,6 @@ public class Parser implements ParserApproach<AST> {
 
                 tree.addKid(rAskrTree());
             }
-
 
         }
 
@@ -103,11 +103,32 @@ public class Parser implements ParserApproach<AST> {
         return tree;
     }
 
+    public AST rSinDeclTree() throws IUPACSyntaxError {
+        AST tree = new SinDeclTree();
+
+        return tree;
+    }
+
+    public AST rPredicaTree() throws IUPACSyntaxError {
+        AST tree = new PredicaTree();
+
+        return tree;
+    }
+
     public AST rAllocrTree() throws IUPACSyntaxError {
+
         AST tree = new AllocrTree();
 
+        while (keepTolkien != null) {
+            if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
+                tree.addKid(rSinTree().addKid(rCompoundTree()));
+            } else if (isNextToken(Tokens.String)) {
+                tree.addKid(rSinTree().addKid(rId()));
+            }
+        }
 
-        expect(Tokens.Allotr);
+
+        tree.addKid(rSteerr());
 
         if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
             tree.addKid(rDesTree().addKid(rCompoundTree()));
@@ -119,6 +140,7 @@ public class Parser implements ParserApproach<AST> {
     }
 
     public AST rComparrTree() throws IUPACSyntaxError {
+
         AST tree = new ComparrTree();
 
 
@@ -180,7 +202,7 @@ public class Parser implements ParserApproach<AST> {
         } else {
 
             if (eos) {
-                throw new IUPACSyntaxError(currentToken, Tokens.Root);
+                throw new IUPACSyntaxError(keepdPile.pop(), Tokens.Root);
             }
         }
 
@@ -279,7 +301,7 @@ public class Parser implements ParserApproach<AST> {
 
     public AST rMultiplierTree() throws IUPACSyntaxError{
 
-        AST tree = new MultiplierTree(currentToken);
+        AST tree = new MultiplierTree(keepdPile.pop());
         scan();
         return tree;
     }
@@ -307,6 +329,13 @@ public class Parser implements ParserApproach<AST> {
         AST tree = new IdTree(currentToken);
         scan();
         return tree;
+    }
+
+    private boolean lookAheadForCompound() {
+        if (isNextToken(Tokens.Location)|| isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
+            return true;
+        }
+        return false;
     }
 
     private boolean isNextToken(Tokens type) {
