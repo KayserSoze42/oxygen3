@@ -134,6 +134,13 @@ public class Lexer implements LexerApproach<Token> {
         return new Token(left, right, Element.craft(semicolon, Tokens.Semicolon));
     }
 
+    public Token newPolyBlockInizio(int left, int right, String inizio) {
+        return new Token(left, right, Element.craft(inizio, Tokens.PolyBlockInizio));
+    }
+
+    public Token newPolyBlockFinizio(int left, int right, String finizio) {
+        return new Token(left, right, Element.craft(finizio, Tokens.PolyBlockFinizio));
+    }
     // ---------
 
     public Token getNextToken(){
@@ -183,6 +190,52 @@ public class Lexer implements LexerApproach<Token> {
             }
 
             return newLocationToken(startPosition, endPosition, bob.toString());
+
+        }
+
+        if (character == '\\') {
+            // escape route, lol
+        }
+
+        if (character == '~') {
+
+            try {
+                endPosition++;
+                bob.append(character);
+                character = source.read();
+
+                if (character == '[') {
+                    endPosition++;
+                    bob.append(character);
+                    character = source.read();
+
+                    return newPolyBlockInizio(startPosition, endPosition, bob.toString());
+                }
+
+            } catch (Exception eh) {
+                eof = true;
+            }
+
+        }
+
+        if (character == ']') {
+
+            try {
+                endPosition++;
+                bob.append(character);
+                character = source.read();
+
+                if (character == '~') {
+                    endPosition++;
+                    bob.append(character);
+                    character = source.read();
+
+                    return newPolyBlockFinizio(startPosition, endPosition, bob.toString());
+                }
+
+            } catch (Exception eh) {
+                eof = true;
+            }
 
         }
 

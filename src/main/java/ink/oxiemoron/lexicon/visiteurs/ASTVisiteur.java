@@ -15,6 +15,8 @@ public abstract class ASTVisiteur {
 
     public abstract Object visitFormTree(AST tree);
 
+    public abstract Object visitBlockTree(AST tree);
+
     public abstract Object visitDesDeclTree(AST tree);
 
     public abstract Object visitSinDeclTree(AST tree);

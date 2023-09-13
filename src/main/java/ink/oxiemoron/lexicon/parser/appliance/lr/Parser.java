@@ -63,31 +63,50 @@ public class Parser implements ParserApproach<AST> {
         AST tree = new FormTree();
 
         while (true) {
-
             try {
                 tree.addKid(rSinDeclTree());
             } catch (Exception eh) {
                 break;
             }
+
+            try {
+                tree.addKid(rSinPredicaTree());
+            } catch (Exception eh) {
+                break;
+            }
         }
 
-        tree.addKid(rSteerr());
+        if (isNextToken(Tokens.Semicolon)) {
+
+        }
 
         while (true) {
-
             try {
                 tree.addKid(rDesDeclTree());
             } catch (Exception eh) {
                 break;
             }
 
+            try {
+                tree.addKid(rSinPredicaTree());
+            } catch (Exception eh) {
+                break;
+            }
         }
-
 
 
         return tree;
     }
 
+
+    public AST rSinDeclTree() throws IUPACSyntaxError, OxySyntaxError {
+        AST prima, secunda;
+
+        prima = rId();
+
+
+        return prima;
+    }
 
     public AST rDesDeclTree() throws IUPACSyntaxError, OxySyntaxError {
         AST tree = new DesDeclTree();
@@ -95,8 +114,26 @@ public class Parser implements ParserApproach<AST> {
         return tree;
     }
 
-    public AST rSinDeclTree() throws IUPACSyntaxError, OxySyntaxError {
-        AST tree = new SinDeclTree();
+    public AST rSinPredicaTree() throws IUPACSyntaxError, OxySyntaxError {
+        AST tree = new PredicaTree();
+
+        return tree;
+    }
+
+    public AST rDesPredicaTree() throws IUPACSyntaxError, OxySyntaxError {
+        AST tree = new PredicaTree();
+
+        return tree;
+    }
+    public AST rAllocrTree() throws IUPACSyntaxError, OxySyntaxError {
+        AST tree = new AllocrTree();
+
+        if (lookAheadForCompound()) {
+
+
+        } else if (isNextToken(Tokens.String)) {
+            ;
+        }
 
         return tree;
     }
@@ -107,6 +144,13 @@ public class Parser implements ParserApproach<AST> {
         scan();
         return tree;
     }
+
+    public AST rCompoundTree() throws IUPACSyntaxError, OxySyntaxError {
+        AST tree = new CompoundTree();
+
+        return tree;
+    }
+
     public AST rLocation() throws IUPACSyntaxError {
         AST tree = new LocationTree(currentToken);
         scan();

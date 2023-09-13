@@ -1,4 +1,4 @@
-package ink.oxiemoron.lexicon.reverbs.ast.constructa.form;
+package ink.oxiemoron.lexicon.reverbs.ast.constructa.bitree;
 
 import ink.oxiemoron.lexicon.reverbs.ast.abstracta.AST;
 import ink.oxiemoron.lexicon.visiteurs.ASTVisiteur;

@@ -68,6 +68,12 @@ public class PrintFVisiteur extends ASTVisiteur{
     }
 
     @Override
+    public Object visitBlockTree(AST tree) {
+        print("BlockTree", tree);
+        return null;
+    }
+
+    @Override
     public Object visitDesDeclTree(AST tree) {
         print("DesDeclTree", tree);
         return null;
