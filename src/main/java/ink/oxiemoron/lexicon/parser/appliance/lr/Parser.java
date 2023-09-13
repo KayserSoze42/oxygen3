@@ -3,6 +3,7 @@ package ink.oxiemoron.lexicon.parser.appliance.lr;
 import ink.oxiemoron.colexicon.lingua.IUPACSyntaxError;
 import ink.oxiemoron.colexicon.lingua.OxyLexerException;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
+import ink.oxiemoron.colexicon.lingua.OxySyntaxError;
 import ink.oxiemoron.colexicon.metils.Pile;
 import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.lateral.basic.Tokens;
@@ -24,8 +25,6 @@ public class Parser implements ParserApproach<AST> {
     private Lexer lexer;
 
     private boolean eos = false;
-    private Pile<Token> keepdPile;
-    private Token keepTolkien;
 
     public Parser(String source) throws OxyParserException {
 
@@ -50,29 +49,67 @@ public class Parser implements ParserApproach<AST> {
         try {
             return rForm();
         } catch (IUPACSyntaxError ise) {
-
             ise.printStackTrace();
             throw new OxyParserException("IUPAC Syntax Error: " + currentToken);
 
+        } catch (OxySyntaxError ose) {
+            ose.printStackTrace();
+            throw new OxyParserException("OXY Syntax Error: " + currentToken);
         }
 
     }
 
-    public AST rForm() throws IUPACSyntaxError {
+    public AST rForm() throws IUPACSyntaxError, OxySyntaxError {
         AST tree = new FormTree();
+
+        while (true) {
+
+            try {
+                tree.addKid(rSinDeclTree());
+            } catch (Exception eh) {
+                break;
+            }
+        }
+
+        tree.addKid(rSteerr());
+
+        while (true) {
+
+            try {
+                tree.addKid(rDesDeclTree());
+            } catch (Exception eh) {
+                break;
+            }
+
+        }
+
+
 
         return tree;
     }
 
-    public AST rLocation() throws IUPACSyntaxError {
-        AST tree = new LocationTree(currentToken);
+
+    public AST rDesDeclTree() throws IUPACSyntaxError, OxySyntaxError {
+        AST tree = new DesDeclTree();
+
+        return tree;
+    }
+
+    public AST rSinDeclTree() throws IUPACSyntaxError, OxySyntaxError {
+        AST tree = new SinDeclTree();
+
+        return tree;
+    }
+
+
+    public AST rSteerr() throws OxySyntaxError {
+        AST tree = new SteerrTree(currentToken);
         scan();
         return tree;
     }
-
-    public AST rLocationPop() throws IUPACSyntaxError {
-        AST tree = new LocationTree(keepTolkien);
-        keepTolkien = keepdPile.pop();
+    public AST rLocation() throws IUPACSyntaxError {
+        AST tree = new LocationTree(currentToken);
+        scan();
         return tree;
     }
 
@@ -82,21 +119,9 @@ public class Parser implements ParserApproach<AST> {
         return tree;
     }
 
-    public AST rMultiplierPop() throws IUPACSyntaxError {
-        AST tree = new MultiplierTree(keepTolkien);
-        keepTolkien = keepdPile.pop();
-        return tree;
-    }
-
     public AST rRadical() throws IUPACSyntaxError {
         AST tree = new RadicalTree(currentToken);
         scan();
-        return tree;
-    }
-
-    public AST rRadicalPop() throws IUPACSyntaxError {
-        AST tree = new RadicalTree(keepTolkien);
-        keepTolkien = keepdPile.pop();
         return tree;
     }
 
@@ -106,23 +131,12 @@ public class Parser implements ParserApproach<AST> {
         return tree;
     }
 
-    public AST rRootPop() throws IUPACSyntaxError {
-        AST tree = new RootTree(keepTolkien);
-        keepTolkien = keepdPile.pop();
-        return tree;
-    }
-
     public AST rString() throws IUPACSyntaxError {
         AST tree = new StringTree(currentToken);
         scan();
         return tree;
     }
 
-    public AST rStringPop() throws IUPACSyntaxError {
-        AST tree = new StringTree(keepTolkien);
-        keepTolkien = keepdPile.pop();
-        return tree;
-    }
 
     public AST rId() throws IUPACSyntaxError {
         AST tree = new IdTree(currentToken);
@@ -130,14 +144,11 @@ public class Parser implements ParserApproach<AST> {
         return tree;
     }
 
-    public AST rIdPop() throws IUPACSyntaxError {
-        AST tree = new IdTree(keepTolkien);
-        keepTolkien = keepdPile.pop();
-        return tree;
-    }
+
 
     private boolean lookAheadForCompound() {
-        if (isNextToken(Tokens.Location)|| isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root)) {
+        if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root) ||
+                isNextToken(Tokens.Dash) || isNextToken(Tokens.Comma)) {
             return true;
         }
         return false;
