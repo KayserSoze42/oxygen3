@@ -11,6 +11,7 @@ public class SinDeclTree extends AST {
 
     @Override
     public Object accept(ASTVisiteur visiteur) {
-        return null;
+
+        return visiteur.visitSinDeclTree(this);
     }
 }

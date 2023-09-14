@@ -2,6 +2,7 @@ package ink.oxiemoron.lexicon.visiteurs;
 
 import ink.oxiemoron.lexicon.reverbs.ast.abstracta.AST;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.IdTree;
+import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.MarkrrTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.SteerrTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.StringTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.oxy.LocationTree;
@@ -93,7 +94,7 @@ public class PrintFVisiteur extends ASTVisiteur{
 
     @Override
     public Object visitMarkrrTree(AST tree) {
-        print("MarkrrTree", tree);
+        print("Markrr {" + ((MarkrrTree)tree).getElement() + "}", tree);
         return null;
     }
 

@@ -11,6 +11,7 @@ public class PredicaTree extends AST {
 
     @Override
     public Object accept(ASTVisiteur visiteur) {
-        return null;
+
+        return visiteur.visitPredicaTree(this);
     }
 }

@@ -4,6 +4,7 @@ import ink.oxiemoron.colexicon.lingua.IUPACSyntaxError;
 import ink.oxiemoron.colexicon.lingua.OxyLexerException;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.colexicon.lingua.OxySyntaxError;
+import ink.oxiemoron.colexicon.metils.Carrier;
 import ink.oxiemoron.colexicon.metils.Pile;
 import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.lateral.basic.Tokens;
@@ -15,6 +16,7 @@ import ink.oxiemoron.lexicon.reverbs.ast.constructa.bitree.AskrTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.bitree.ComparrTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.form.*;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.IdTree;
+import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.MarkrrTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.SteerrTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.StringTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.oxy.*;
@@ -23,6 +25,8 @@ public class Parser implements ParserApproach<AST> {
 
     private Token currentToken;
     private Lexer lexer;
+
+    private Carrier<Token> keepd;
 
     private boolean eos = false;
 
@@ -62,54 +66,61 @@ public class Parser implements ParserApproach<AST> {
     public AST rForm() throws IUPACSyntaxError, OxySyntaxError {
         AST tree = new FormTree();
 
+        if (isNextToken(Tokens.PolyBlockInizio)) {
+
+            tree.addKid(rBlockTree());
+            return tree;
+
+        } else {
+
+            tree.addKid(rSinDeclTree());
+
+            if (isNextToken(Tokens.Semicolon)) {
+                tree.addKid(rMarkrrTree());
+            } else if (isNextToken(Tokens.Greatr)) {
+                tree.addKid(rMarkrrTree()).addKid(rSinDeclTree());
+                return tree;
+            } else {
+                //
+            }
+
+            tree.addKid(rDesDeclTree());
+            return tree;
+        }
+
+    }
+
+
+    public AST rSinDeclTree() throws IUPACSyntaxError, OxySyntaxError {
+        AST tree = new SinDeclTree();
+
         while (true) {
             try {
-                tree.addKid(rSinDeclTree());
-            } catch (Exception eh) {
-                break;
-            }
-
-            try {
-                tree.addKid(rSinPredicaTree());
+                tree.addKid(rAllocrTree());
             } catch (Exception eh) {
                 break;
             }
         }
 
-        if (isNextToken(Tokens.Semicolon)) {
-
-        }
-
-        while (true) {
-            try {
-                tree.addKid(rDesDeclTree());
-            } catch (Exception eh) {
-                break;
-            }
-
-            try {
-                tree.addKid(rSinPredicaTree());
-            } catch (Exception eh) {
-                break;
-            }
-        }
 
 
         return tree;
     }
 
-
-    public AST rSinDeclTree() throws IUPACSyntaxError, OxySyntaxError {
-        AST prima, secunda;
-
-        prima = rId();
-
-
-        return prima;
-    }
-
     public AST rDesDeclTree() throws IUPACSyntaxError, OxySyntaxError {
         AST tree = new DesDeclTree();
+
+        return tree;
+    }
+
+    public AST rBlockTree() throws IUPACSyntaxError, OxySyntaxError {
+        AST tree = new BlockTree();
+
+        expect(Tokens.PolyBlockInizio);
+
+
+
+        expect(Tokens.PolyBlockFinizio);
 
         return tree;
     }
@@ -129,15 +140,21 @@ public class Parser implements ParserApproach<AST> {
         AST tree = new AllocrTree();
 
         if (lookAheadForCompound()) {
-
+            tree.addKid(rCompoundTree());
 
         } else if (isNextToken(Tokens.String)) {
-            ;
+            tree.addKid(rId());
         }
 
         return tree;
     }
 
+
+    public AST rMarkrrTree() throws OxySyntaxError {
+        AST tree = new MarkrrTree(currentToken);
+        scan();
+        return tree;
+    }
 
     public AST rSteerr() throws OxySyntaxError {
         AST tree = new SteerrTree(currentToken);

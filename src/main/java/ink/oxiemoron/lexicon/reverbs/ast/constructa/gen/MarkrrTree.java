@@ -15,6 +15,11 @@ public class MarkrrTree extends AST {
 
     @Override
     public Object accept(ASTVisiteur visiteur){
-        return null;
+
+        return visiteur.visitMarkrrTree(this);
+    }
+
+    public Element getElement() {
+        return element;
     }
 }
