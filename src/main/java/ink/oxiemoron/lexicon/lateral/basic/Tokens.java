@@ -8,12 +8,23 @@ public enum Tokens {
     PolyBlockInizio,
     PolyBlockFinizio,
 
-    Semicolon,
-    Allotr,
-    Equalr,
-    Greatr,
-    Lessr,
-    Askr,
+    Semicolon, // ;
+    Fullcolon, // :
+    UnoQuote, // '
+    DuoQuote, // "
+    StartPar, // (
+    EndPar, // )
+    StartBra, // [
+    EndBra, // ]
+    Allotr, // = <-
+    Addr, // +
+    Equalr, // ==
+    Greatr, // >
+    Lessr, // <
+    Askr, // ?
+
+    Comma, // ,
+    Dash, // -
 
     // Types:
 
@@ -23,10 +34,11 @@ public enum Tokens {
 
     // Compound tokens
     Location,
-    Comma, // not just here i guess
-    Dash,
     Multiplier,
     Radical,
-    Root,
+    Root, // hmm
+    Alkane,
+    Alkene,
+    Alkyne,
 
 }

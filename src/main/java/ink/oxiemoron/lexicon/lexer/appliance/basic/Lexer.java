@@ -130,8 +130,24 @@ public class Lexer implements LexerApproach<Token> {
 
     // ---------
 
-    public Token newSemicolonToken(int left, int right, String semicolon) {
-        return new Token(left, right, Element.craft(semicolon, Tokens.Semicolon));
+    public Token newFullcolonToken(int left, int right, String fullColon) {
+        return new Token(left, right, Element.craft(fullColon, Tokens.Fullcolon));
+    }
+
+    public Token newStartParToken(int left, int right, String startPar) {
+        return new Token(left, right, Element.craft(startPar, Tokens.StartPar));
+    }
+    public Token newEndParToken(int left, int right, String endPar) {
+        return new Token(left, right, Element.craft(endPar, Tokens.EndPar));
+    }
+    public Token newStartBraToken(int left, int right, String startBra) {
+        return new Token(left, right, Element.craft(startBra, Tokens.StartBra));
+    }
+    public Token newEndBraToken(int left, int right, String endBra) {
+        return new Token(left, right, Element.craft(endBra, Tokens.EndBra));
+    }
+    public Token newSemicolonToken(int left, int right, String semiColon) {
+        return new Token(left, right, Element.craft(semiColon, Tokens.Semicolon));
     }
 
     public Token newPolyBlockInizio(int left, int right, String inizio) {

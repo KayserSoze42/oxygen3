@@ -68,8 +68,16 @@ public class Parser implements ParserApproach<AST> {
 
         if (isNextToken(Tokens.PolyBlockInizio)) {
 
-            tree.addKid(rBlockTree());
-            return tree;
+            while (true) {
+                try {
+
+                    tree.addKid(rBlockTree());
+                    System.out.println("blockd");
+
+                } catch (Exception eh) {
+                    break;
+                }
+            }
 
         } else {
 
@@ -85,9 +93,8 @@ public class Parser implements ParserApproach<AST> {
             }
 
             tree.addKid(rDesDeclTree());
-            return tree;
         }
-
+        return tree;
     }
 
 
@@ -144,7 +151,13 @@ public class Parser implements ParserApproach<AST> {
 
         } else if (isNextToken(Tokens.String)) {
             tree.addKid(rId());
+        } else {
+            throw new OxySyntaxError("Missing something here?");
         }
+
+        expect(Tokens.Allotr);
+
+
 
         return tree;
     }
