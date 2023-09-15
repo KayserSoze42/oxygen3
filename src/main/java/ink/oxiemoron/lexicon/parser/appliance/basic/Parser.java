@@ -1,19 +1,16 @@
-package ink.oxiemoron.lexicon.parser.appliance.lr;
+package ink.oxiemoron.lexicon.parser.appliance.basic;
 
 import ink.oxiemoron.colexicon.lingua.IUPACSyntaxError;
 import ink.oxiemoron.colexicon.lingua.OxyLexerException;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.colexicon.lingua.OxySyntaxError;
 import ink.oxiemoron.colexicon.metils.Carrier;
-import ink.oxiemoron.colexicon.metils.Pile;
 import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.lateral.basic.Tokens;
 import ink.oxiemoron.lexicon.lexer.appliance.basic.Lexer;
 import ink.oxiemoron.lexicon.parser.approach.ParserApproach;
 import ink.oxiemoron.lexicon.reverbs.ast.abstracta.AST;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.bitree.AllocrTree;
-import ink.oxiemoron.lexicon.reverbs.ast.constructa.bitree.AskrTree;
-import ink.oxiemoron.lexicon.reverbs.ast.constructa.bitree.ComparrTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.form.*;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.IdTree;
 import ink.oxiemoron.lexicon.reverbs.ast.constructa.gen.MarkrrTree;

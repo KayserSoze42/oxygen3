@@ -3,7 +3,7 @@ package ink.oxiemoron;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.controllers.RCLIController;
 import ink.oxiemoron.lexicon.parser.appliance.got.GOTParser;
-import ink.oxiemoron.lexicon.parser.appliance.lr.Parser;
+import ink.oxiemoron.lexicon.parser.appliance.basic.Parser;
 
 public class oxygen3 {
 
@@ -29,7 +29,8 @@ public class oxygen3 {
                 switch (args[i]) {
                     case "-b", "--basic" -> rcliController.plex(new Parser(args[args.length - 1]));
                     case "-g", "--got" -> rcliController.plex(new GOTParser());
-                    case "-r", "--repl" -> rcliController.rclicc(); // could be static tho, right?
+                    case "-r", "--rclicc" -> rcliController.rclicc();
+                    case "-l", "--lclicc" -> rcliController.lclicc();
                 }
 
             } catch (OxyParserException oxe) {

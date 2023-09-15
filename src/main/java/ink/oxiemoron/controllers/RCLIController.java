@@ -7,7 +7,7 @@ import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.parser.approach.ParserApproach;
 import ink.oxiemoron.lexicon.reverbs.ast.abstracta.AST;
 import ink.oxiemoron.lexicon.lexer.appliance.basic.Lexer;
-import ink.oxiemoron.lexicon.parser.appliance.lr.Parser;
+import ink.oxiemoron.lexicon.parser.appliance.basic.Parser;
 import ink.oxiemoron.lexicon.visiteurs.PrintFVisiteur;
 
 import java.io.BufferedReader;
@@ -31,7 +31,7 @@ public class RCLIController {
 
 
 
-    public String plex(ParserApproach parserApproach) {
+    public void plex(ParserApproach parserApproach) {
 
         try {
 
@@ -48,7 +48,48 @@ public class RCLIController {
 
         }
 
-        return outsource.toString();
+    }
+
+    public void lclicc() {
+
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+        AST tree = null;
+        System.out.println("----------------OXY----------------");
+
+        while (true) {
+
+
+            try {
+
+                if (tree != null) {
+                    tree.resetTreeCounter();
+                }
+
+                System.out.print("LCLICC>");
+
+                String cmd = buffer.readLine();
+
+                if (cmd.equals("end")) {break;}
+
+                lexer = new Lexer(cmd);
+                Token token = lexer.getNextToken();
+
+                while (token != null) {
+
+                    System.out.println("Token: " + token.getElement().getType() + " - " + token.toString());
+                    token = lexer.getNextToken();
+                }
+
+            } catch (IOException ioe) {
+
+                ioe.printStackTrace();
+
+            } catch (OxyLexerException ole) {
+                // ole, i guess
+            }
+
+
+        }
 
     }
 
@@ -67,45 +108,26 @@ public class RCLIController {
                     tree.resetTreeCounter();
                 }
 
-                System.out.print("REPL>");
+                System.out.print("RCLICC>");
 
                 String cmd = buffer.readLine();
 
                 if (cmd.equals("end")) {break;}
 
-// ---------------- << parser test repl only >> ----------------
-//
-//                parser = new Parser(cmd);
-//                tree = parser.execute();
-//
-//
-//                PrintFVisiteur printFVisiteur = new PrintFVisiteur();
-//                tree.accept(printFVisiteur);
-//
-//
-//
-//
-//
-// ---------------- << lexer test repl only >> ----------------
+                parser = new Parser(cmd);
+                tree = parser.execute();
 
-                lexer = new Lexer(cmd);
-                Token token = lexer.getNextToken();
 
-                while (token != null) {
+                PrintFVisiteur printFVisiteur = new PrintFVisiteur();
+                tree.accept(printFVisiteur);
 
-                    System.out.println("Token: " + token.getElement().getType() + " - " + token.toString());
-                    token = lexer.getNextToken();
-                }
-
-// ---------------- << parser plex repl only >> ----------------
-// 2ba
 
             } catch (IOException ioe) {
 
                 ioe.printStackTrace();
 
-            } catch (OxyLexerException ole) {
-                // ole, i guess
+            } catch (OxyParserException ope) {
+                // and ope, i guess
             }
 
 

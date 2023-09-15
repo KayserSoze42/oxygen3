@@ -40,7 +40,7 @@ public class Lexer implements LexerApproach<Token> {
 
     public static final Pattern MULTI_PATTERN = Pattern.compile(
             String.format(
-                    "(?<multiplier>%s)?(?<radical>%s)+%s",
+                    "(?<multiplier>%s)*(?<radical>%s)*%s",
                     Regex.MULTIPLIER.pattern,
                     Regex.RADICAL.pattern,
                     ALKANE_PATTERN
@@ -48,14 +48,14 @@ public class Lexer implements LexerApproach<Token> {
     );
     public static final Pattern ALKENE_PATTERN = Pattern.compile(
             String.format(
-                    ".*(?<root>%s)$",
+                    "(?<root>%s)",
                     Regex.ALKENE.pattern
             )
     );
 
     public static final Pattern ALKYNE_PATTERN = Pattern.compile(
             String.format(
-                    ".*(?<root>%s)$",
+                    "(?<root>%s)",
                     Regex.ALKYNE.pattern
             )
     );
