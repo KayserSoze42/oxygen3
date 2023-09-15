@@ -12,7 +12,7 @@ public class TestRegex {
 
     private static final Pattern multiplierPattern = Pattern.compile(Regex.MULTIPLIER.pattern);
     private static final Pattern radicalPattern = Pattern.compile(Regex.RADICAL.pattern);
-    private static final Pattern rootPattern  = Pattern.compile(Regex.ROOT.pattern);
+    private static final Pattern rootPattern  = Pattern.compile(Regex.ALKANE.pattern);
 
     @Test
     public void test_MULTIPLIER_withValid_match() {

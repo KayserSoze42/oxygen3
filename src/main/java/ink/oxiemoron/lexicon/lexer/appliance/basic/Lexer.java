@@ -29,6 +29,37 @@ public class Lexer implements LexerApproach<Token> {
     // 1, 3, 7-Trimethylpurine-2,6-dione ";" (6aR,9R)- N,N- diethyl- 7-methyl- 4,6,6a,7,8,9- hexahydroindolo- [4,3-fg] quinoline- 9-carboxamide
     // hopefully
 
+
+
+    public static final Pattern ALKANE_PATTERN = Pattern.compile(
+            String.format(
+                    "(?<root>%s)?",
+                    Regex.ALKANE.pattern
+            )
+    );
+
+    public static final Pattern MULTI_PATTERN = Pattern.compile(
+            String.format(
+                    "(?<multiplier>%s)?(?<radical>%s)+%s",
+                    Regex.MULTIPLIER.pattern,
+                    Regex.RADICAL.pattern,
+                    ALKANE_PATTERN
+            )
+    );
+    public static final Pattern ALKENE_PATTERN = Pattern.compile(
+            String.format(
+                    ".*(?<root>%s)$",
+                    Regex.ALKENE.pattern
+            )
+    );
+
+    public static final Pattern ALKYNE_PATTERN = Pattern.compile(
+            String.format(
+                    ".*(?<root>%s)$",
+                    Regex.ALKYNE.pattern
+            )
+    );
+
     private boolean eof;
     private char character;
 
@@ -38,16 +69,6 @@ public class Lexer implements LexerApproach<Token> {
     private Reader source;
     private StringBuilder bob;
     private Pile<Token> compoundPile = new Pile<>();
-
-    private final static Pattern MULTI_PATTERN = Pattern.compile(
-            String.format(
-                    "(?<multiplier>%s)?(?<radical>%s)?(?<root>%s)?",
-                    Regex.MULTIPLIER.pattern,
-                    Regex.RADICAL.pattern,
-                    Regex.ROOT.pattern
-            ));
-
-
 
     public Lexer (String string) throws OxyLexerException {
 
@@ -80,6 +101,10 @@ public class Lexer implements LexerApproach<Token> {
         return new Token(left, right, Element.craft(literal, Tokens.String));
     }
 
+    public Token newNumericalToken(int left, int right, String number) {
+        return new Token(left, right, Element.craft(number, Tokens.Location));
+    }
+
     // ---------
 
     public Token newAllotToken(int left, int right, String allotr) {
@@ -104,10 +129,6 @@ public class Lexer implements LexerApproach<Token> {
 
     // ---------
 
-    public Token newLocationToken(int left, int right, String number) {
-        return new Token(left, right, Element.craft(number, Tokens.Location));
-    }
-
     public Token newCommaToken(int left, int right, String comma) {
         return new Token(left, right, Element.craft(comma, Tokens.Comma));
     }
@@ -122,6 +143,16 @@ public class Lexer implements LexerApproach<Token> {
 
     public Token newRadicalToken(int left, int right, String radical) {
         return new Token(left, right, Element.craft(radical, Tokens.Radical));
+    }
+
+    public Token newAlkaneToken(int left, int right, String alkane) {
+        return new Token(left, right, Element.craft(alkane, Tokens.Alkane));
+    }
+    public Token newAlkeneToken(int left, int right, String alkene) {
+        return new Token(left, right, Element.craft(alkene, Tokens.Alkene));
+    }
+    public Token newAlkyneToken(int left, int right, String alkyne) {
+        return new Token(left, right, Element.craft(alkyne, Tokens.Alkyne));
     }
 
     public Token newRootToken(int left, int right, String root) {
@@ -205,12 +236,42 @@ public class Lexer implements LexerApproach<Token> {
                 eof = true;
             }
 
-            return newLocationToken(startPosition, endPosition, bob.toString());
+            return newNumericalToken(startPosition, endPosition, bob.toString());
 
         }
 
         if (character == '\\') {
             // escape route, lol
+        }
+
+        if (character == '(') {
+
+            try {
+                endPosition++;
+                bob.append(character);
+                character = source.read();
+
+                return newStartParToken(startPosition, endPosition, bob.toString());
+
+            } catch (Exception eh) {
+                eof = true;
+            }
+
+        }
+
+        if (character == ')') {
+
+            try {
+                endPosition++;
+                bob.append(character);
+                character = source.read();
+
+                return newEndParToken(startPosition, endPosition, bob.toString());
+
+            } catch (Exception eh) {
+                eof = true;
+            }
+
         }
 
         if (character == '~') {
@@ -227,6 +288,20 @@ public class Lexer implements LexerApproach<Token> {
 
                     return newPolyBlockInizio(startPosition, endPosition, bob.toString());
                 }
+
+            } catch (Exception eh) {
+                eof = true;
+            }
+
+        }
+        if (character == '[') {
+
+            try {
+                endPosition++;
+                bob.append(character);
+                character = source.read();
+
+                return newStartBraToken(startPosition, endPosition, bob.toString());
 
             } catch (Exception eh) {
                 eof = true;
@@ -252,6 +327,8 @@ public class Lexer implements LexerApproach<Token> {
             } catch (Exception eh) {
                 eof = true;
             }
+
+            return newEndBraToken(startPosition, endPosition, bob.toString());
 
         }
 
@@ -392,8 +469,6 @@ public class Lexer implements LexerApproach<Token> {
         if (Character.isAlphabetic(character)) {
 
 
-            Matcher multiMatcher;
-
             try {
 
                 if (Character.isAlphabetic(character)) {
@@ -407,24 +482,30 @@ public class Lexer implements LexerApproach<Token> {
 
                 }
 
-
-
-
             } catch (Exception eh) {
 
                 eof = true;
             }
 
-            multiMatcher = MULTI_PATTERN.matcher(bob.toString());
+            Matcher multiMatcher;
+
+            multiMatcher = ALKANE_PATTERN.matcher(bob);
+
+
+
+
+            multiMatcher = MULTI_PATTERN.matcher(bob);
 
             if (multiMatcher.matches()) {
 
                 if (multiMatcher.group("root") != null) {
-                    compoundPile.push(newRootToken(
+
+                    compoundPile.push(newAlkaneToken(
                             multiMatcher.start("root") + startPosition,
                             multiMatcher.end("root") + startPosition - 1,
                             multiMatcher.group("root")
                     ));
+
                 }
 
                 if (multiMatcher.group("radical") != null) {
@@ -433,6 +514,7 @@ public class Lexer implements LexerApproach<Token> {
                             multiMatcher.end("radical") + startPosition - 1,
                             multiMatcher.group("radical")
                     ));
+
                 }
 
                 if (multiMatcher.group("multiplier") != null) {
@@ -441,15 +523,37 @@ public class Lexer implements LexerApproach<Token> {
                             multiMatcher.end("multiplier") + startPosition - 1,
                             multiMatcher.group("multiplier")
                     ));
+
                 }
 
-            } else {
-                // System.out.println("*wrong*");
-                return newStringToken(startPosition, endPosition, bob.toString());
-                // making room for some things but idk..
+                return getNextToken();
+
+
             }
 
+            multiMatcher = ALKENE_PATTERN.matcher(bob);
 
+            if (multiMatcher.matches()) {
+                return newAlkeneToken(
+                        multiMatcher.start("root") + startPosition,
+                        multiMatcher.end("root") + startPosition - 1,
+                        multiMatcher.group("root")
+                );
+            }
+
+            multiMatcher = ALKYNE_PATTERN.matcher(bob);
+
+            if (multiMatcher.matches()) {
+                return newAlkyneToken(
+                        multiMatcher.start("root") + startPosition,
+                        multiMatcher.end("root") + startPosition - 1,
+                        multiMatcher.group("root")
+                );
+            }
+
+            if (!bob.isEmpty()) {
+                return newStringToken(startPosition, startPosition + bob.length(), bob.toString());
+            }
 
         }
 

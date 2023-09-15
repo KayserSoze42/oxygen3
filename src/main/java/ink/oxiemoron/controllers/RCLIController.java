@@ -1,7 +1,9 @@
 package ink.oxiemoron.controllers;
 
+import ink.oxiemoron.colexicon.lingua.OxyLexerException;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.lexicon.amgine.propellers.AmgineEngine;
+import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.parser.approach.ParserApproach;
 import ink.oxiemoron.lexicon.reverbs.ast.abstracta.AST;
 import ink.oxiemoron.lexicon.lexer.appliance.basic.Lexer;
@@ -72,30 +74,29 @@ public class RCLIController {
                 if (cmd.equals("end")) {break;}
 
 // ---------------- << parser test repl only >> ----------------
-
-                parser = new Parser(cmd);
-                tree = parser.execute();
-
-
-                PrintFVisiteur printFVisiteur = new PrintFVisiteur();
-                tree.accept(printFVisiteur);
-
-
-
-
+//
+//                parser = new Parser(cmd);
+//                tree = parser.execute();
+//
+//
+//                PrintFVisiteur printFVisiteur = new PrintFVisiteur();
+//                tree.accept(printFVisiteur);
+//
+//
+//
+//
 //
 // ---------------- << lexer test repl only >> ----------------
-//
-//                lexer = new Lexer(cmd);
-//                Token token = lexer.getNextToken();
-//
-//                while (token != null) {
-//
-//                    System.out.println("Token: " + token.getElement().getType() + " - " + token.toString());
-//                    token = lexer.getNextToken();
-//
-//                }
-//
+
+                lexer = new Lexer(cmd);
+                Token token = lexer.getNextToken();
+
+                while (token != null) {
+
+                    System.out.println("Token: " + token.getElement().getType() + " - " + token.toString());
+                    token = lexer.getNextToken();
+                }
+
 // ---------------- << parser plex repl only >> ----------------
 // 2ba
 
@@ -103,10 +104,8 @@ public class RCLIController {
 
                 ioe.printStackTrace();
 
-            } catch (OxyParserException ope) {
-
-                // System.out.println(ope.getMessage());
-
+            } catch (OxyLexerException ole) {
+                // ole, i guess
             }
 
 

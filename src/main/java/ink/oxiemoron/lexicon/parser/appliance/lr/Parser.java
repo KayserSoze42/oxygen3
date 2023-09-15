@@ -66,33 +66,11 @@ public class Parser implements ParserApproach<AST> {
     public AST rForm() throws IUPACSyntaxError, OxySyntaxError {
         AST tree = new FormTree();
 
-        if (isNextToken(Tokens.PolyBlockInizio)) {
 
-            while (true) {
-                try {
 
-                    tree.addKid(rBlockTree());
-                    System.out.println("blockd");
-
-                } catch (Exception eh) {
-                    break;
-                }
-            }
-
-        } else {
+        while (!eos) {
 
             tree.addKid(rSinDeclTree());
-
-            if (isNextToken(Tokens.Semicolon)) {
-                tree.addKid(rMarkrrTree());
-            } else if (isNextToken(Tokens.Greatr)) {
-                tree.addKid(rMarkrrTree()).addKid(rSinDeclTree());
-                return tree;
-            } else {
-                //
-            }
-
-            tree.addKid(rDesDeclTree());
         }
         return tree;
     }
@@ -125,8 +103,6 @@ public class Parser implements ParserApproach<AST> {
 
         expect(Tokens.PolyBlockInizio);
 
-
-
         expect(Tokens.PolyBlockFinizio);
 
         return tree;
@@ -146,18 +122,15 @@ public class Parser implements ParserApproach<AST> {
     public AST rAllocrTree() throws IUPACSyntaxError, OxySyntaxError {
         AST tree = new AllocrTree();
 
-        if (lookAheadForCompound()) {
-            tree.addKid(rCompoundTree());
-
-        } else if (isNextToken(Tokens.String)) {
+        if (isNextToken(Tokens.String)) {
             tree.addKid(rId());
-        } else {
-            throw new OxySyntaxError("Missing something here?");
         }
 
         expect(Tokens.Allotr);
 
-
+        if (lookAheadForCompound()) {
+            tree.addKid(rCompoundTree());
+        }
 
         return tree;
     }
@@ -177,6 +150,59 @@ public class Parser implements ParserApproach<AST> {
 
     public AST rCompoundTree() throws IUPACSyntaxError, OxySyntaxError {
         AST tree = new CompoundTree();
+
+        if (lookAheadForCompound()) {
+            tree.addKid(rStructureTree());
+        }
+
+        return tree;
+    }
+
+    public AST rStructureTree() throws IUPACSyntaxError, OxySyntaxError {
+        AST tree = new StructureTree();
+
+        while (isNextToken(Tokens.Numerical) || isNextToken(Tokens.Comma) || isNextToken(Tokens.Dash)
+             || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical)) {
+            tree.addKid(rSubstituentTree());
+        }
+
+        if (isNextToken(Tokens.Alkane) || isNextToken(Tokens.Alkene) || isNextToken(Tokens.Alkyne)) {
+            tree.addKid(rRoot());
+        } else {
+            throw new IUPACSyntaxError(currentToken, Tokens.Root);
+        }
+
+        return tree;
+    }
+
+    public AST rSubstituentTree() throws IUPACSyntaxError, OxySyntaxError {
+        AST tree = new SubstituentTree();
+
+        if (isNextToken(Tokens.Numerical) || isNextToken(Tokens.Comma)) {
+            while (isNextToken(Tokens.Numerical)) {
+                tree.addKid(rLocation());
+
+                if (isNextToken(Tokens.Comma)) {
+                    expect(Tokens.Comma);
+                }
+            }
+        }
+
+        if (isNextToken(Tokens.Dash)) {
+            expect(Tokens.Dash);
+        }
+
+        while (isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical)) {
+
+            if (isNextToken(Tokens.Multiplier)) {
+                tree.addKid(rMultiplier());
+            }
+
+            if (isNextToken(Tokens.Radical)) {
+                tree.addKid(rRadical());
+            }
+
+        }
 
         return tree;
     }
@@ -221,7 +247,8 @@ public class Parser implements ParserApproach<AST> {
 
 
     private boolean lookAheadForCompound() {
-        if (isNextToken(Tokens.Location) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) || isNextToken(Tokens.Root) ||
+        if (isNextToken(Tokens.Numerical) || isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical) ||
+                isNextToken(Tokens.Alkane) || isNextToken(Tokens.Alkene) || isNextToken(Tokens.Alkyne) ||
                 isNextToken(Tokens.Dash) || isNextToken(Tokens.Comma)) {
             return true;
         }
