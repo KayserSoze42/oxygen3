@@ -9,13 +9,16 @@ public class SteerrTree extends AST {
 
     private Element element;
 
-    public SteerrTree(Token tolkien) {
-        element = tolkien.getElement();
+    public SteerrTree() {
     }
 
     @Override
     public Object accept(ASTVisiteur visiteur) {
         return visiteur.visitSteerrTree(this);
+    }
+
+    public void setElement(Token tolkien) {
+        element = tolkien.getElement();
     }
 
     public Element getElement() {

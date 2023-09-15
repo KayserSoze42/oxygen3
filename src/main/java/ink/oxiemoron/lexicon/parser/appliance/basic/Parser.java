@@ -5,6 +5,7 @@ import ink.oxiemoron.colexicon.lingua.OxyLexerException;
 import ink.oxiemoron.colexicon.lingua.OxyParserException;
 import ink.oxiemoron.colexicon.lingua.OxySyntaxError;
 import ink.oxiemoron.colexicon.metils.Carrier;
+import ink.oxiemoron.lexicon.lateral.basic.Element;
 import ink.oxiemoron.lexicon.lateral.basic.Token;
 import ink.oxiemoron.lexicon.lateral.basic.Tokens;
 import ink.oxiemoron.lexicon.lexer.appliance.basic.Lexer;
@@ -62,13 +63,34 @@ public class Parser implements ParserApproach<AST> {
 
     public AST rForm() throws IUPACSyntaxError, OxySyntaxError {
         AST tree = new FormTree();
+        return tree;
+    }
 
+    public AST rSteerr() throws OxySyntaxError, IUPACSyntaxError {
+        AST tree = new SteerrTree();
 
-
-        while (!eos) {
+        do {
+            if (isNextToken(Tokens.HalfSemiColon)) {
+                expect(Tokens.HalfSemiColon);
+            }
 
             tree.addKid(rSinDeclTree());
+            if (!isNextToken(Tokens.HalfSemiColon)) {
+                break;
+            }
+        } while (isNextToken(Tokens.HalfSemiColon));
+
+        if (isNextToken(Tokens.Askr)) {
+            ((SteerrTree) tree).setElement(currentToken);
+            scan();
+        } else {
+            ((SteerrTree) tree).setElement(new Token(-6,-9, Element.craft("::", Tokens.FullFullColon)));
         }
+
+        if (((SteerrTree) tree).getElement() != null) {
+            tree.addKid(rDesDeclTree());
+        }
+
         return tree;
     }
 
@@ -84,7 +106,9 @@ public class Parser implements ParserApproach<AST> {
             }
         }
 
-
+        if (lookAheadForCompound()) {
+            tree.addKid(rCompoundTree());
+        }
 
         return tree;
     }
@@ -139,11 +163,7 @@ public class Parser implements ParserApproach<AST> {
         return tree;
     }
 
-    public AST rSteerr() throws OxySyntaxError {
-        AST tree = new SteerrTree(currentToken);
-        scan();
-        return tree;
-    }
+
 
     public AST rCompoundTree() throws IUPACSyntaxError, OxySyntaxError {
         AST tree = new CompoundTree();
@@ -151,6 +171,8 @@ public class Parser implements ParserApproach<AST> {
         if (lookAheadForCompound()) {
             tree.addKid(rStructureTree());
         }
+
+
 
         return tree;
     }
@@ -169,24 +191,25 @@ public class Parser implements ParserApproach<AST> {
             throw new IUPACSyntaxError(currentToken, Tokens.Root);
         }
 
+
+
+
         return tree;
     }
 
     public AST rSubstituentTree() throws IUPACSyntaxError, OxySyntaxError {
         AST tree = new SubstituentTree();
 
-        if (isNextToken(Tokens.Numerical) || isNextToken(Tokens.Comma)) {
-            while (isNextToken(Tokens.Numerical)) {
+        while (isNextToken(Tokens.Numerical) || isNextToken(Tokens.Comma)) {
+            if (isNextToken(Tokens.Numerical)) {
                 tree.addKid(rLocation());
-
-                if (isNextToken(Tokens.Comma)) {
-                    expect(Tokens.Comma);
-                }
             }
-        }
 
-        if (isNextToken(Tokens.Dash)) {
-            expect(Tokens.Dash);
+            if (isNextToken(Tokens.Comma)) {
+                expect(Tokens.Comma);
+            } else if (isNextToken(Tokens.Dash)) {
+                expect(Tokens.Dash);
+            }
         }
 
         while (isNextToken(Tokens.Multiplier) || isNextToken(Tokens.Radical)) {

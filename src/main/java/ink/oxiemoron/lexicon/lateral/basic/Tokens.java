@@ -8,8 +8,10 @@ public enum Tokens {
     PolyBlockInizio,
     PolyBlockFinizio,
 
-    Semicolon, // ;
-    Fullcolon, // :
+    HalfSemiColon, // ;
+    HalfFullColon, // :
+    FullSemiColon, // ;;
+    FullFullColon, // ::
     UnoQuote, // '
     DuoQuote, // "
     StartPar, // (

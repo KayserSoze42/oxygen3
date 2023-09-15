@@ -102,7 +102,7 @@ public class Lexer implements LexerApproach<Token> {
     }
 
     public Token newNumericalToken(int left, int right, String number) {
-        return new Token(left, right, Element.craft(number, Tokens.Location));
+        return new Token(left, right, Element.craft(number, Tokens.Numerical));
     }
 
     // ---------
@@ -161,8 +161,20 @@ public class Lexer implements LexerApproach<Token> {
 
     // ---------
 
-    public Token newFullcolonToken(int left, int right, String fullColon) {
-        return new Token(left, right, Element.craft(fullColon, Tokens.Fullcolon));
+    public Token newHalfFullColonToken(int left, int right, String fullColon) {
+        return new Token(left, right, Element.craft(fullColon, Tokens.HalfFullColon));
+    }
+
+    public Token newHalfSemiColonToken(int left, int right, String semiColon) {
+        return new Token(left, right, Element.craft(semiColon, Tokens.HalfSemiColon));
+    }
+
+    public Token newFullFullColonToken(int left, int right, String fullColon) {
+        return new Token(left, right, Element.craft(fullColon, Tokens.FullFullColon));
+    }
+
+    public Token newFullSemiColonToken(int left, int right, String semiColon) {
+        return new Token(left, right, Element.craft(semiColon, Tokens.FullSemiColon));
     }
 
     public Token newStartParToken(int left, int right, String startPar) {
@@ -177,9 +189,7 @@ public class Lexer implements LexerApproach<Token> {
     public Token newEndBraToken(int left, int right, String endBra) {
         return new Token(left, right, Element.craft(endBra, Tokens.EndBra));
     }
-    public Token newSemicolonToken(int left, int right, String semiColon) {
-        return new Token(left, right, Element.craft(semiColon, Tokens.Semicolon));
-    }
+
 
     public Token newPolyBlockInizio(int left, int right, String inizio) {
         return new Token(left, right, Element.craft(inizio, Tokens.PolyBlockInizio));
@@ -419,11 +429,18 @@ public class Lexer implements LexerApproach<Token> {
                 bob.append(character);
                 character = source.read();
 
+                if (character == '?') {
+                    endPosition++;
+                    bob.append(character);
+                    character = source.read();
+
+                    return newAskrToken(startPosition, endPosition, bob.toString());
+                }
+
             } catch (Exception eh) {
                 eof = true;
             }
 
-            return newAskrToken(startPosition, endPosition, bob.toString());
         }
 
         if (character == ';') {
@@ -433,19 +450,51 @@ public class Lexer implements LexerApproach<Token> {
                 bob.append(character);
                 character = source.read();
 
+                if (character == ';') {
+                    endPosition++;
+                    bob.append(character);
+                    character = source.read();
+
+                    return newFullSemiColonToken(startPosition, endPosition, bob.toString());
+                }
+
             } catch (Exception eh) {
 
                 eof = true;
 
                 if (source.getPosition() >= source.getLength()) {
-                    return newSemicolonToken(startPosition, endPosition, ";");
+                    return newHalfSemiColonToken(startPosition, endPosition, ";");
                 }
 
                 return newErrorToken(startPosition, endPosition, bob.toString());
 
             }
 
-            return newSemicolonToken(startPosition, endPosition, bob.toString());
+            return newHalfSemiColonToken(startPosition, endPosition, bob.toString());
+        }
+
+        if (character == ':') {
+
+            try {
+
+                endPosition++;
+                bob.append(character);
+                character = source.read();
+
+                if (character == ':') {
+                    endPosition++;
+                    bob.append(character);
+                    character = source.read();
+
+                    return newFullFullColonToken(startPosition, endPosition, bob.toString());
+                }
+
+            } catch (Exception eh) {
+                eof = true;
+            }
+
+            return newHalfFullColonToken(startPosition, endPosition, bob.toString());
+
         }
 
         if (character == '-') {
@@ -488,11 +537,6 @@ public class Lexer implements LexerApproach<Token> {
             }
 
             Matcher multiMatcher;
-
-            multiMatcher = ALKANE_PATTERN.matcher(bob);
-
-
-
 
             multiMatcher = MULTI_PATTERN.matcher(bob);
 
