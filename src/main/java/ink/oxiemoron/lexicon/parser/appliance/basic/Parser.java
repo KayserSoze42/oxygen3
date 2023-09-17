@@ -63,32 +63,35 @@ public class Parser implements ParserApproach<AST> {
 
     public AST rForm() throws IUPACSyntaxError, OxySyntaxError {
         AST tree = new FormTree();
+
+        tree.addKid(rSteerr());
+
         return tree;
     }
 
     public AST rSteerr() throws OxySyntaxError, IUPACSyntaxError {
         AST tree = new SteerrTree();
 
-        do {
-            if (isNextToken(Tokens.HalfSemiColon)) {
-                expect(Tokens.HalfSemiColon);
-            }
+        while (true) {
 
             tree.addKid(rSinDeclTree());
-            if (!isNextToken(Tokens.HalfSemiColon)) {
+
+            if (isNextToken(Tokens.HalfSemiColon)) {
+                expect(Tokens.HalfSemiColon);
+            } else {
                 break;
             }
-        } while (isNextToken(Tokens.HalfSemiColon));
-
-        if (isNextToken(Tokens.Askr)) {
-            ((SteerrTree) tree).setElement(currentToken);
-            scan();
-        } else {
-            ((SteerrTree) tree).setElement(new Token(-6,-9, Element.craft("::", Tokens.FullFullColon)));
         }
 
-        if (((SteerrTree) tree).getElement() != null) {
+        if (isNextToken(Tokens.FullFullColon)) {
+
+            ((SteerrTree) tree).setElement(currentToken);
             tree.addKid(rDesDeclTree());
+
+        } else if (isNextToken(Tokens.FullSemiColon)) {
+
+            ((SteerrTree) tree).setElement(currentToken);
+
         }
 
         return tree;
@@ -115,6 +118,21 @@ public class Parser implements ParserApproach<AST> {
 
     public AST rDesDeclTree() throws IUPACSyntaxError, OxySyntaxError {
         AST tree = new DesDeclTree();
+
+        while (true) {
+            if (isNextToken(Tokens.String)) {
+                tree.addKid(rId());
+
+                if (isNextToken(Tokens.Addr)) {
+                    tree.addKid(rMarkrrTree());
+                    return tree;
+                } else if (isNextToken(Tokens.Rarrow)) {
+                    tree.addKid(rMarkrrTree());
+                }
+            } else {
+                break;
+            }
+        }
 
         return tree;
     }
@@ -260,6 +278,12 @@ public class Parser implements ParserApproach<AST> {
 
     public AST rId() throws IUPACSyntaxError {
         AST tree = new IdTree(currentToken);
+        scan();
+        return tree;
+    }
+
+    public AST rMarkrr() throws OxySyntaxError {
+        AST tree = new MarkrrTree(currentToken);
         scan();
         return tree;
     }

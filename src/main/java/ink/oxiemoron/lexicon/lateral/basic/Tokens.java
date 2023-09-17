@@ -12,17 +12,25 @@ public enum Tokens {
     HalfFullColon, // :
     FullSemiColon, // ;;
     FullFullColon, // ::
+
+    Larrow, // <-
+    Rarrow, // ->
+
     UnoQuote, // '
     DuoQuote, // "
+
     StartPar, // (
     EndPar, // )
     StartBra, // [
     EndBra, // ]
-    Allotr, // = <-
+
+    Allotr, // =
     Addr, // +
     Equalr, // ==
     Greatr, // >
+    Grequlr, // >=
     Lessr, // <
+    Lessqlr, // =<
     Askr, // ?
 
     Comma, // ,
@@ -35,7 +43,7 @@ public enum Tokens {
     String,
 
     // Compound tokens
-    Location,
+    Location, // hmda
     Multiplier,
     Radical,
     Root, // hmm

@@ -114,6 +114,9 @@ public class Lexer implements LexerApproach<Token> {
     public Token newEqualrToken(int left, int right, String equalr) {
         return new Token(left, right, Element.craft(equalr, Tokens.Equalr));
     }
+    public Token newAddrToken(int left, int right, String addr) {
+        return new Token(left, right, Element.craft(addr, Tokens.Addr));
+    }
 
     public Token newGreatrToken(int left, int right, String greatr) {
         return new Token(left, right, Element.craft(greatr, Tokens.Greatr));
@@ -190,6 +193,15 @@ public class Lexer implements LexerApproach<Token> {
         return new Token(left, right, Element.craft(endBra, Tokens.EndBra));
     }
 
+    public Token newLarrowToken(int left, int right, String larrow) {
+        return new Token(left, right, Element.craft(larrow, Tokens.Larrow));
+    }
+
+    public Token newRarrowToken(int left, int right, String rarrow) {
+        return new Token(left, right, Element.craft(rarrow, Tokens.Rarrow));
+    }
+
+
 
     public Token newPolyBlockInizio(int left, int right, String inizio) {
         return new Token(left, right, Element.craft(inizio, Tokens.PolyBlockInizio));
@@ -254,6 +266,21 @@ public class Lexer implements LexerApproach<Token> {
             // escape route, lol
         }
 
+        if (character == '+') {
+
+            try {
+                endPosition++;
+                bob.append(character);
+                character = source.read();
+
+
+            } catch (Exception eh) {
+                eof = true;
+            }
+
+            return newAddrToken(startPosition, endPosition, bob.toString());
+        }
+
         if (character == '(') {
 
             try {
@@ -261,11 +288,12 @@ public class Lexer implements LexerApproach<Token> {
                 bob.append(character);
                 character = source.read();
 
-                return newStartParToken(startPosition, endPosition, bob.toString());
 
             } catch (Exception eh) {
                 eof = true;
             }
+
+            return newStartParToken(startPosition, endPosition, bob.toString());
 
         }
 
@@ -276,12 +304,12 @@ public class Lexer implements LexerApproach<Token> {
                 bob.append(character);
                 character = source.read();
 
-                return newEndParToken(startPosition, endPosition, bob.toString());
 
             } catch (Exception eh) {
                 eof = true;
             }
 
+            return newEndParToken(startPosition, endPosition, bob.toString());
         }
 
         if (character == '~') {
@@ -450,24 +478,27 @@ public class Lexer implements LexerApproach<Token> {
                 bob.append(character);
                 character = source.read();
 
-                if (character == ';') {
-                    endPosition++;
-                    bob.append(character);
-                    character = source.read();
-
-                    return newFullSemiColonToken(startPosition, endPosition, bob.toString());
-                }
 
             } catch (Exception eh) {
 
                 eof = true;
+                return newHalfSemiColonToken(startPosition, endPosition, bob.toString());
 
-                if (source.getPosition() >= source.getLength()) {
-                    return newHalfSemiColonToken(startPosition, endPosition, ";");
+            }
+
+            if (character == ';') {
+
+                try {
+
+                    endPosition++;
+                    bob.append(character);
+                    character = source.read();
+
+                } catch (Exception eh) {
+                    eof = true;
                 }
 
-                return newErrorToken(startPosition, endPosition, bob.toString());
-
+                return newFullSemiColonToken(startPosition, endPosition, bob.toString());
             }
 
             return newHalfSemiColonToken(startPosition, endPosition, bob.toString());
@@ -481,16 +512,24 @@ public class Lexer implements LexerApproach<Token> {
                 bob.append(character);
                 character = source.read();
 
-                if (character == ':') {
+            } catch (Exception eh) {
+                eof = true;
+                return newHalfFullColonToken(startPosition, endPosition, bob.toString());
+            }
+
+            if (character == ':') {
+
+                 try {
+
                     endPosition++;
                     bob.append(character);
                     character = source.read();
 
-                    return newFullFullColonToken(startPosition, endPosition, bob.toString());
-                }
+                 } catch (Exception eh) {
+                     eof = true;
 
-            } catch (Exception eh) {
-                eof = true;
+                 }
+                return newFullFullColonToken(startPosition, endPosition, bob.toString());
             }
 
             return newHalfFullColonToken(startPosition, endPosition, bob.toString());
@@ -520,16 +559,12 @@ public class Lexer implements LexerApproach<Token> {
 
             try {
 
-                if (Character.isAlphabetic(character)) {
+                do {
+                    endPosition++;
+                    bob.append(character);
+                    character = source.read();
 
-                    do {
-                        endPosition++;
-                        bob.append(character);
-                        character = source.read();
-
-                    } while (Character.isLetterOrDigit(character));
-
-                }
+                } while (Character.isLetterOrDigit(character));
 
             } catch (Exception eh) {
 
